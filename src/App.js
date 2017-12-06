@@ -69,14 +69,18 @@ class App extends Component {
         {/* <Wallet addr={this.state.addr} /> */}
 
         {/* <section>
-          <h1>Icons</h1>
+          <Typography type="title">
+            Icons
+          </Typography>
           <div className="icons">
             { icons.map((icon, i) => <CryptoIcon icon={icon} attrs={attrs} key={i} />) }
           </div>
         </section> */}
 
         <section>
-          <h1>Tickers</h1>
+          <Typography type="title">
+            Tickers
+          </Typography>
           <div className="icons">
             { coins.map(coin => <Coin key={coin} id={coin} />) }
           </div>
@@ -84,14 +88,16 @@ class App extends Component {
 
         <ChartProvider>
           <section>
-            <h1>Trends</h1>
+            <Typography type="title">
+              Trends
+            </Typography>
             <div className="icons">
               { coins.map(c => <Trend key={c} id={c} pair="USD" />) }
             </div>
           </section>
 
           <section>
-            <Portfolio title="Cryptocurrency Portfolio" txs={txs} pair="USD" />
+            <Portfolio title="Portfolio" txs={txs} pair="USD" />
           </section>
         </ChartProvider>
 

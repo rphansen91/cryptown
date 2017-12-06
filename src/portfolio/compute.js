@@ -1,3 +1,9 @@
+function sorter (key, inc=1) {
+  return function (a, b) {
+    return (a[key] - b[key]) * inc
+  }
+}
+
 export function current (txs) {
   const portfolio = create(txs)
   const times = Object.keys(portfolio)
@@ -13,7 +19,7 @@ export function current (txs) {
 
 export function create (txs) {
   let totals = {}
-  return txs.reduce(function (acc, tx) {
+  return txs.sort(sorter('createdAt')).reduce(function (acc, tx) {
     if (!totals[tx.coin]) totals[tx.coin] = 0
     totals[tx.coin] += tx.value
 
