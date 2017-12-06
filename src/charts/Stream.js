@@ -121,6 +121,10 @@ function stream ({
     exporting: {
       sourceWidth: 800,
       sourceHeight: 600
+    },
+
+    credits: {
+      enabled: false
     }
   }
 }

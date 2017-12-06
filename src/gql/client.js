@@ -6,5 +6,5 @@ import { uri } from './connection';
 export default new ApolloClient({
   link: new HttpLink({ uri }),
   cache: new InMemoryCache(),
-  // shouldBatch: true
+  shouldBatch: true
 });

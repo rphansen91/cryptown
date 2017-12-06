@@ -51,5 +51,32 @@ function line ({
 
     series: Object.keys(series)
     .map(name => ({ name, data: series[name] })),
+
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500
+        },
+        chartOptions: {
+          yAxis: {
+            labels: {
+              align: 'left',
+              x: 0,
+              y: -5
+            },
+            title: {
+              text: null
+            }
+          },
+          subtitle: {
+            text: null
+          }
+        }
+      }]
+    },
+
+    credits: {
+      enabled: false
+    }
   }
 }

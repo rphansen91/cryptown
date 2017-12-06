@@ -37,4 +37,12 @@
 
 .trend {
   min-width: 30em;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 32em) {
+  .trend {
+    display: block;
+    min-width: initial;
+  }
 }
