@@ -20,7 +20,7 @@ import Current from './portfolio/Current';
 import Details from './explorer/Details';
 import './App.css';
 
-const defaultCoins = ['bitcoin', 'ethereum', 'litecoin', 'eos', 'substratum']
+const defaultCoins = ['bitcoin', 'ethereum', 'litecoin']
 const pairs = ['USD', 'EUR', 'BTC']
 let icons = main()
 
