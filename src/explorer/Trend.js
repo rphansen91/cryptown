@@ -9,6 +9,7 @@ const iconAttrs = "height='4em'"
 const trendQuery = gql`
 query Coin($id: String!, $pair: String!) {
   coin(id: $id) {
+    id
     name
     symbol
     price_usd
@@ -22,7 +23,7 @@ query Coin($id: String!, $pair: String!) {
 }
 `
 
-const loadingCoin = (name) => ({ symbol: 'FCT', name: 'Loading', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
+const loadingCoin = (name) => ({ symbol: '', name: 'Loading', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
 const defaultCoin = () => ({ symbol: 'NaC', name: 'Not Found', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
 
 const Trend = ( { data: { loading, error, coin }, color='#00aacc', ...props }={} ) => {

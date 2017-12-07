@@ -1,4 +1,4 @@
-function sorter (key, inc=1) {
+export function sorter (key, inc=1) {
   return function (a, b) {
     return (a[key] - b[key]) * inc
   }

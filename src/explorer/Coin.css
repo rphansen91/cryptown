@@ -43,6 +43,7 @@
 @media screen and (max-width: 32em) {
   .trend {
     display: block;
-    min-width: initial;
+    min-width: 100%;
+    margin: 1em 0;
   }
 }

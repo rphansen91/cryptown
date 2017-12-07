@@ -32,6 +32,14 @@ export default function () {
     // return Promise.resolve(txExample)
     return store.get()
   }
+  emitter.save = function (txs) {
+    // return Promise.resolve(txExample)
+    return store.save(txs)
+    .then(txs => {
+      emitter.emit('change', txs)
+      return txs
+    })
+  }
   emitter.on = function (name, fn) {
     if (typeof fn !== 'function') return
     if (!listeners[name]) listeners[name] = []

@@ -11,6 +11,7 @@ const iconAttrs = "height='4em'"
 const coinQuery = gql`
 query Coin($id: String!) {
   coin(id: $id) {
+    id
     name
     symbol
     price_usd
@@ -20,7 +21,7 @@ query Coin($id: String!) {
 }
 `
 
-const loadingCoin = (name) => ({ symbol: 'FCT', name: 'Loading', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
+const loadingCoin = (name) => ({ symbol: '', name: 'Loading', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
 const defaultCoin = () => ({ symbol: 'NaC', name: 'Not Found', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
 
 const Coin = ( { data: { loading, error, coin }, color='#00aacc', pos, neg, ...props }={} ) => {
@@ -34,8 +35,8 @@ const Coin = ( { data: { loading, error, coin }, color='#00aacc', pos, neg, ...p
     </div>
     <div className="coin-details">
       <p className="coin-name">{ coin.name }</p>
-      <p>{ usd.display(coin.price_usd) }</p>
-      <p>{ btc.display(coin.price_btc) }</p>
+      <p>{ usd.display(coin.price_usd) } USD</p>
+      <p>{ btc.display(coin.price_btc) } BTC</p>
       <div className="coin-seperator" />
       <Percent value={coin.percent_change_24h} pos={pos} neg={neg} />
     </div>

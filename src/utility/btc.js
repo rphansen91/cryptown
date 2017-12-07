@@ -1,4 +1,4 @@
-const display = value => typeof value === 'number' ? [value, ' BTC'].join('') : ''
+const display = value => typeof value === 'number' ? value : ''
 
 export default {
   display

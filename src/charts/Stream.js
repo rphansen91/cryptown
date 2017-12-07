@@ -1,5 +1,4 @@
-/* global Highcharts */
-
+import Highcharts from './highcharts'
 import React from 'react'
 import Chart from './Chart'
 
@@ -12,35 +11,6 @@ export default class extends Chart {
     return stream(this.props)
   }
 }
-
-// function streamOpts (opts) {
-//   return function (data) {
-//     return Object.assign({}, data, opts)
-//   }
-// }
-
-// function allCategories (d, initialValue) {
-//   return Object.keys(d).reduce(function (acc, c) {
-//     Object.keys(d[c]).forEach(function (cat) {
-//       acc[cat] = initialValue(cat)
-//     })
-//     return acc
-//   }, {})
-// }
-
-// function streamData (d) {
-//   return Object.keys(d).sort()
-//   .reduce(function (acc, time) {
-//     acc.times.push(time)
-//     Object.keys(acc.series).forEach(function (cat) {
-//       acc.series[cat].push(d[time][cat] || 0)
-//     })
-//     return acc
-//   }, {
-//     times: [],
-//     series: allCategories(d, () => [])
-//   })
-// }
 
 function stream ({
   title='Cryptocurrency Portfolio',
@@ -114,6 +84,8 @@ function stream ({
         }
       }
     },
+
+    points: [],
 
     series: Object.keys(series)
       .map(name => ({ name, data: series[name] })),

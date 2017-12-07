@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 2s linear;
+  /* animation: App-logo-spin infinite 2s linear; */
   transform-origin: center;
   height: 80px;
   display: inline-block;
@@ -31,6 +31,11 @@
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 0 1em;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start; */
 }
 
 .add-form {
@@ -46,7 +51,25 @@ section {
   margin-top: 2em;
 }
 
+.full-size {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.white-text {
+  color: #fff!important;
+}
+.white-fill {
+  fill: #fff;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(-360deg); }
+}
+
+@media screen and (max-width: 32em) {
+  .icons.responsive {
+    flex-direction: column;
+  }
 }

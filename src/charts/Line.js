@@ -1,6 +1,5 @@
-/* global Highcharts */
-
 import React from 'react'
+import Highcharts from './highcharts'
 import Chart from './Chart'
 
 export default class extends Chart {
@@ -48,6 +47,8 @@ function line ({
     legend: {
       enabled: false
     },
+
+    points: [],
 
     series: Object.keys(series)
     .map(name => ({ name, data: series[name] })),

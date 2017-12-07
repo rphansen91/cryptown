@@ -4,8 +4,6 @@ import Wallet from './explorer/Wallet';
 import Coin from './explorer/Coin';
 import CryptoIcon from './icons/CryptoIcon';
 import { main } from './icons/icons';
-import ChartProvider from './charts/Provider';
-import Stream from './charts/Stream';
 import Portfolio from './portfolio/Portfolio';
 import { allCoins } from './portfolio/compute'
 import Trend from './explorer/Trend';
@@ -14,11 +12,16 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import AddTx from './portfolio/Add';
+import Pairs from './portfolio/Pairs';
+import Current from './portfolio/Current';
+import Details from './explorer/Details';
 import './App.css';
 
-const defaultCoins = ['bitcoin', 'ethereum', 'litecoin']
+const defaultCoins = ['bitcoin', 'ethereum', 'litecoin', 'eos', 'substratum']
+const pairs = ['USD', 'EUR', 'BTC']
 let icons = main()
 
 class App extends Component {
@@ -26,6 +29,7 @@ class App extends Component {
     super(props)
     this.txStore = txStore();
     this.state = {
+      pair: pairs[0],
       addr: "19SokJG7fgk8iTjemJ2obfMj14FM16nqzj",
       txs: []
     }
@@ -41,15 +45,18 @@ class App extends Component {
       this.setState({ txs, coins: allCoins(txs) })
     })
   }
+  setPair (pair) {
+    this.setState({ pair })
+  }
   addingTx (adding) {
     this.setState({ adding })
   }
-  submitTx (tx) {
-    this.setState({ adding: false })
-    this.txStore.add(tx)
+  submitTx (txs, close) {
+    this.setState({ adding: !close })
+    this.txStore.save(txs)
   }
   render() {
-    let { coins, txs, adding } = this.state
+    let { coins, txs, adding, pair } = this.state
     if (!coins || !coins.length) {
       coins = defaultCoins
     }
@@ -61,10 +68,10 @@ class App extends Component {
             <Typography type="title" style={{color: "#fff"}}>
               Welcome to Cryptown
             </Typography>
-            <IconButton style={{float: "right"}} color="contrast" aria-label="Add" onClick={this.addingTx.bind(this, true)}>
-              <AddIcon color="#fff" />
-            </IconButton>
+            <div style={{flex: "1 1 auto"}} />
+            <Pairs value={pair} values={pairs} onChange={this.setPair.bind(this)} />
           </Toolbar>
+          <Current className="white-text" txs={txs} />
         </AppBar>
         {/* <Wallet addr={this.state.addr} /> */}
 
@@ -86,22 +93,32 @@ class App extends Component {
           </div>
         </section>
 
-        <ChartProvider>
-          <section>
-            <Typography type="title">
-              Trends
-            </Typography>
-            <div className="icons">
-              { coins.map(c => <Trend key={c} id={c} pair="USD" />) }
-            </div>
-          </section>
+        <section>
+          <Typography type="title">
+            Trends
+          </Typography>
+          <div className="icons responsive">
+            { coins.map(c => <Trend key={c} id={c} pair={pair} />) }
+          </div>
+        </section>
 
-          <section>
-            <Portfolio title="Portfolio" txs={txs} pair="USD" />
-          </section>
-        </ChartProvider>
+        {/* <section>
+          <Typography type="title">
+            Trends
+          </Typography>
+          <div className="icons responsive">
+            { coins.map(c => <Details key={c} id={c} pair={pair} />) }
+          </div>
+        </section> */}
 
-        <AddTx open={adding} onClose={this.addingTx.bind(this, false)} onSubmit={this.submitTx.bind(this)} />
+        <section>
+          <Portfolio title="Portfolio" txs={txs} pair={pair} />
+        </section>
+
+        <Button fab color="primary" onClick={this.addingTx.bind(this, true)} style={{position: "fixed", bottom: 10, right: 10}}>
+          <AddIcon color="#fff" />
+        </Button>
+        <AddTx txs={txs} open={adding} onClose={this.addingTx.bind(this, false)} onSubmit={this.submitTx.bind(this)} />
       </div>
     );
   }
