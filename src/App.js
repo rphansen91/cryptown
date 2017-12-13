@@ -18,6 +18,7 @@ import AddTx from './portfolio/Add';
 import Pairs from './portfolio/Pairs';
 import Current from './portfolio/Current';
 import Details from './explorer/Details';
+import GraphiQL from './explorer/GraphiQL';
 import './App.css';
 
 const defaultCoins = ['bitcoin', 'ethereum', 'litecoin']
@@ -65,13 +66,12 @@ class App extends Component {
       <div className="App">
         <AppBar position="static" style={{background: "#222"}}>
           <Toolbar>
-            <Typography type="title" style={{color: "#fff"}}>
-              Welcome to Cryptown
-            </Typography>
+            <Typography type="title" style={{color: "#fff"}}>Block Dock</Typography>
             <div style={{flex: "1 1 auto"}} />
             <Pairs value={pair} values={pairs} onChange={this.setPair.bind(this)} />
           </Toolbar>
-          <Current className="white-text" txs={txs} />
+
+          <Current className="white-text" txs={txs} style={{marginTop: '1em'}} />
         </AppBar>
         {/* <Wallet addr={this.state.addr} /> */}
 
@@ -114,6 +114,10 @@ class App extends Component {
         <section>
           <Portfolio title="Portfolio" txs={txs} pair={pair} />
         </section>
+
+        {/* <section style={{ height: '100vh', textAlign: 'initial' }}>
+          <GraphiQL />
+        </section> */}
 
         <Button fab color="primary" onClick={this.addingTx.bind(this, true)} style={{position: "fixed", bottom: 10, right: 10}}>
           <AddIcon color="#fff" />

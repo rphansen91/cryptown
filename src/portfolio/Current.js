@@ -23,8 +23,6 @@ const CurrentValue = (props) => {
   if (!coins) return <div />
 
   const currentPortfolio = current(txs)(new Date().getTime())
-  console.log(currentPortfolio)
-
   const { value_usd, value_btc } = coins.reduce((acc, c) => {
     acc['value_usd'] += c.price_usd * (currentPortfolio[c.id] || 0)
     acc['value_btc'] += c.price_btc * (currentPortfolio[c.id] || 0)
