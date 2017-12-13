@@ -46,7 +46,9 @@ function stream ({
     },
 
     legend: {
-      enabled: false
+      enabled: true,
+      verticalAlign: 'top',
+      align: 'left'
     },
 
     annotations: [{
