@@ -6,7 +6,7 @@ function unique (arr=[]) {
   return Object.keys(arr.reduce((acc, c) => {
     acc[c] = true
     return acc
-  }))
+  }, {}))
 }
 
 export default class extends Chart {
