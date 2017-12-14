@@ -2,6 +2,13 @@ import Highcharts from './highcharts'
 import React from 'react'
 import Chart from './Chart'
 
+function unique (arr=[]) {
+  return Object.keys(arr.reduce((acc, c) => {
+    acc[c] = true
+    return acc
+  }))
+}
+
 export default class extends Chart {
   constructor (props) {
     super(props)
@@ -26,7 +33,7 @@ function stream ({
       backgroundColor: 'rgba(0,0,0,0)'
     },
 
-    colors: colors.concat(Highcharts.getOptions().colors),
+    colors: unique(colors).concat(Highcharts.getOptions().colors),
 
     title: {
       text: title
