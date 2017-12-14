@@ -21,7 +21,8 @@ function line ({
 }) {
   return {
     chart: {
-      zoomType: 'x'
+      zoomType: 'x',
+      backgroundColor: 'rgba(0,0,0,0)'
     },
 
     colors: colors,
@@ -74,6 +75,10 @@ function line ({
           }
         }
       }]
+    },
+
+    exporting: {
+      enabled: false
     },
 
     credits: {

@@ -3,6 +3,7 @@ import { btcUsdTrend } from './trends'
 import Wallet from './explorer/Wallet';
 import Coin from './explorer/Coin';
 import CryptoIcon from './icons/CryptoIcon';
+import coinColor from './icons/colors';
 import { main } from './icons/icons';
 import Portfolio from './portfolio/Portfolio';
 import { allCoins } from './portfolio/compute'
@@ -22,7 +23,7 @@ import GraphiQL from './explorer/GraphiQL';
 import './App.css';
 
 const defaultCoins = ['bitcoin', 'ethereum', 'litecoin']
-const pairs = ['USD', 'EUR', 'BTC']
+const pairs = ['USD', /*'EUR',*/ 'BTC']
 let icons = main()
 
 class App extends Component {
@@ -72,6 +73,8 @@ class App extends Component {
           </Toolbar>
 
           <Current className="white-text" txs={txs} style={{marginTop: '1em'}} />
+
+          <Portfolio title="" txs={txs} pair={pair} />
         </AppBar>
         {/* <Wallet addr={this.state.addr} /> */}
 
@@ -85,34 +88,17 @@ class App extends Component {
         </section> */}
 
         <section>
-          <Typography type="title">
-            Tickers
-          </Typography>
+          <Typography type="title">Tickers</Typography>
           <div className="icons">
-            { coins.map(coin => <Coin key={coin} id={coin} />) }
+            { coins.map(coin => <Coin color={coinColor(coin)} key={coin} id={coin} />) }
           </div>
         </section>
 
         <section>
-          <Typography type="title">
-            Trends
-          </Typography>
+          <Typography type="title">Trends</Typography>
           <div className="icons responsive">
-            { coins.map(c => <Trend key={c} id={c} pair={pair} />) }
+            { coins.map(c => <Trend key={c} color={coinColor(c)} id={c} pair={pair} />) }
           </div>
-        </section>
-
-        {/* <section>
-          <Typography type="title">
-            Trends
-          </Typography>
-          <div className="icons responsive">
-            { coins.map(c => <Details key={c} id={c} pair={pair} />) }
-          </div>
-        </section> */}
-
-        <section>
-          <Portfolio title="Portfolio" txs={txs} pair={pair} />
         </section>
 
         {/* <section style={{ height: '100vh', textAlign: 'initial' }}>

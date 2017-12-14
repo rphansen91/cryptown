@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import CryptoIcon from '../icons/CryptoIcon';
 import Line from '../charts/Line';
+import { defaultColor } from '../utility/styles';
 import './Coin.css';
 
 const iconAttrs = "height='4em'"
@@ -26,7 +27,7 @@ query Coin($id: String!, $pair: String!) {
 const loadingCoin = (name) => ({ symbol: '', name: 'Loading', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
 const defaultCoin = () => ({ symbol: 'NaC', name: 'Not Found', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
 
-const Trend = ( { data: { loading, error, coin }, color='#00aacc', ...props }={} ) => {
+const Trend = ( { data: { loading, error, coin }, color=defaultColor, ...props }={} ) => {
   if (loading) coin = loadingCoin()
   if (error) coin = defaultCoin()
   if (!coin) coin = defaultCoin()

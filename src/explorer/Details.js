@@ -12,6 +12,7 @@ import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Chart from './Chart';
+import { defaultColor } from '../utility/styles';
 import './Details.css'
 
 const iconAttrs = "height='4em'"
@@ -51,7 +52,7 @@ class CoinDetails extends Component {
   render () {
     let {
       data: { loading, error, coin },
-      color='#00aacc',
+      color=defaultColor,
       pos, neg, pair
     }=this.props
     let series = {}

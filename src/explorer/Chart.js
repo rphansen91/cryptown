@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Line from '../charts/Line';
+import { defaultColor } from '../utility/styles';
 
 const chartQuery = gql`
 query Chart($id: String!, $pair: String!) {
@@ -19,7 +20,7 @@ query Chart($id: String!, $pair: String!) {
 }
 `
 
-const Chart = ( { data: { loading, error, coin }, color='#00aacc', ...props }={} ) => {
+const Chart = ( { data: { loading, error, coin }, color=defaultColor, ...props }={} ) => {
   if (loading) return <div />
   if (error) return <p>{ error.message }</p>
   if (!coin) return <div />

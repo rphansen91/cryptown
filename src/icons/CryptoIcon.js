@@ -20,7 +20,7 @@ export default class extends Component {
     const { attrs } = this.props
     const { svg } = this.state
     const __html = svg.replace('viewBox', (attrs ? attrs + ' viewBox' : 'viewBox'))
-    return <span {...this.props} dangerouslySetInnerHTML={{ __html }} />
+    return <span {...this.props} className='icon' dangerouslySetInnerHTML={{ __html }} />
   }
 }
 

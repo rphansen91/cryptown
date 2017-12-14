@@ -4,6 +4,7 @@ import React from 'react'
 import Stream from '../charts/Stream';
 import { graphql } from 'react-apollo';
 import { allCoins, current } from './compute';
+import coinColor from '../icons/colors';
 import gql from 'graphql-tag';
 
 const portfolioQuery = gql`
@@ -35,7 +36,7 @@ const Portfolio = (props) => {
     return acc
   }, {})
 
-  return <Stream {...props} series={series} />
+  return <Stream {...props} series={series} colors={Object.keys(series).map(coinColor)} />
 }
 
 export default graphql(portfolioQuery, {

@@ -15,17 +15,18 @@ export default class extends Chart {
 function stream ({
   title='Cryptocurrency Portfolio',
   subtitle='',
-  colors=Highcharts.getOptions().colors,
+  colors=[],
   series={}
 }) {
   return {
     chart: {
       type: 'streamgraph',
       marginBottom: 30,
-      zoomType: 'x'
+      zoomType: 'x',
+      backgroundColor: 'rgba(0,0,0,0)'
     },
 
-    colors: colors,
+    colors: colors.concat(Highcharts.getOptions().colors),
 
     title: {
       text: title
@@ -48,7 +49,8 @@ function stream ({
     legend: {
       enabled: true,
       verticalAlign: 'top',
-      align: 'left'
+      align: 'left',
+      layout: 'vertical'
     },
 
     annotations: [{
@@ -94,7 +96,8 @@ function stream ({
 
     exporting: {
       sourceWidth: 800,
-      sourceHeight: 600
+      sourceHeight: 600,
+      enabled: false
     },
 
     credits: {

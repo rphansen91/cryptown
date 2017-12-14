@@ -8,6 +8,7 @@ import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
 import { graphql } from 'react-apollo';
 import { allCoins, current, create, sorter } from './compute';
+import { defaultColor } from '../utility/styles';
 import moment from 'moment';
 import List from 'material-ui/List';
 import Tx from './Tx';
@@ -23,7 +24,7 @@ query AllCoins {
 }
 `
 
-const attrs = "fill='#00aacc' height='1em' style='vertical-align: text-top; margin: 0 0.2em;'"
+const attrs = "fill='"+defaultColor+"' height='1em' style='vertical-align: text-top; margin: 0 0.2em;'"
 const initial = () => ({
   coin: 'bitcoin',
   value: '',
