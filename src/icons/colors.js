@@ -1,3 +1,5 @@
+import { defaultColor } from '../utility/styles'
+
 const colors = {
   'bitcoin': '#f9a540',
   'btc': '#f9a540',
@@ -7,4 +9,4 @@ const colors = {
   'litecoin': '#999999'
 }
 
-export default (symbol='') => colors[symbol.toLowerCase()] || ''
+export default (symbol='') => colors[symbol.toLowerCase()] || defaultColor
