@@ -1,0 +1,30 @@
+.page-footer {
+  padding: 72px 24px;
+  box-sizing: border-box;
+  background-color: rgb(33, 33, 33);
+  text-align: center;
+}
+
+.footer-p {
+  margin: 0px auto;
+  padding: 0px;
+  color: rgba(255, 255, 255, 0.54);
+  max-width: 356px;
+}
+
+.footer-p a {
+  color: rgba(255, 255, 255, 0.87);
+  margin: 0px 3px;
+}
+
+.footer-ps {
+  display: flex; align-items: flex-start; justify-content: center; margin: 25px 15px 0px; padding: 0px; color: rgba(255, 255, 255, 0.54); line-height: 25px; font-size: 12px;
+}
+
+.footer-ps a {
+  margin: 0px 3px;
+}
+
+.footer-ps a img {
+  vertical-align: middle;
+}

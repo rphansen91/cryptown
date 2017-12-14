@@ -20,6 +20,7 @@ import Pairs from './portfolio/Pairs';
 import Current from './portfolio/Current';
 import Details from './explorer/Details';
 import GraphiQL from './explorer/GraphiQL';
+import Footer from './ui/Footer';
 import './App.css';
 
 const defaultCoins = ['bitcoin', 'ethereum', 'litecoin']
@@ -105,6 +106,9 @@ class App extends Component {
           <GraphiQL />
         </section> */}
 
+        <section>
+          <Footer />
+        </section>
         <Button fab color="primary" onClick={this.addingTx.bind(this, true)} style={{position: "fixed", bottom: 10, right: 10}}>
           <AddIcon color="#fff" />
         </Button>
