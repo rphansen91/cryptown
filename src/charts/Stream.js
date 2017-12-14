@@ -50,7 +50,10 @@ function stream ({
       enabled: true,
       verticalAlign: 'top',
       align: 'left',
-      layout: 'vertical'
+      layout: 'vertical',
+      itemStyle: {
+        color: '#ffffff'
+      }
     },
 
     annotations: [{
