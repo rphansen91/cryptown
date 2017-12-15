@@ -1,4 +1,6 @@
 .page-footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
   padding: 72px 0;
   box-sizing: border-box;
   background-color: rgb(33, 33, 33);

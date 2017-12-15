@@ -19,14 +19,16 @@ class Routes extends Component {
 
   render () {
     const props = this.props
-    return <Switch>
-      <Route exact path={process.env.PUBLIC_URL + "/"} component={() => <Home coins={props.coins} pair={props.pair}/> } />
-      <Route path={process.env.PUBLIC_URL + "/about"} component={About} />
-      {/* <Route path={process.env.PUBLIC_URL + "/txs"} component={Transactions} /> */}
-      <Route path={process.env.PUBLIC_URL + "/add"} component={Add} />
-      <Route path={process.env.PUBLIC_URL + "/gql"} component={() => <GraphiQL style={{height: '80vh', textAlign: 'initial'}}/>} />
-      <Route path="*" component={NotFound} />
-    </Switch>
+    return <div className="content">
+      <Switch>
+        <Route exact path={process.env.PUBLIC_URL + "/"} component={() => <Home coins={props.coins} pair={props.pair}/> } />
+        <Route path={process.env.PUBLIC_URL + "/about"} component={About} />
+        {/* <Route path={process.env.PUBLIC_URL + "/txs"} component={Transactions} /> */}
+        <Route path={process.env.PUBLIC_URL + "/add"} component={Add} />
+        <Route path={process.env.PUBLIC_URL + "/gql"} component={() => <GraphiQL style={{height: '80vh', textAlign: 'initial'}}/>} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </div>
   }
 }
 

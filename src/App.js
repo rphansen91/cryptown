@@ -122,7 +122,7 @@ class App extends Component {
           <AddTx txs={txs} open={adding} onClose={this.addingTx.bind(this, false)} onSubmit={this.submitTx.bind(this)} />
         </div>
       </div>
-    );
+    )
   }
 }
 

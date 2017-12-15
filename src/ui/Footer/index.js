@@ -20,5 +20,7 @@ export default () =>
       for charting.
     </p>
   </section>
-  <AllCoins />
+  <div style={{marginLeft: 60}}>
+    <AllCoins />
+  </div>
 </div>
