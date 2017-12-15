@@ -6,20 +6,21 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.id = randomId('chart')
+    this.renderer = render(this.id)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.renderChart()
   }
 
-  componentWillUpdate () {
+  componentDidUpdate (prevProps) {
     this.renderChart()
   }
 
   renderChart () {
     Promise.resolve()
     .then(() => this.chartOpts())
-    .then(render(this.id))
+    .then((chart) => this.renderer(chart))
   }
 
   chartOpts () {
@@ -34,8 +35,15 @@ export default class extends Component {
 function render (id) {
   let prevChart = null
   return function (chart) {
-    if (chart === prevChart) return
-    Highcharts.chart(id, chart)
-    prevChart = chart
+    if (chart === prevChart) {
+      console.log('Same data')
+      return
+    }
+    try {
+      Highcharts.chart(id, chart)
+      prevChart = chart
+    } catch (err) {
+      console.log(err)
+    }
   }
 }

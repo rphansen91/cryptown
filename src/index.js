@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import grey from 'material-ui/colors/grey';
 import lightBlue from 'material-ui/colors/lightBlue';
+import { BrowserRouter } from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
@@ -17,10 +18,13 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <MuiThemeProvider theme={theme}>
-      <App />
-    </MuiThemeProvider>
-  </ApolloProvider>
+  <BrowserRouter>
+    <ApolloProvider client={client}>
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
+    </ApolloProvider>
+  </BrowserRouter>
 , document.getElementById('root'));
+
 registerServiceWorker();

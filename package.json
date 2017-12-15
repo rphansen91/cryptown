@@ -1,6 +1,7 @@
 {
   "name": "bitrends",
   "version": "0.1.0",
+  "main": "index.js",
   "private": true,
   "homepage": "http://rphansen91.github.io/cryptown",
   "dependencies": {
@@ -17,7 +18,9 @@
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
     "react-apollo": "^2.0.1",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "gh-pages": "^1.1.0",

@@ -11,4 +11,7 @@ function graphQLFetcher(graphQLParams) {
   }).then(response => response.json())
 }
 
-export default ({ props }) => <GraphiQL fetcher={graphQLFetcher} {...props} />
+export default (props) =>
+  <div {...props}>
+    <GraphiQL fetcher={graphQLFetcher} />
+  </div>
