@@ -14,7 +14,7 @@ const RegItem = ({ children, onClick }) =>
   </ListItem>
 
 export const MainListItems = withRouter((props) =>
-<List style={props.style || {}}>
+<List className={props.className || ""}>
   <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/')}>
     <ListItemIcon>
       <HomeIcon />
@@ -36,7 +36,7 @@ export const MainListItems = withRouter((props) =>
 </List>)
 
 export const OtherListItems = withRouter((props) =>
-<List style={props.style || {}}>
+<List className={props.className || ""}>
   <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/about')}>
     <ListItemIcon>
       <HelpIcon />

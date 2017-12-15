@@ -18,9 +18,11 @@ export default class extends Component {
   }
 
   renderChart () {
-    Promise.resolve()
-    .then(() => this.chartOpts())
-    .then((chart) => this.renderer(chart))
+    requestAnimationFrame(() => {
+      Promise.resolve()
+      .then(() => this.chartOpts())
+      .then((chart) => this.renderer(chart))
+    })
   }
 
   chartOpts () {
@@ -35,10 +37,7 @@ export default class extends Component {
 function render (id) {
   let prevChart = null
   return function (chart) {
-    if (chart === prevChart) {
-      console.log('Same data')
-      return
-    }
+    if (chart === prevChart) return
     try {
       Highcharts.chart(id, chart)
       prevChart = chart
