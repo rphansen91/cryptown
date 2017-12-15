@@ -25,6 +25,7 @@ import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui-icons/Close';
 import NavigationMenu from 'material-ui-icons/Menu';
 import Menu from './ui/Menu';
+import isMobile from './utility/isMobile';
 import cx from './utility/cx';
 import './App.css';
 
@@ -43,7 +44,7 @@ class App extends Component {
       menu: false,
       adding: false,
       location: {},
-      mobile: window.innerWidth < 800
+      mobile: isMobile()
     }
   }
   componentWillMount () {
@@ -57,9 +58,11 @@ class App extends Component {
       this.setState({ txs, coins: allCoins(txs) })
     })
 
-    window.addEventListener('resize', () => {
-      this.setState({ mobile: window.innerWidth < 800 })
-    })
+    if (!isMobile()) {
+      window.addEventListener('resize', () => {
+        this.setState({ mobile: window.innerWidth < 800 })
+      })
+    }
   }
   setPair (pair) {
     this.setState({ pair })
