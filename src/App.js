@@ -107,7 +107,7 @@ class App extends Component {
               <Pairs value={pair} values={pairs} onChange={this.setPair.bind(this)} />
             </Toolbar>
 
-            <div style={{ display: (!location.pathname || location.pathname === '/') ? 'initial' : 'none', overflow: 'hidden' }}>
+            <div style={{ display: (location.pathname === process.env.PUBLIC_URL + '/') ? 'initial' : 'none', overflow: 'hidden' }}>
               <Current className="white-text" txs={txs} style={{marginTop: '1em'}} />
               <Portfolio title="" txs={txs} pair={pair} />
             </div>
