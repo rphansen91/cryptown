@@ -56,7 +56,7 @@ class AddTx extends Component {
     if (!createdAt.isValid()) return this.setState({ errors: this.errors('createdAt', true) })
 
     const { symbol } = coins.find(({ id }) => id === coin)
-    onSubmit(txs.concat({ id: coin, symbol, value: Number(value), createdAt: createdAt.valueOf() / 1000 }), true)
+    onSubmit(txs.concat({ coin, symbol, value: Number(value), createdAt: createdAt.valueOf() / 1000 }), true)
     this.setState(initial())
   }
   remove (i) {
