@@ -15,19 +15,19 @@ const RegItem = ({ children, onClick }) =>
 
 export const MainListItems = withRouter((props) =>
 <List style={props.style || {}}>
-  <RegItem onClick={() => props.history.push('/')}>
+  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/')}>
     <ListItemIcon>
       <HomeIcon />
     </ListItemIcon>
     <ListItemText primary="Home" />
   </RegItem>
-  <RegItem onClick={() => props.history.push('/tx')}>
+  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/tx')}>
     <ListItemIcon>
       <DraftsIcon />
     </ListItemIcon>
     <ListItemText primary="Trades" />
   </RegItem>
-  <RegItem onClick={() => props.history.push('/add')}>
+  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/add')}>
     <ListItemIcon>
       <AddIcon />
     </ListItemIcon>
@@ -37,13 +37,13 @@ export const MainListItems = withRouter((props) =>
 
 export const OtherListItems = withRouter((props) =>
 <List style={props.style || {}}>
-  <RegItem onClick={() => props.history.push('/about')}>
+  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/about')}>
     <ListItemIcon>
       <HelpIcon />
     </ListItemIcon>
     <ListItemText primary="About" />
   </RegItem>
-  <RegItem onClick={() => props.history.push('/gql')}>
+  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/gql')}>
     <ListItemIcon>
       <GQLIcon />
     </ListItemIcon>

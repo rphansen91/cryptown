@@ -72,7 +72,6 @@ class App extends Component {
     this.setState({ menu: false })
   }
   onRouteChanged (location) {
-    console.log(location)
     this.setState({
       menu: false,
       location
