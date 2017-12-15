@@ -1,8 +1,9 @@
 import React from 'react'
 import AllCoins from '../../icons/AllCoins';
+import { withRouter } from 'react-router-dom'
 import './style.css'
 
-export default () =>
+export default withRouter((props) =>
 <div className="page-footer">
   <section>
     <p className="footer-p">
@@ -11,16 +12,14 @@ export default () =>
     <p className="footer-ps">
       Thank you to
       <a href="https://www.coinmarketcap.com" target="_blank">
-        <img src="./coinmarketcap_t.png" height="15" width="auto" />
+        <img src={process.env.PUBLIC_URL + "/coinmarketcap_t.png"} height="15" width="auto" />
       </a>
       for providing price analytics and
       <a href="https://www.highcharts.com" target="_blank">
-        <img src="./highcharts_t.png" height="25" width="auto" style={{transform: 'translate3d(0,-3px,0)'}}/>
+        <img src={process.env.PUBLIC_URL + "/highcharts_t.png"} height="25" width="auto" style={{transform: 'translate3d(0,-3px,0)'}}/>
       </a>
       for charting.
     </p>
   </section>
-  <div style={{marginLeft: 60}}>
-    <AllCoins />
-  </div>
-</div>
+  <AllCoins onClick={coin => props.history.push(process.env.PUBLIC_URL + '/coin/' + coin)}/>
+</div>)

@@ -1,7 +1,12 @@
+#root {
+  overflow-x: hidden;
+}
+
 .App {
   position: relative;
   text-align: center;
   min-height: 100vh;
+  transition: transform 0.1s ease-in;
 }
 
 .App.permanent {
@@ -9,12 +14,16 @@
 }
 
 .App.permanent.open {
-  padding-left: 250px
+  transform: translate3d(190px, 0, 0);
+  /* padding-left: 250px */
 }
 
 .links {
-  flex: initial!important;
+  flex: none!important;
+  overflow-x: hidden;
+  overflow-y: auto;
   width: 60px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .links.open {

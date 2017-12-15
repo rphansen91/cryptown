@@ -35,8 +35,8 @@ export function create (txs) {
 }
 
 export function allCoins (txs, defaultCoins=[]) {
-  const coins = Object.keys(txs.reduce((acc, tx) => {
-    acc[tx.coin] = true
+  const coins = Object.values(txs.reduce((acc, tx) => {
+    acc[tx.coin] = { id: tx.coin, symbol: tx.symbol }
     return acc
   }, {}))
   return coins.length ? coins : defaultCoins

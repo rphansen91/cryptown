@@ -25,7 +25,8 @@ class Routes extends Component {
         <Route path={process.env.PUBLIC_URL + "/about"} component={About} />
         {/* <Route path={process.env.PUBLIC_URL + "/txs"} component={Transactions} /> */}
         <Route path={process.env.PUBLIC_URL + "/add"} component={Add} />
-        <Route path={process.env.PUBLIC_URL + "/gql"} component={() => <GraphiQL style={{height: '80vh', textAlign: 'initial'}}/>} />
+        <Route path={process.env.PUBLIC_URL + "/gql"} component={() => <GraphiQL style={{position: 'relative', height: '80vh', textAlign: 'initial'}}/>} />
+        <Route path={process.env.PUBLIC_URL + "/coin/:id"} component={(props) => <div><section /><section>{ props.match.params.id }</section></div>} />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>

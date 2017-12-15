@@ -14,15 +14,15 @@ import DeleteIcon from 'material-ui-icons/Delete';
 import CryptoIcon from '../icons/CryptoIcon';
 import moment from 'moment';
 
-export default ({ tx: { coin, value, createdAt }, onRemove}) =>
+export default ({ tx: { coin, symbol, value, createdAt }, onRemove}) =>
 <ListItem button>
   <ListItemAvatar>
     <Avatar>
-      <CryptoIcon className="full-size" icon={coin} attrs="height='100%'" />
+      <CryptoIcon style={{height: "100%"}} className="full-size" icon={symbol} attrs="height='100%'" />
     </Avatar>
   </ListItemAvatar>
   <ListItemText
-    primary={coin + ' ' + value}
+    primary={symbol + ' ' + value}
     secondary={moment(createdAt * 1000).fromNow()}
   />
   <ListItemSecondaryAction>

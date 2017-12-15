@@ -48,13 +48,15 @@ class AddTx extends Component {
   }
   submit (ev) {
     ev && ev.nativeEvent.preventDefault()
-    const { onSubmit=(v=>v), txs=[] } = this.props
+    const { onSubmit=(v=>v), txs=[], data: { coins } } = this.props
     const { coin, value, createdAt } = this.state
 
     if (!coin) return this.setState({ errors: this.errors('coin', true) })
     if (!value || isNaN(Number(value))) return this.setState({ errors: this.errors('value', true) })
     if (!createdAt.isValid()) return this.setState({ errors: this.errors('createdAt', true) })
-    onSubmit(txs.concat({ coin, value: Number(value), createdAt: createdAt.valueOf() / 1000 }), true)
+
+    const { symbol } = coins.find(({ id }) => id === coin)
+    onSubmit(txs.concat({ id: coin, symbol, value: Number(value), createdAt: createdAt.valueOf() / 1000 }), true)
     this.setState(initial())
   }
   remove (i) {

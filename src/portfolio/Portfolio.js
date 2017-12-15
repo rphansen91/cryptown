@@ -40,5 +40,5 @@ const Portfolio = (props) => {
 }
 
 export default graphql(portfolioQuery, {
-  options: ({ txs, pair }) => ({ variables: { ids: allCoins(txs, ['bitcoin']), pair } })
+  options: ({ txs, pair }) => ({ variables: { ids: allCoins(txs, [{ id: 'bitcoin', symbol: 'BTC' }]).map(({ id }) => id), pair } })
 })(Portfolio)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import IconButton from 'material-ui/IconButton'
 
 export default class extends Component {
   constructor (props) {
@@ -17,10 +18,12 @@ export default class extends Component {
     loadIcon(nextIcon, svg => this.setState({ svg }))
   }
   render () {
-    const { attrs } = this.props
+    const { attrs, button, onClick=(v=>v) } = this.props
     const { svg } = this.state
     const __html = svg.replace('viewBox', (attrs ? attrs + ' viewBox' : 'viewBox'))
-    return <span {...this.props} className='icon' dangerouslySetInnerHTML={{ __html }} />
+    const icon = <span {...this.props} onClick={onClick} className='icon' dangerouslySetInnerHTML={{ __html }} />
+    if (!button) return icon
+    return <IconButton onClick={onClick}>{ icon }</IconButton>
   }
 }
 

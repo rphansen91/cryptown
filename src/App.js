@@ -29,7 +29,7 @@ import isMobile from './utility/isMobile';
 import cx from './utility/cx';
 import './App.css';
 
-const defaultCoins = ['bitcoin', 'ethereum', 'litecoin']
+const defaultCoins = [{ id: 'bitcoin', symbol: 'BTC'}, { id: 'ethereum', symbol: 'ETH'}, { id: 'litecoin', symbol: 'LTC'}]
 const pairs = ['USD', /*'EUR',*/ 'BTC']
 let icons = main()
 
@@ -44,8 +44,11 @@ class App extends Component {
       menu: false,
       adding: false,
       location: {},
-      mobile: isMobile()
+      // mobile: isMobile()
     }
+  }
+  goTo (route) {
+    this.props.history.push(route)
   }
   componentWillMount () {
     this.txStore.get()
@@ -58,11 +61,11 @@ class App extends Component {
       this.setState({ txs, coins: allCoins(txs) })
     })
 
-    if (!isMobile()) {
-      window.addEventListener('resize', () => {
-        this.setState({ mobile: window.innerWidth < 800 })
-      })
-    }
+    // if (!isMobile()) {
+    //   window.addEventListener('resize', () => {
+    //     this.setState({ mobile: window.innerWidth < 800 })
+    //   })
+    // }
   }
   setPair (pair) {
     this.setState({ pair })
@@ -89,20 +92,18 @@ class App extends Component {
 
     return (
       <div>
-        <Menu permanent={!mobile} open={menu} onClose={this.closeMenu.bind(this)} />
+        <Menu permanent={!mobile} open={menu} coins={coins} onClose={this.closeMenu.bind(this)} />
         <div className={cx({
           "App": true,
           "permanent": !mobile,
           "open": menu
         })}>
-          <AppBar
-            position="static"
-            style={{background: "#222"}}>
+          <AppBar position="static" style={{background: "#222"}}>
             <Toolbar>
               <IconButton onClick={this.toggleMenu.bind(this)} color="contrast" aria-label="Menu">
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
-              <Typography type="title" style={{color: "#fff"}}>Block Dock</Typography>
+              <Typography onClick={this.goTo.bind(this, '/')} type="title" style={{color: "#fff", cursor: "pointer"}}>Block Dock</Typography>
               <div style={{flex: "1 1 auto"}} />
               <Pairs value={pair} values={pairs} onChange={this.setPair.bind(this)} />
             </Toolbar>
