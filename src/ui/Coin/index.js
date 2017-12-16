@@ -1,0 +1,56 @@
+import React, { Component } from 'react'
+import Typography from 'material-ui/Typography';
+import { graphql } from 'react-apollo';
+import usd from '../../utility/usd';
+import btc from '../../utility/btc';
+import { defaultColor } from '../../utility/styles';
+import CryptoIcon from '../../icons/CryptoIcon';
+import Percent from '../../explorer/Percent';
+import gql from 'graphql-tag';
+import './style.css';
+
+const iconAttrs = "height='4em'"
+const coinQuery = gql`
+query Coin($id: String!) {
+  coin(id: $id) {
+    id
+    name
+    symbol
+    price_usd
+    price_btc
+    percent_change_24h
+  }
+}
+`
+
+const loadingCoin = (name) => ({ symbol: '', name: 'Loading', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
+const defaultCoin = () => ({ symbol: 'NaC', name: 'Not Found', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
+
+const Coin = ( { data: { loading, error, coin }, color=defaultColor, pos, neg, ...props }={} ) => {
+  if (loading) coin = loadingCoin()
+  if (error) coin = defaultCoin()
+  if (!coin) coin = defaultCoin()
+
+  return <div>
+    <section />
+    <section>
+      <Typography type="title">{ coin.name }</Typography>
+      <div className={["coin"].concat(props.classList).filter(c => c).join(' ')} style={{ color }} { ...props } >
+        <div className="coin-header">
+          <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={(iconAttrs + ' fill="' + color + '"')} />
+        </div>
+        <div className="coin-details">
+          <p className="coin-name">{ coin.name }</p>
+          <p>{ usd.display(coin.price_usd) } USD</p>
+          <p>{ btc.display(coin.price_btc) } BTC</p>
+          <div className="coin-seperator" />
+          <Percent value={coin.percent_change_24h} pos={pos} neg={neg} />
+        </div>
+      </div>
+    </section>
+  </div>
+}
+
+export default graphql(coinQuery, {
+  options: ({ id }) => ({ variables: { id } })
+})(Coin)

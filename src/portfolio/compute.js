@@ -34,7 +34,9 @@ export function create (txs) {
   })
 }
 
-export function allCoins (txs, defaultCoins=[]) {
+export const default_coins = [{ id: 'bitcoin', symbol: 'BTC'}, { id: 'ethereum', symbol: 'ETH'}, { id: 'litecoin', symbol: 'LTC'}]
+
+export function allCoins (txs, defaultCoins=default_coins) {
   const coins = Object.values(txs.reduce((acc, tx) => {
     acc[tx.coin] = { id: tx.coin, symbol: tx.symbol }
     return acc

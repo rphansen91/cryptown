@@ -6,14 +6,11 @@
   position: relative;
   text-align: center;
   min-height: 100vh;
+  padding-left: 60px;
   transition: transform 0.1s ease-in;
 }
 
-.App.permanent {
-  padding-left: 60px;
-}
-
-.App.permanent.open {
+.App.open {
   transform: translate3d(190px, 0, 0);
   /* padding-left: 250px */
 }
@@ -62,6 +59,9 @@
 .add-form {
   padding: 1em;
   padding-top: 0;
+  width: 100%;
+  max-width: 20em;
+  margin: auto;
 }
 
 .text-center {

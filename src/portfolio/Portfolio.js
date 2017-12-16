@@ -3,6 +3,7 @@
 import React from 'react'
 import Stream from '../charts/Stream';
 import { graphql } from 'react-apollo';
+import { connect } from 'react-redux';
 import { allCoins, current } from './compute';
 import coinColor from '../icons/colors';
 import gql from 'graphql-tag';
@@ -39,9 +40,11 @@ const Portfolio = (props) => {
   return <Stream {...props} series={series} colors={Object.keys(series).map(coinColor)} />
 }
 
-export default graphql(portfolioQuery, {
-  options: ({ txs, pair }) => ({ variables: {
-    ids: allCoins(txs, [{ id: 'bitcoin', symbol: 'BTC' }]).map(({ id }) => id),
+export default connect(
+  ({ txs, coins, pair }) => ({ txs, coins, pair })
+)(graphql(portfolioQuery, {
+  options: ({ coins, pair }) => ({ variables: {
+    ids: coins.map(({ id }) => id),
     pair
   } })
-})(Portfolio)
+})(Portfolio))

@@ -1,11 +1,13 @@
 import React from 'react';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import { allCoins } from '../../portfolio/compute';
 import CryptoIcon from '../../icons/CryptoIcon';
 import HomeIcon from 'material-ui-icons/Home';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import AddIcon from 'material-ui-icons/Add';
 import GQLIcon from 'material-ui-icons/NetworkCheck';
 import HelpIcon from 'material-ui-icons/Help';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 const RegLink = props => <Link {...props} style={{textDecoration: 'none'}} />
@@ -54,7 +56,11 @@ export const OtherListItems = withRouter((props) =>
 
 const attrs = 'height="24px" width="24px" style="fill: rgba(0, 0, 0, 0.54);"'
 const style = { height: 24, width: 24, marginRight: 16 }
-export const CoinListItems = withRouter((props) =>
+const mapStateToProps = ({ txs, menu: open }) => ({ open, coins: allCoins(txs) })
+
+export const CoinListItems = connect(
+  mapStateToProps
+)(withRouter((props) =>
 <List className={props.className || ""}>
   {
     (props.coins || []).map((coin, i) =>
@@ -65,4 +71,4 @@ export const CoinListItems = withRouter((props) =>
         <ListItemText primary={coin.symbol} style={{ opacity: props.open ? 1 : 0 }} />
       </RegItem>)
   }
-</List>)
+</List>))

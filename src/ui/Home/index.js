@@ -1,11 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Typography from 'material-ui/Typography';
 import Coin from '../../explorer/Coin';
 import Trend from '../../explorer/Trend';
 import coinColor from '../../icons/colors';
 import './style.css';
 
-export default ({ coins=[], pair='USD' }) =>
+export default connect(
+  ({ coins, pair }) => ({ coins, pair }),
+  dispatch => ({})
+)(({ coins, pair }) =>
 <div>
   <section />
 
@@ -22,4 +26,4 @@ export default ({ coins=[], pair='USD' }) =>
       { coins.map(c => <Trend key={c.id} color={coinColor(c.id)} id={c.id} pair={pair} />) }
     </div>
   </section>
-</div>
+</div>)

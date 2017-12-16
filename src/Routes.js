@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { closeMenu } from './store/reducers/menu';
 import Home from './ui/Home';
 import About from './ui/About';
 import NotFound from './ui/NotFound';
 import GraphiQL from './explorer/GraphiQL';
 import Add from './portfolio/Add';
+import Coin from './ui/Coin';
 
 class Routes extends Component {
   constructor (props) {
@@ -13,24 +16,28 @@ class Routes extends Component {
 
   componentDidUpdate (prevProps) {
     if (this.props.location !== prevProps.location) {
-      this.props.onRouteChanged(this.props.location)
+      this.props.closeMenu()
     }
   }
 
   render () {
-    const props = this.props
     return <div className="content">
       <Switch>
-        <Route exact path={process.env.PUBLIC_URL + "/"} component={() => <Home coins={props.coins} pair={props.pair}/> } />
+        <Route exact path={process.env.PUBLIC_URL + "/"} component={Home} />
         <Route path={process.env.PUBLIC_URL + "/about"} component={About} />
         {/* <Route path={process.env.PUBLIC_URL + "/txs"} component={Transactions} /> */}
         <Route path={process.env.PUBLIC_URL + "/add"} component={Add} />
         <Route path={process.env.PUBLIC_URL + "/gql"} component={() => <GraphiQL style={{position: 'relative', height: '80vh', textAlign: 'initial'}}/>} />
-        <Route path={process.env.PUBLIC_URL + "/coin/:id"} component={(props) => <div><section /><section>{ props.match.params.id }</section></div>} />
+        <Route path={process.env.PUBLIC_URL + "/coin/:id"} component={(props) => <Coin id={props.match.params.id} />} />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>
   }
 }
 
-export default withRouter(Routes);
+export default withRouter(connect(
+  () => ({}),
+  dispatch => ({
+    closeMenu: () => dispatch(closeMenu())
+  })
+)(Routes));

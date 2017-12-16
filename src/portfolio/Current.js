@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { connect } from 'react-redux';
 import { allCoins, current } from './compute';
 import usd from '../utility/usd';
 import btc from '../utility/btc';
@@ -23,7 +24,6 @@ const CurrentValue = (props) => {
   if (!coins) return <div />
 
   const currentPortfolio = current(txs)(new Date().getTime())
-  console.log(coins)
   const { value_usd, value_btc } = coins.reduce((acc, c) => {
     acc['value_usd'] += c.price_usd * (currentPortfolio[c.id] || 0)
     acc['value_btc'] += c.price_btc * (currentPortfolio[c.id] || 0)
@@ -39,6 +39,9 @@ const CurrentValue = (props) => {
   </div>
 }
 
-export default graphql(portfolioQuery, {
-  options: ({ txs }) => ({ variables: { ids: allCoins(txs, [{ id: 'bitcoin', symbol: 'BTC' }]).map(({ id }) => id) } })
-})(CurrentValue)
+export default connect(
+  ({ txs, coins }) => ({ txs, coins }),
+  dispatch => ({})
+)(graphql(portfolioQuery, {
+  options: ({ coins }) => ({ variables: { ids: coins.map(({ id }) => id) } })
+})(CurrentValue))

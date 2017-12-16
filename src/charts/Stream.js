@@ -63,29 +63,29 @@ function stream ({
       }
     },
 
-    annotations: [{
-      labels: [{
-        point: {
-          x: 0,
-          xAxis: 0,
-          y: 0,
-          yAxis: 0
-        },
-        text: 'Cancelled<br>during<br>World War II'
-      }, {
-        point: {
-          x: 2,
-          xAxis: 0,
-          y: 10,
-          yAxis: 0
-        },
-        text: 'Soviet Union fell,<br>Germany united'
-      }],
-      labelOptions: {
-        backgroundColor: 'rgba(255,255,255,0.5)',
-        borderColor: 'silver'
-      }
-    }],
+    // annotations: [{
+    //   labels: [{
+    //     point: {
+    //       x: 0,
+    //       xAxis: 0,
+    //       y: 0,
+    //       yAxis: 0
+    //     },
+    //     text: 'Cancelled<br>during<br>World War II'
+    //   }, {
+    //     point: {
+    //       x: 2,
+    //       xAxis: 0,
+    //       y: 10,
+    //       yAxis: 0
+    //     },
+    //     text: 'Soviet Union fell,<br>Germany united'
+    //   }],
+    //   labelOptions: {
+    //     backgroundColor: 'rgba(255,255,255,0.5)',
+    //     borderColor: 'silver'
+    //   }
+    // }],
 
     plotOptions: {
       series: {
