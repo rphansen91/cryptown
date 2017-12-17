@@ -76,17 +76,24 @@ class AddTx extends Component {
         <DialogTitle>{ error ? error.message : "New Transaction" }</DialogTitle>
         <div className="add-form">
           <form onSubmit={this.submit.bind(this)}>
-            <TextField value={value} error={errors.value} label="Coin Count" onChange={this.addChange('value', ev => ev.target.value)}  />
             <Select
               error={errors.coin}
               onChange={this.addChange('coin', ev => ev.target.value)}
               value={coin}
+              fullWidth
               >
               { (coins || []).map(coin =>
                 <MenuItem key={coin.id} value={coin.id}>
                   <CryptoIcon attrs={attrs} icon={coin.symbol} /> { coin.name }
                 </MenuItem>) }
             </Select>
+            <div style={{marginTop: '1em'}}/>
+            <TextField
+            value={value}
+            error={errors.value}
+            label="Coin Count"
+            onChange={this.addChange('value', ev => ev.target.value)}
+            fullWidth />
             <div style={{marginTop: '1em'}}/>
             <DatePicker value={createdAt}
               error={errors.date}
