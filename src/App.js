@@ -50,7 +50,7 @@ class App extends Component {
               <IconButton onClick={toggleMenu} color="contrast" aria-label="Menu">
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
-              <Typography onClick={this.goTo.bind(this, '/')} type="title" style={{color: "#fff", cursor: "pointer"}}>Block Dock</Typography>
+              <Typography onClick={this.goTo.bind(this, process.env.PUBLIC_URL + '/')} type="title" style={{color: "#fff", cursor: "pointer"}}>Block Dock</Typography>
               <div style={{flex: "1 1 auto"}} />
               <Pairs />
             </Toolbar>
