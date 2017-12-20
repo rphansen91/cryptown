@@ -54,7 +54,7 @@ class App extends Component {
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
               <Typography onClick={this.goTo.bind(this, process.env.PUBLIC_URL + '/')} type="title" style={{color: "#fff", cursor: "pointer", verticalAlign: "middle", display: "flex", flex: 1, justifyContent: "center"}}>
-                <img src={process.env.PUBLIC_URL + '/icon.png'} style={{height: '1em', marginRight: 4}} /> Hodl Stream
+                <img src={process.env.PUBLIC_URL + '/icon.png'} style={{height: '1em', marginRight: 4, borderRadius: '0.1em'}} /> Hodl Stream
               </Typography>
               <Pairs style={{width: 70}} />
             </Toolbar>

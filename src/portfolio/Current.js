@@ -18,10 +18,10 @@ query Portfolio ($ids: [String]!) {
 `
 
 const CurrentValue = (props) => {
-  const { txs=[], data: { loading, error, coins } } = props
+  const { txs=[], data: { loading, error, coins=[] } } = props
 
   if (error) return <p>{ error.message }</p>
-  if (!coins) return <div />
+  // if (!coins) return <div />
 
   const currentPortfolio = current(txs)(new Date().getTime())
   const { value_usd, value_btc } = coins.reduce((acc, c) => {

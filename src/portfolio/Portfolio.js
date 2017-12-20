@@ -29,7 +29,7 @@ const Portfolio = (props) => {
   const { txs=[], data: { loading, error, coins } } = props
 
   if (!coins && error) return <p>{ error.message }</p>
-  if (!coins) return <div />
+  if (!coins) return <div style={{height: 400}} />
 
   const currentPortfolio = current(txs)
   const series = coins.filter(identity).reduce((acc, c) => {

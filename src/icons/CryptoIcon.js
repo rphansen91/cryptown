@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import IconButton from 'material-ui/IconButton'
 
+const defaultIcon = require('!raw-loader!./svg/404.svg') // eslint-disable-line import/no-webpack-loader-syntax
 export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.8 226.8"></svg>'
+      svg: defaultIcon
     }
   }
   componentWillMount () {
@@ -29,11 +30,10 @@ export default class extends Component {
 
 function loadIcon (icon, fn) {
   return require.ensure([], function () {
-    const defaultIcon = '404'
     try {
       fn(require('!raw-loader!./svg/' + icon + '.svg'))
     } catch (err) {
-      fn(require('!raw-loader!./svg/' + defaultIcon + '.svg'))
+      fn(defaultIcon)
     }
   })
 }

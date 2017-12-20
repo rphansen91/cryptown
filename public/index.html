@@ -37,14 +37,18 @@
       #apploader:after {
         content: '';
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-image: url(%PUBLIC_URL%/icon.png);
+        top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+        background-image: url(%PUBLIC_URL%/icon_540.png);
         background-repeat: no-repeat;
         background-position: center;
-        background-size: auto;
+        width: 120px;
+        height: 120px;
+        border-radius: 8px;
+        background-size: 120px;
         -webkit-animation: GradientOpacity 2s linear infinite;
         -moz-animation: GradientOpacity 2s linear infinite;
         animation: GradientOpacity 2s linear infinite;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6)
       }
 
       .primary-gradient {
