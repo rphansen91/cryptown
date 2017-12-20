@@ -6,7 +6,7 @@
 }
 
 .details svg {
-  filter: drop-shadow(0.2em 0.2em 0.2em rgba(0,0,0,0.3));
+  /* filter: drop-shadow(0.2em 0.2em 0.2em rgba(0,0,0,0.3)); */
 }
 
 @media screen and (max-width: 32em) {

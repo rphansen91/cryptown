@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ onChange, value, values=[], fullWidth }) =>
+)(({ onChange, value, values=[], fullWidth, style={} }) =>
   <Select
   classes={{
     root: "white-text",
@@ -24,7 +24,8 @@ export default connect(
   }}
   onChange={(ev) => onChange(ev.target.value)}
   value={value}
-  fullWidth={fullWidth}>
+  fullWidth={fullWidth}
+  style={style}>
   { values.map(value =>
     <MenuItem key={value} value={value}>
       { value }

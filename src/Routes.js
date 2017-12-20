@@ -8,6 +8,7 @@ import NotFound from './ui/NotFound';
 import GraphiQL from './explorer/GraphiQL';
 import Add from './portfolio/Add';
 import Coin from './ui/Coin';
+import Transactions from './ui/Txs';
 import ReactGA from 'react-ga';
 
 class Routes extends Component {
@@ -16,9 +17,9 @@ class Routes extends Component {
   }
 
   componentDidMount () {
-    console.log(process.env.REACT_APP_GA)
     if (process.env.REACT_APP_GA) {
       ReactGA.initialize(process.env.REACT_APP_GA)
+      ReactGA.pageview(window.location.pathname + window.location.search)
     }
   }
 
@@ -36,7 +37,7 @@ class Routes extends Component {
       <Switch>
         <Route exact path={process.env.PUBLIC_URL + "/"} component={Home} />
         <Route path={process.env.PUBLIC_URL + "/about"} component={About} />
-        {/* <Route path={process.env.PUBLIC_URL + "/txs"} component={Transactions} /> */}
+        <Route path={process.env.PUBLIC_URL + "/tx"} component={Transactions} />
         <Route path={process.env.PUBLIC_URL + "/add"} component={Add} />
         <Route path={process.env.PUBLIC_URL + "/gql"} component={() => <GraphiQL style={{position: 'relative', height: '80vh', textAlign: 'initial'}}/>} />
         <Route path={process.env.PUBLIC_URL + "/coin/:id"} component={(props) => <Coin id={props.match.params.id} />} />

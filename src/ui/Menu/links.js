@@ -5,6 +5,7 @@ import DraftsIcon from 'material-ui-icons/Drafts';
 import AddIcon from 'material-ui-icons/Add';
 import GQLIcon from 'material-ui-icons/NetworkCheck';
 import HelpIcon from 'material-ui-icons/Help';
+import SendIcon from 'material-ui-icons/Send';
 import CoinLink from './CoinLink';
 import RegItem from './Item';
 import { connect } from 'react-redux';
@@ -20,7 +21,7 @@ export const MainListItems = withRouter((props) =>
   </RegItem>
   <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/tx')}>
     <ListItemIcon>
-      <DraftsIcon />
+      <SendIcon />
     </ListItemIcon>
     <ListItemText primary="Trades" />
   </RegItem>
@@ -40,12 +41,16 @@ export const OtherListItems = withRouter((props) =>
     </ListItemIcon>
     <ListItemText primary="About" />
   </RegItem>
-  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/gql')}>
-    <ListItemIcon>
-      <GQLIcon />
-    </ListItemIcon>
-    <ListItemText primary="GraphQL" />
-  </RegItem>
+  {
+    process.env.NODE_ENV !== 'production' ?
+    <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/gql')}>
+      <ListItemIcon>
+        <GQLIcon />
+      </ListItemIcon>
+      <ListItemText primary="GraphQL" />
+    </RegItem> :
+    <div />
+  }
 </List>)
 
 

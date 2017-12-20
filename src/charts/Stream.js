@@ -25,6 +25,10 @@ function stream ({
   colors=[],
   series={}
 }) {
+
+  const highcolors = Highcharts.getOptions().colors
+  const highlength = highcolors.length
+
   return {
     chart: {
       type: 'streamgraph',
@@ -33,7 +37,7 @@ function stream ({
       backgroundColor: 'rgba(0,0,0,0)'
     },
 
-    colors: unique(colors).concat(Highcharts.getOptions().colors),
+    colors: colors.map((c, i) => c ? c : highcolors[i % highlength]),
 
     title: {
       text: title

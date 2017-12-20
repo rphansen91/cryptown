@@ -23,7 +23,6 @@ class Wallet extends Component {
   }
   render () {
     const { data } = this.props
-    console.log(data)
     const { loading, error, address } = data
     if (loading) return <div>Loading...</div>
     if (error) return <div>{ error.message }</div>

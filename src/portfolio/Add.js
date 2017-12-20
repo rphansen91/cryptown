@@ -120,7 +120,6 @@ const store = txStore()
 const mapStateToProps = ({ txs }) => ({ txs })
 const mapDispatchToProps = dispatch => ({
   onSubmit: (tx) => {
-    console.log('ADDING', tx)
     store.add(tx).then((txs) => dispatch(setTxs(txs)))
   },
   onChange: (txs) => {

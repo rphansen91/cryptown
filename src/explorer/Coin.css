@@ -14,7 +14,7 @@
   box-shadow: 0.2em 0.05em 1em rgba(0,0,0,0.3);
 }
 .icon svg {
-  filter: drop-shadow(0.2em 0.2em 0.2em rgba(0,0,0,0.3));
+  /* filter: drop-shadow(0.2em 0.2em 0.2em rgba(0,0,0,0.3)); */
 }
 
 .coin-seperator {

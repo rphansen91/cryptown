@@ -32,14 +32,12 @@ const Portfolio = (props) => {
   if (!coins) return <div />
 
   const currentPortfolio = current(txs)
-  const series = coins.reduce((acc, c) => {
-    acc[c.symbol] = c.history.map(({ ts, value }) => {
+  const series = coins.filter(identity).reduce((acc, c) => {
+    acc[c.symbol] = (c.history || []).map(({ ts, value }) => {
       const p = currentPortfolio(ts)
       const v = (p[c.id] || 0)
-      // if (!v) return
       return [ts * 1000, (v * value)]
-    })
-    .filter(identity)
+    }).filter(identity)
     return acc
   }, {})
 
