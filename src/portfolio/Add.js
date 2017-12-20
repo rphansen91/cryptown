@@ -71,46 +71,43 @@ class AddTx extends Component {
     } = this.props
     const { coin, value, createdAt, errors } = this.state
     return <div>
-      <section />
-      <section>
-        <DialogTitle>{ error ? error.message : "New Transaction" }</DialogTitle>
-        <div className="add-form">
-          <form onSubmit={this.submit.bind(this)}>
-            <Select
-              error={errors.coin}
-              onChange={this.addChange('coin', ev => ev.target.value)}
-              value={coin}
-              fullWidth
-              >
-              { (coins || []).map(coin =>
-                <MenuItem key={coin.id} value={coin.id}>
-                  <CryptoIcon attrs={attrs} icon={coin.symbol} /> { coin.name }
-                </MenuItem>) }
-            </Select>
-            <div style={{marginTop: '1em'}}/>
-            <TextField
-            value={value}
-            error={errors.value}
-            label="Coin Count"
-            onChange={this.addChange('value', ev => ev.target.value)}
+      <DialogTitle>{ error ? error.message : "New Transaction" }</DialogTitle>
+      <div className="add-form">
+        <form onSubmit={this.submit.bind(this)}>
+          <Select
+            error={errors.coin}
+            onChange={this.addChange('coin', ev => ev.target.value)}
+            value={coin}
+            fullWidth
+            >
+            { (coins || []).map(coin =>
+              <MenuItem key={coin.id} value={coin.id}>
+                <CryptoIcon attrs={attrs} icon={coin.symbol} /> { coin.name }
+              </MenuItem>) }
+          </Select>
+          <div style={{marginTop: '1em'}}/>
+          <TextField
+          value={value}
+          error={errors.value}
+          label="Coin Count"
+          onChange={this.addChange('value', ev => ev.target.value)}
+          fullWidth />
+          <div style={{marginTop: '1em'}}/>
+          <DatePicker value={createdAt}
+            error={errors.date}
+            label="Trade Date"
+            leftArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
+            rightArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
+            onChange={this.addChange('createdAt')}
             fullWidth />
-            <div style={{marginTop: '1em'}}/>
-            <DatePicker value={createdAt}
-              error={errors.date}
-              label="Trade Date"
-              leftArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
-              rightArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
-              onChange={this.addChange('createdAt')}
-              fullWidth />
-            <div className="text-center">
-              <Button type="submit" raised style={{margin: '1em'}}>Add</Button>
-            </div>
-          </form>
-          <List>
-            { txs.map((tx, i) => <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />) }
-          </List>
+          <div className="text-center">
+            <Button type="submit" raised style={{margin: '1em'}}>Add</Button>
           </div>
-      </section>
+        </form>
+        <List>
+          { txs.map((tx, i) => <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />) }
+        </List>
+      </div>
     </div>
   }
 

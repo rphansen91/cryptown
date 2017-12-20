@@ -6,7 +6,7 @@ import Home from './ui/Home';
 import About from './ui/About';
 import NotFound from './ui/NotFound';
 import GraphiQL from './explorer/GraphiQL';
-import Add from './portfolio/Add';
+import Add from './ui/Add';
 import Coin from './ui/Coin';
 import Transactions from './ui/Txs';
 import ReactGA from 'react-ga';
