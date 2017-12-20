@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import './style.css'
 
 export default withRouter((props) =>
-<div className="page-footer">
+<div className="page-footer primary-gradient">
   <section>
     <p className="footer-p">
       by <a href="http://github.com/rphansen91">Ryan P. Hansen</a>
@@ -21,5 +21,5 @@ export default withRouter((props) =>
       for charting.
     </p>
   </section>
-  <AllCoins onClick={coin => props.history.push(process.env.PUBLIC_URL + '/coin/' + coin)}/>
+  <AllCoins color="#fff" onClick={coin => props.history.push(process.env.PUBLIC_URL + '/coin/' + coin)}/>
 </div>)

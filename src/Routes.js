@@ -8,15 +8,26 @@ import NotFound from './ui/NotFound';
 import GraphiQL from './explorer/GraphiQL';
 import Add from './portfolio/Add';
 import Coin from './ui/Coin';
+import ReactGA from 'react-ga';
 
 class Routes extends Component {
   constructor (props) {
     super(props)
   }
 
+  componentDidMount () {
+    console.log(process.env.REACT_APP_GA)
+    if (process.env.REACT_APP_GA) {
+      ReactGA.initialize(process.env.REACT_APP_GA)
+    }
+  }
+
   componentDidUpdate (prevProps) {
     if (this.props.location !== prevProps.location) {
       this.props.closeMenu()
+      if (process.env.REACT_APP_GA) {
+        ReactGA.pageview(window.location.pathname + window.location.search)
+      }
     }
   }
 

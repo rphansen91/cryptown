@@ -4,26 +4,36 @@ import Typography from 'material-ui/Typography';
 import Coin from '../../explorer/Coin';
 import Trend from '../../explorer/Trend';
 import coinColor from '../../icons/colors';
+import { withRouter } from 'react-router-dom';
 import './style.css';
 
 export default connect(
   ({ coins, pair }) => ({ coins, pair }),
   dispatch => ({})
-)(({ coins, pair }) =>
+)(withRouter(({ coins, pair, history }) =>
 <div>
   <section />
 
   <section>
     <Typography type="title">Tickers</Typography>
     <div className="icons">
-      { coins.map(coin => <Coin color={coinColor(coin.id)} key={coin.id} id={coin.id} />) }
+      { coins.map(c => <Coin
+        key={c.id}
+        id={c.id}
+        color={coinColor(c.id)}
+        onClick={() => history.push(process.env.PUBLIC_URL + '/coin/' + c.id)} />) }
     </div>
   </section>
 
   <section>
     <Typography type="title">Trends</Typography>
     <div className="icons responsive">
-      { coins.map(c => <Trend key={c.id} color={coinColor(c.id)} id={c.id} pair={pair} />) }
+      { coins.map(c => <Trend
+        key={c.id}
+        id={c.id}
+        pair={pair}
+        color={coinColor(c.id)}
+        onClick={() => history.push(process.env.PUBLIC_URL + '/coin/' + c.id)} />) }
     </div>
   </section>
-</div>)
+</div>))

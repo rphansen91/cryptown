@@ -5,7 +5,7 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      svg: ''
+      svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.8 226.8"></svg>'
     }
   }
   componentWillMount () {

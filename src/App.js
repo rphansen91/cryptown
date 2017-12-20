@@ -45,13 +45,17 @@ class App extends Component {
       <div>
         <Menu />
         <div className={cx({ "App": true, "open": menu })}>
-          <AppBar position="static" style={{background: "#222"}}>
+          <AppBar position="static" className={cx({
+            "primary-gradient": true,
+            "gradient-animated": menu
+          })}>
             <Toolbar>
               <IconButton onClick={toggleMenu} color="contrast" aria-label="Menu">
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
-              <Typography onClick={this.goTo.bind(this, process.env.PUBLIC_URL + '/')} type="title" style={{color: "#fff", cursor: "pointer"}}>Block Dock</Typography>
-              <div style={{flex: "1 1 auto"}} />
+              <Typography onClick={this.goTo.bind(this, process.env.PUBLIC_URL + '/')} type="title" style={{color: "#fff", cursor: "pointer", verticalAlign: "middle", display: "flex", flex: 1, justifyContent: "center"}}>
+                <img src={process.env.PUBLIC_URL + '/icon.png'} style={{height: '1em', marginRight: 4}} /> Hodl Stream
+              </Typography>
               <Pairs />
             </Toolbar>
 

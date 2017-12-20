@@ -17,6 +17,7 @@ function line ({
   subtitle='',
   yAxis='',
   series={},
+  annotations=[],
   colors=Highcharts.getOptions().colors
 }) {
   return {
@@ -52,7 +53,20 @@ function line ({
     points: [],
 
     series: Object.keys(series)
-    .map(name => ({ name, data: series[name] })),
+    .map((name, i) => ({
+      name,
+      type: 'area',
+      data: series[name],
+      fillColor: {
+        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+        stops: [
+          [0, colors[i]],
+          [1, Highcharts.Color(colors[i]).setOpacity(0).get('rgba')]
+        ]
+      }
+    })),
+
+    annotations: annotations,
 
     responsive: {
       rules: [{

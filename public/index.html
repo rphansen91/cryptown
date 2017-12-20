@@ -9,7 +9,7 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -19,13 +19,80 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Block Dock</title>
+    <title>Hodl Stream</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+
+      #apploader {
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      #apploader:after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image: url(%PUBLIC_URL%/icon.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto;
+        -webkit-animation: GradientOpacity 2s linear infinite;
+        -moz-animation: GradientOpacity 2s linear infinite;
+        animation: GradientOpacity 2s linear infinite;
+      }
+
+      .primary-gradient {
+        background: #005c97;
+        background: -webkit-linear-gradient(270deg, #005c97, #363795);
+        background: linear-gradient(270deg, #005c97, #363795);
+      }
+
+      .gradient-animated {
+        background-size: 800% 800%;
+        -webkit-animation: GradientAnimation 30s ease infinite;
+        -moz-animation: GradientAnimation 30s ease infinite;
+        animation: GradientAnimation 30s ease infinite;
+      }
+
+      @-webkit-keyframes GradientOpacity {
+        0% {opacity: 0.4}
+        80% {opacity: 1}
+        100% {opacity: 0.4}
+      }
+
+      @-webkit-keyframes GradientAnimation {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+      }
+
+      @-moz-keyframes GradientAnimation {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+      }
+
+      @keyframes GradientAnimation {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+      }
+
+    </style>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div id="apploader" class="primary-gradient gradient-animated"></div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

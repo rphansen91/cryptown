@@ -1,1 +1,1 @@
-export const defaultColor = '#00aacc'
+export const defaultColor = '#005c97'

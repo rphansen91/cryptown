@@ -1,9 +1,9 @@
 {
-  "name": "bitrends",
+  "name": "hodl-stream",
   "version": "0.1.0",
   "main": "index.js",
   "private": true,
-  "homepage": "http://rphansen91.github.io/cryptown",
+  "homepage": "https://hodlstream.com",
   "dependencies": {
     "apollo-client-preset": "^1.0.4",
     "graphiql": "^0.11.10",
@@ -19,6 +19,7 @@
     "react": "^16.0.0",
     "react-apollo": "^2.0.1",
     "react-dom": "^16.0.0",
+    "react-ga": "^2.3.5",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -31,10 +32,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "REACT_APP_GA='UA-111446637-1' react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run deploy:static && npm run deploy:index",
+    "deploy:static": "aws s3 sync build/ s3://hodlstream.com --exclude 'index.html'",
+    "deploy:index": "aws s3 cp build/index.html s3://hodlstream.com/index.html --cache-control 'public, must-revalidate, proxy-revalidate, max-age=0'"
   }
 }

@@ -22,16 +22,19 @@ const theme = createMuiTheme({
 
 const store = createStore(blockStore);
 
-ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <ApolloProvider client={client}>
-        <MuiThemeProvider theme={theme}>
-          <App />
-        </MuiThemeProvider>
-      </ApolloProvider>
-    </Provider>
-  </BrowserRouter>
-, document.getElementById('root'));
-
+render();
 registerServiceWorker();
+
+function render () {
+  ReactDOM.render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <MuiThemeProvider theme={theme}>
+            <App />
+          </MuiThemeProvider>
+        </ApolloProvider>
+      </Provider>
+    </BrowserRouter>
+  , document.getElementById('root'));
+}

@@ -33,13 +33,40 @@ query Coin($id: String!, $pair: String!) {
 
 const loadingCoin = (name) => ({ symbol: '', name: 'Loading', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
 const defaultCoin = () => ({ symbol: 'NaC', name: 'Not Found', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
+const computeValueAt = series => createdAt => {
+  for (var i = 0; i < series.length; i++) {
+    if (createdAt <= series[i][0]) return series[i][1]
+  }
+  return 0
+}
 
 const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultColor, pos, neg, ...props }={} ) => {
   if (loading) coin = loadingCoin()
   if (error) coin = defaultCoin()
   if (!coin) coin = defaultCoin()
 
+  const point = (x, y) => ({ x, y, xAxis: 0, yAxis: 0 })
   const series = (coin.history || []).map((({ ts, value }) => [ts*1000, value]))
+  const valueAt = computeValueAt(series)
+  const annotations = txs.reduce((acc, tx) => {
+    if (tx.coin !== coin.id) return acc
+    if (!tx.value) return acc
+
+    const t = tx.createdAt * 1000
+    const x = new Date(t)
+    const y = valueAt(t)
+    const p = point(x, y)
+
+    if (tx.value >= 0) {
+      acc[0].labels.push({ point: p, text: `Purchased ${tx.value}`})
+    } else {
+      acc[1].labels.push({ point: p, text: `Sold ${tx.value}` })
+    }
+    return acc
+  }, [
+    { labels: [] },
+    { labels: [] }
+  ])
 
   return <div>
     <section />
@@ -53,7 +80,10 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
         <Percent value={coin.percent_change_24h} pos={pos} neg={neg} />
       </div>
 
-      <Line title="" subtitle="" series={{ [coin.symbol]: series }} colors={[color]} />
+      <Line title="" subtitle=""
+        series={{ [coin.symbol]: series }}
+        annotations={annotations}
+        colors={[color]} />
 
       <List>
         {
