@@ -11,6 +11,7 @@ import CryptoIcon from '../../icons/CryptoIcon';
 import Percent from '../../explorer/Percent';
 import Tx from '../../portfolio/Tx';
 import gql from 'graphql-tag';
+import SEO from '../SEO';
 import './style.css';
 
 const iconAttrs = "height='4em'"
@@ -69,6 +70,7 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
   ])
 
   return <div>
+    <SEO title={coin.symbol + ' | Hodl Stream'} path={'/coin/' + coin.id} />
     <section />
     <section>
       <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={(iconAttrs + ' fill="' + color + '"')} />

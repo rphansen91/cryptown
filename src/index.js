@@ -20,7 +20,7 @@ const theme = createMuiTheme({
   }
 });
 
-const store = createStore(blockStore);
+const store = createStore(blockStore, window.__INITIAL_STATE__);
 
 render();
 registerServiceWorker();

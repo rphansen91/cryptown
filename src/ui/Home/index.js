@@ -5,6 +5,7 @@ import Coin from '../../explorer/Coin';
 import Trend from '../../explorer/Trend';
 import coinColor from '../../icons/colors';
 import { withRouter } from 'react-router-dom';
+import SEO from '../SEO';
 import './style.css';
 
 export default connect(
@@ -12,6 +13,8 @@ export default connect(
   dispatch => ({})
 )(withRouter(({ coins, pair, history }) =>
 <div>
+  <SEO />
+
   <section />
 
   <section>
