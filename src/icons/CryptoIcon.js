@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import IconButton from 'material-ui/IconButton'
-
-const defaultIcon = require('!raw-loader!./svg/404.svg') // eslint-disable-line import/no-webpack-loader-syntax
+import defaultIcon from './defaultIcon'
+import fetch from 'isomorphic-fetch'
 export default class extends Component {
   constructor (props) {
     super(props)
@@ -21,7 +21,7 @@ export default class extends Component {
   render () {
     const { attrs, button, onClick=(v=>v) } = this.props
     const { svg } = this.state
-    const __html = svg.replace('viewBox', (attrs ? attrs + ' viewBox' : 'viewBox'))
+    const __html = (svg || '').replace('viewBox', (attrs ? attrs + ' viewBox' : 'viewBox'))
     const icon = <span {...this.props} onClick={onClick} className='icon' dangerouslySetInnerHTML={{ __html }} />
     if (!button) return icon
     return <IconButton onClick={onClick}>{ icon }</IconButton>
@@ -29,11 +29,13 @@ export default class extends Component {
 }
 
 function loadIcon (icon, fn) {
-  return require.ensure([], function () {
-    try {
-      fn(require('!raw-loader!./svg/' + icon + '.svg'))
-    } catch (err) {
-      fn(defaultIcon)
-    }
+  fetch((process.env.PUBLIC_URL || '') + '/svg/' + icon + '.svg')
+  .then(res => res.text())
+  .then(res => {
+    if (!typeof res === 'string') return Promise.reject('Not found')
+    if (res.trim().indexOf('<svg') !== 0) return Promise.reject('Not svg')
+    return res
   })
+  .then(icon => fn(icon))
+  .catch(() => fn(defaultIcon))
 }

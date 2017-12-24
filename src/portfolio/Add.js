@@ -105,7 +105,7 @@ class AddTx extends Component {
           </div>
         </form>
         <List>
-          { txs.map((tx, i) => <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />) }
+          { txs.filter(({ value }) => value).map((tx, i) => <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />) }
         </List>
       </div>
     </div>

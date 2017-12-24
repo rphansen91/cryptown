@@ -1,5 +1,7 @@
 /* global localStorage */
 
+const defaultTxs = [{symbol: 'BTC', coin: 'bitcoin', value: 0}, {symbol: 'LTC', coin: 'litecoin', value: 0}, {symbol: 'ETH', coin: 'ethereum', value: 0}]
+
 const storage = function (name) {
   function get () {
     return Promise.resolve()
@@ -31,6 +33,7 @@ export default function () {
   emitter.get = function () {
     // return Promise.resolve(txExample)
     return store.get()
+    .catch(() => defaultTxs)
   }
   emitter.save = function (txs) {
     // return Promise.resolve(txExample)

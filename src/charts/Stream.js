@@ -1,4 +1,5 @@
-import Highcharts from './highcharts'
+/* global Highcharts */
+
 import React from 'react'
 import Chart from './Chart'
 

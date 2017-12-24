@@ -10,6 +10,7 @@ import { defaultColor } from '../../utility/styles';
 import CryptoIcon from '../../icons/CryptoIcon';
 import Percent from '../../explorer/Percent';
 import Tx from '../../portfolio/Tx';
+import { Buy } from '../../portfolio/Buy';
 import gql from 'graphql-tag';
 import SEO from '../SEO';
 import './style.css';
@@ -89,12 +90,14 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
 
       <List>
         {
-          txs.filter(tx => tx.coin === coin.id)
-          .map((tx, i) =>
-            <Tx key={i} tx={tx} onRemove={() => onRemove(i)} />)
+          txs.filter(({ value }) => value).filter(tx => tx.coin === coin.id)
+          .map((tx, i) => <Tx key={i} tx={tx} />)
         }
       </List>
     </section>
+    <p style={{marginLeft: 25}}>
+      <Buy symbol={coin.symbol} />
+    </p>
   </div>
 }
 

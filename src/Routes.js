@@ -35,12 +35,12 @@ class Routes extends Component {
   render () {
     return <div className="content">
       <Switch>
-        <Route exact path={process.env.PUBLIC_URL + "/"} component={Home} />
-        <Route path={process.env.PUBLIC_URL + "/about"} component={About} />
-        <Route path={process.env.PUBLIC_URL + "/tx"} component={Transactions} />
-        <Route path={process.env.PUBLIC_URL + "/add"} component={Add} />
-        <Route path={process.env.PUBLIC_URL + "/gql"} component={() => <GraphiQL style={{position: 'relative', height: '80vh', textAlign: 'initial'}}/>} />
-        <Route path={process.env.PUBLIC_URL + "/coin/:id"} component={(props) => <Coin id={props.match.params.id} />} />
+        <Route exact path={(process.env.PUBLIC_URL || '') + "/"} component={Home} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/about"} component={About} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/tx"} component={Transactions} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/add"} component={Add} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/gql"} component={() => <GraphiQL style={{position: 'relative', height: '80vh', textAlign: 'initial'}}/>} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/coin/:id"} component={(props) => <Coin id={props.match.params.id} />} />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>

@@ -1,4 +1,5 @@
-import Highcharts from './highcharts'
+/* global Highcharts */
+
 import React, { Component } from 'react'
 import randomId from './randomId'
 

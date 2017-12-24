@@ -24,7 +24,7 @@ export default connect(
         key={c.id}
         id={c.id}
         color={coinColor(c.id)}
-        onClick={() => history.push(process.env.PUBLIC_URL + '/coin/' + c.id)} />) }
+        onClick={() => history.push((process.env.PUBLIC_URL || '') + '/coin/' + c.id)} />) }
     </div>
   </section>
 
@@ -36,7 +36,7 @@ export default connect(
         id={c.id}
         pair={pair}
         color={coinColor(c.id)}
-        onClick={() => history.push(process.env.PUBLIC_URL + '/coin/' + c.id)} />) }
+        onClick={() => history.push((process.env.PUBLIC_URL || '') + '/coin/' + c.id)} />) }
     </div>
   </section>
 </div>))

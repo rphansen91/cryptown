@@ -17,7 +17,7 @@ const Txs = ({ txs, onChange=(v => v) }) =>
     <section>
       <Typography type="title">Transactions</Typography>
       <List>
-        { txs.map((tx, i) => <Tx key={i} tx={tx} onRemove={() => onChange(remove(txs, i))} />) }
+        { txs.filter(({ value }) => value).map((tx, i) => <Tx key={i} tx={tx} onRemove={() => onChange(remove(txs, i))} />) }
       </List>
     </section>
   </div>

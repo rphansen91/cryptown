@@ -13,19 +13,19 @@ import { withRouter } from 'react-router-dom';
 
 export const MainListItems = withRouter((props) =>
 <List className={props.className || ""}>
-  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/')}>
+  <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/')}>
     <ListItemIcon>
       <HomeIcon />
     </ListItemIcon>
     <ListItemText primary="Home" />
   </RegItem>
-  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/tx')}>
+  <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/tx')}>
     <ListItemIcon>
       <SendIcon />
     </ListItemIcon>
     <ListItemText primary="Trades" />
   </RegItem>
-  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/add')}>
+  <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/add')}>
     <ListItemIcon>
       <AddIcon />
     </ListItemIcon>
@@ -35,7 +35,7 @@ export const MainListItems = withRouter((props) =>
 
 export const OtherListItems = withRouter((props) =>
 <List className={props.className || ""}>
-  <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/about')}>
+  <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/about')}>
     <ListItemIcon>
       <HelpIcon />
     </ListItemIcon>
@@ -43,7 +43,7 @@ export const OtherListItems = withRouter((props) =>
   </RegItem>
   {
     process.env.NODE_ENV !== 'production' ?
-    <RegItem onClick={() => props.history.push(process.env.PUBLIC_URL + '/gql')}>
+    <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/gql')}>
       <ListItemIcon>
         <GQLIcon />
       </ListItemIcon>
@@ -55,7 +55,10 @@ export const OtherListItems = withRouter((props) =>
 
 
 export const CoinListItems = connect(
-  ({ coins, menu: open }) => ({ open, coins }),
+  ({ coins, menu: open }) => {
+    console.log(coins)
+    return ({ open, coins })
+  },
   dispatch => ({})
 )(withRouter((props) =>
 <List className={props.className || ""}>

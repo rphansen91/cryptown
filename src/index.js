@@ -23,13 +23,13 @@ const theme = createMuiTheme({
 const store = createStore(blockStore, window.__INITIAL_STATE__);
 
 render();
-registerServiceWorker();
+// registerServiceWorker();
 
 function render () {
   ReactDOM.render(
     <BrowserRouter>
       <Provider store={store}>
-        <ApolloProvider client={client}>
+        <ApolloProvider client={client(fetch)}>
           <MuiThemeProvider theme={theme}>
             <App />
           </MuiThemeProvider>

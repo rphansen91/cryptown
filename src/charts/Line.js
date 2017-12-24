@@ -1,5 +1,6 @@
+/* global Highcharts */
+
 import React from 'react'
-import Highcharts from './highcharts'
 import Chart from './Chart'
 
 export default class extends Chart {

@@ -25,9 +25,13 @@ export default ({ tx: { coin, symbol, value, createdAt }, onRemove}) =>
     primary={symbol + ' ' + value}
     secondary={moment(createdAt * 1000).fromNow()}
   />
-  <ListItemSecondaryAction>
-    <IconButton aria-label="Delete" onClick={onRemove}>
-      <DeleteIcon />
-    </IconButton>
-  </ListItemSecondaryAction>
+  {
+    typeof onRemove === 'function' ?
+    <ListItemSecondaryAction>
+      <IconButton aria-label="Delete" onClick={onRemove}>
+        <DeleteIcon />
+      </IconButton>
+    </ListItemSecondaryAction> :
+    <div />
+  }
 </ListItem>

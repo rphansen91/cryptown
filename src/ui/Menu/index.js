@@ -23,4 +23,5 @@ export default connect(
     <CoinListItems className={(open) ? 'links open' : 'links'} />
     <Divider />
     <OtherListItems className={(open) ? 'links open' : 'links'} />
+    <div style={{marginBottom: '2em'}} />
   </Drawer>)

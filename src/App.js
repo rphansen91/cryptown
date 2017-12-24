@@ -39,7 +39,7 @@ class App extends Component {
 
   render() {
     const { location, menu, toggleMenu } = this.props
-    const display = (location.pathname === process.env.PUBLIC_URL + '/')
+    const display = (location.pathname === (process.env.PUBLIC_URL || '') + '/')
 
     return (
       <div>
@@ -53,8 +53,8 @@ class App extends Component {
               <IconButton onClick={toggleMenu} color="contrast" aria-label="Menu" style={{width: 40, marginRight: 30}}>
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
-              <Typography onClick={this.goTo.bind(this, process.env.PUBLIC_URL + '/')} type="title" style={{color: "#fff", cursor: "pointer", verticalAlign: "middle", display: "flex", flex: 1, justifyContent: "center"}}>
-                <img src={process.env.PUBLIC_URL + '/icon.png'} style={{height: '1em', marginRight: 4, borderRadius: '0.1em'}} /> Hodl Stream
+              <Typography onClick={this.goTo.bind(this, (process.env.PUBLIC_URL || '') + '/')} type="title" style={{color: "#fff", cursor: "pointer", verticalAlign: "middle", display: "flex", flex: 1, justifyContent: "center"}}>
+                <img src={(process.env.PUBLIC_URL || '') + '/icon.png'} style={{height: '1em', marginRight: 4, borderRadius: '0.1em'}} /> Hodl Stream
               </Typography>
               <Pairs style={{width: 70}} />
             </Toolbar>
