@@ -17,6 +17,7 @@ import moment from 'moment';
 import List from 'material-ui/List';
 import Tx from './Tx';
 import gql from 'graphql-tag';
+import { event } from '../utility/analytics';
 
 const loadAllCoins = gql`
 query AllCoins {
@@ -118,6 +119,11 @@ const mapStateToProps = ({ txs }) => ({ txs })
 const mapDispatchToProps = dispatch => ({
   onSubmit: (tx) => {
     store.add(tx).then((txs) => dispatch(setTxs(txs)))
+    if (tx.value >= 0) {
+      event('transaction', 'buy', tx.coin, tx.value)
+    } else {
+      event('transaction', 'sell', tx.coin, tx.value)
+    }
   },
   onChange: (txs) => {
     store.save(txs).then(txs => dispatch(setTxs(txs)))

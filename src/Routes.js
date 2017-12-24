@@ -9,7 +9,7 @@ import GraphiQL from './explorer/GraphiQL';
 import Add from './ui/Add';
 import Coin from './ui/Coin';
 import Transactions from './ui/Txs';
-import ReactGA from 'react-ga';
+import { init, pageview } from './utility/analytics';
 
 class Routes extends Component {
   constructor (props) {
@@ -17,18 +17,14 @@ class Routes extends Component {
   }
 
   componentDidMount () {
-    if (process.env.REACT_APP_GA) {
-      ReactGA.initialize(process.env.REACT_APP_GA)
-      ReactGA.pageview(window.location.pathname + window.location.search)
-    }
+    init()
+    pageview()
   }
 
   componentDidUpdate (prevProps) {
     if (this.props.location !== prevProps.location) {
       this.props.closeMenu()
-      if (process.env.REACT_APP_GA) {
-        ReactGA.pageview(window.location.pathname + window.location.search)
-      }
+      pageview()
     }
   }
 
