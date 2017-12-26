@@ -96,7 +96,7 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
       </List>
     </section>
     <p style={{marginLeft: 25}}>
-      <Buy symbol={coin.symbol} />
+      <Buy crypto_currency={coin.symbol} />
     </p>
   </div>
 }

@@ -16,6 +16,7 @@ import NavigationMenu from 'material-ui-icons/Menu';
 import { toggleMenu } from './store/reducers/menu'
 import { setTxs } from './store/reducers/transactions'
 import Menu from './ui/Menu';
+import Chat from './ui/Chat';
 import cx from './utility/cx';
 import './App.css';
 
@@ -44,6 +45,7 @@ class App extends Component {
     return (
       <div>
         <Menu />
+        <Chat page="hodlstream" page_id="139227580112499" app_id="857737644405026" />
         <div className={cx({ "App": true, "open": menu })}>
           <AppBar position="static" className={cx({
             "primary-gradient": true,
