@@ -1,0 +1,13 @@
+.about {
+  display: flex;
+  flex-wrap: wrap;
+}
+.about-content {
+  flex: 1;
+}
+.about-sidebar {
+  padding: 10px;
+  max-width: 100%;
+  width: 300px;
+  margin: auto;
+}
