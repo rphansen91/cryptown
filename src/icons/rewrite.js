@@ -7,6 +7,7 @@ console.log(JSON.stringify(dir))
 
 const process = dir.map(function (icon) {
   const filepath = path('../../public/svg/' + icon)
+  const writepath = path('../../public/svg/' + icon)
   return new Promise(function (res, rej) {
     fs.readFile(filepath, 'utf8', function (err, data) {
       if (err) return rej(err)
@@ -14,7 +15,7 @@ const process = dir.map(function (icon) {
     })
   })
   .then(function (svg) {
-    fs.writeFileSync(filepath, svg.replace('viewBox', 'fill="#005c97" viewBox').replace(wh_test, ''), 'utf8')
+    fs.writeFileSync(writepath, svg.replace('fill="#005c97" viewBox', 'viewBox').replace(wh_test, ''), 'utf8')
     return wh_test.test(svg)
   })
 })

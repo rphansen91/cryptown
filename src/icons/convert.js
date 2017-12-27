@@ -5,7 +5,7 @@ const path = icon => pt.resolve(__dirname,  icon)
 const dir = fs.readdirSync(path('../../public/svg/'))
 
 const process = dir.map(function (icon) {
-  const filepath = path('../../public/svg/' + icon)
+  const filepath = path('../../public/tmp/' + icon)
   const outputpath = path('../../public/png/' + (icon.replace('.svg', '.png')))
   return new Promise(function (res, rej) {
     fs.readFile(filepath, function (err, data) {
