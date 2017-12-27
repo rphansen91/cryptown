@@ -1,11 +1,12 @@
 const fs = require('fs')
-const path = icon => __dirname + '/' + icon
-const dir = fs.readdirSync(path('/svg'))
+const pt = require('path')
+const path = icon => pt.resolve(__dirname,  icon)
+const dir = fs.readdirSync(path('../../public/svg/'))
 const wh_test = /width="\d+.\d+" height="\d+.\d+"|height="\d+.\d+" width="\d+.\d+"/
 console.log(JSON.stringify(dir))
 
 const process = dir.map(function (icon) {
-  const filepath = path('svg/' + icon)
+  const filepath = path('../../public/svg/' + icon)
   return new Promise(function (res, rej) {
     fs.readFile(filepath, 'utf8', function (err, data) {
       if (err) return rej(err)
@@ -13,7 +14,7 @@ const process = dir.map(function (icon) {
     })
   })
   .then(function (svg) {
-    fs.writeFileSync(filepath, svg.replace(wh_test, ''), 'utf8')
+    fs.writeFileSync(filepath, svg.replace('viewBox', 'fill="#005c97" viewBox').replace(wh_test, ''), 'utf8')
     return wh_test.test(svg)
   })
 })

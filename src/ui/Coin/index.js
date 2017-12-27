@@ -62,12 +62,12 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
     if (tx.value >= 0) {
       acc[0].labels.push({ point: p, text: `Purchased ${tx.value}`})
     } else {
-      acc[1].labels.push({ point: p, text: `Sold ${tx.value}` })
+      acc[1].labels.push({ point: p, text: `Sold ${Math.abs(tx.value)}` })
     }
     return acc
   }, [
-    { labels: [] },
-    { labels: [] }
+    { labels: [] }, // Buy Labels
+    { labels: [] } // Sell Labels
   ])
 
   return <div>
