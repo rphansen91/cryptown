@@ -13,14 +13,20 @@ export default class extends Chart {
   }
 }
 
+function logPoint (e) {
+  console.log(e.point)
+}
+
 function line ({
   title='',
   subtitle='',
   yAxis='',
   series={},
   annotations=[],
-  colors=Highcharts.getOptions().colors
+  colors=Highcharts.getOptions().colors,
+  onClick
 }) {
+  const events = { click: onClick || logPoint }
   return {
     chart: {
       zoomType: 'x',
@@ -56,6 +62,7 @@ function line ({
     series: Object.keys(series)
     .map((name, i) => ({
       name,
+      events,
       type: 'area',
       data: series[name],
       fillColor: {

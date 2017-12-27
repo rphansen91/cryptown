@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Typography from 'material-ui/Typography';
 import List from 'material-ui/List';
 import Line from '../../charts/Line';
 import { graphql } from 'react-apollo';
 import usd from '../../utility/usd';
 import btc from '../../utility/btc';
+import { setAdding } from '../../store/reducers/adding';
 import { defaultColor } from '../../utility/styles';
 import CryptoIcon from '../../icons/CryptoIcon';
 import Percent from '../../explorer/Percent';
@@ -86,7 +88,12 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
       <Line title="" subtitle=""
         series={{ [coin.symbol]: series }}
         annotations={annotations}
-        colors={[color]} />
+        colors={[color]}
+        onClick={(e) => {
+          console.log(e)
+          props.setAdding(coin.id, e.point.x)
+          props.history.push((process.env.PUBLIC_URL || '') + '/add')
+        }} />
 
       <List>
         {
@@ -103,7 +110,11 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
 
 export default connect(
   ({ txs, pair }) => ({ txs, pair }),
-  dispatch => ({})
+  dispatch => ({
+    setAdding: (coin, createdAt) => {
+      dispatch(setAdding({ coin, createdAt }))
+    }
+  })
 )(graphql(coinQuery, {
   options: ({ id, pair }) => ({ variables: { id, pair } })
-})(Coin))
+})(withRouter(Coin)))

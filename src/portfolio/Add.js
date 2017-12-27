@@ -30,11 +30,11 @@ query AllCoins {
 `
 
 const attrs = "fill='"+defaultColor+"' height='1em' style='vertical-align: text-top; margin: 0 0.2em;'"
-const initial = () => ({ coin: 'bitcoin', value: '', createdAt: moment(), errors: {} })
+const initial = ({ coin='bitcoin', value='', errors={}, ...props}) => ({ coin, value, createdAt: props.createdAt ? moment(props.createdAt) : moment(props.createdAt), errors })
 class AddTx extends Component {
   constructor (props) {
     super(props)
-    this.state = initial()
+    this.state = initial(props)
   }
   errors (key, value) {
     if (!key) return this.state.errors
@@ -57,7 +57,7 @@ class AddTx extends Component {
 
     const { symbol } = coins.find(({ id }) => id === coin)
     onSubmit({ coin, symbol, value: Number(value), createdAt: createdAt.valueOf() / 1000 })
-    this.setState(initial())
+    this.setState(initial(this.props))
   }
   remove (i) {
     const { onChange=(v=>v), txs=[] } = this.props
@@ -115,7 +115,9 @@ class AddTx extends Component {
 }
 
 const store = txStore()
-const mapStateToProps = ({ txs }) => ({ txs })
+const mapStateToProps = ({
+  txs, adding
+}) => ({ txs, createdAt: adding.createdAt, coin: adding.coin })
 const mapDispatchToProps = dispatch => ({
   onSubmit: (tx) => {
     store.add(tx).then((txs) => dispatch(setTxs(txs)))

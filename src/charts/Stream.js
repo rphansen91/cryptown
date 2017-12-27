@@ -20,22 +20,28 @@ export default class extends Chart {
   }
 }
 
+function logPoint (e) {
+  console.log(e.point)
+}
+
 function stream ({
   title='Cryptocurrency Portfolio',
   subtitle='',
   colors=[],
-  series={}
+  series={},
+  onClick
 }) {
 
   const highcolors = Highcharts.getOptions().colors
   const highlength = highcolors.length
+  const events = { click: onClick || logPoint }
 
   return {
     chart: {
       type: 'streamgraph',
       marginBottom: 30,
       zoomType: 'x',
-      backgroundColor: 'rgba(0,0,0,0)'
+      backgroundColor: 'rgba(0,0,0,0)',
     },
 
     colors: colors.map((c, i) => c ? c : highcolors[i % highlength]),
@@ -107,7 +113,7 @@ function stream ({
     points: [],
 
     series: Object.keys(series)
-      .map(name => ({ name, data: series[name] })),
+      .map(name => ({ name, events, data: series[name] })),
 
     exporting: {
       sourceWidth: 800,

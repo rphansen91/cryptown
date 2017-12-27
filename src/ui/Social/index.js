@@ -20,11 +20,11 @@ export default class extends Component {
   }
 
   componentWillMount () {
-    console.log('MOUNTING')
     loadScript('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9')
     .then(() => {
-      console.log('LOADED')
       this.setState({ loaded: true })
+    })
+    .then(() => {
       FB.XFBML.parse()
     })
     .catch((err) => {
