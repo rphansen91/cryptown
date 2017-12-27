@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Typography from 'material-ui/Typography';
+import { CardActions } from 'material-ui/Card';
+import Button from 'material-ui/Button';
 import List from 'material-ui/List';
 import Line from '../../charts/Line';
 import { graphql } from 'react-apollo';
@@ -15,6 +17,7 @@ import Tx from '../../portfolio/Tx';
 import { Buy } from '../../portfolio/Buy';
 import gql from 'graphql-tag';
 import SEO from '../SEO';
+import Article from '../Article';
 import './style.css';
 
 const iconAttrs = "height='4em'"
@@ -30,6 +33,11 @@ query Coin($id: String!, $pair: String!) {
     history(pair: $pair) {
       ts
       value
+    }
+    articles {
+      title
+      url
+      urlToImage
     }
   }
 }
@@ -95,16 +103,33 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
           props.history.push((process.env.PUBLIC_URL || '') + '/add')
         }} />
 
-      <List>
+      {/* <List>
         {
           txs.filter(({ value }) => value).filter(tx => tx.coin === coin.id)
           .map((tx, i) => <Tx key={i} tx={tx} />)
         }
-      </List>
+      </List> */}
     </section>
-    <p style={{marginLeft: 25}}>
+    <section>
+      <div className="articles responsive">
+         {
+           (coin.articles || []).map((a, i) =>
+              <Article
+                key={i}
+                image={a.urlToImage}
+                title={a.title}
+                onClick={() => window.open(a.url)}
+                actions={<CardActions>
+                  <Button dense color="primary" onClick={() => window.open(a.url)}>
+                    Read More
+                  </Button>
+                </CardActions>}/>)
+         }
+      </div>
+    </section>
+    <section style={{marginLeft: 25}}>
       <Buy crypto_currency={coin.symbol} />
-    </p>
+    </section>
   </div>
 }
 
