@@ -13,7 +13,8 @@ import Routes from './Routes';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui-icons/Close';
 import NavigationMenu from 'material-ui-icons/Menu';
-import { toggleMenu } from './store/reducers/menu'
+import { toggleMenu } from './store/reducers/menu';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { setTxs } from './store/reducers/transactions'
 import Menu from './ui/Menu';
 import Chat from './ui/Chat';
@@ -21,6 +22,7 @@ import Brand from './ui/Brand';
 import cx from './utility/cx';
 import './App.css';
 
+const createTheme = (type='dark') => createMuiTheme({ palette: { type } });
 class App extends Component {
   constructor (props) {
     super(props)
@@ -40,11 +42,15 @@ class App extends Component {
   }
 
   render() {
-    const { location, menu, toggleMenu } = this.props
+    const { location, menu, toggleMenu, profile } = this.props
     const display = (location.pathname === (process.env.PUBLIC_URL || '') + '/')
 
+    console.log(profile)
+    const theme = createTheme(profile.theme)
+    const backgroundColor = theme.palette.background.paper
     return (
-      <div>
+      <MuiThemeProvider theme={theme}>
+      <div style={{ backgroundColor }}>
         <Menu />
         <Chat page="hodlstream" page_id="139227580112499" app_id="857737644405026" />
         <div className={cx({ "App": true, "open": menu })}>
@@ -70,6 +76,7 @@ class App extends Component {
           <Footer />
         </div>
       </div>
+      </MuiThemeProvider>
     )
   }
 }

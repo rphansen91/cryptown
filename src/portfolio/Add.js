@@ -13,6 +13,7 @@ import Paper from 'material-ui/Paper';
 import { graphql } from 'react-apollo';
 import { allCoins, current, create } from './compute';
 import { defaultColor } from '../utility/styles';
+import { withTheme } from 'material-ui/styles';
 import { setTxs } from '../store/reducers/transactions'
 import moment from 'moment';
 import List from 'material-ui/List';
@@ -30,7 +31,7 @@ query AllCoins {
 }
 `
 
-const attrs = "fill='"+defaultColor+"' height='1em' style='vertical-align: text-top; margin: 0 0.2em;'"
+const attrs = c => "fill='"+c+"' height='1em' style='vertical-align: text-top; margin: 0 0.2em;'"
 const initial = ({ coin='bitcoin', value='', errors={}, ...props}) => ({ coin, value, createdAt: props.createdAt ? moment(props.createdAt) : moment(props.createdAt), errors })
 class AddTx extends Component {
   constructor (props) {
@@ -69,7 +70,8 @@ class AddTx extends Component {
       data: {loading, error, coins},
       open=false,
       onClose=(v=>v),
-      txs=[]
+      txs=[],
+      theme: { palette: { text: { secondary: color } } }
     } = this.props
     const { coin, value, createdAt, errors } = this.state
     return <div>
@@ -85,7 +87,7 @@ class AddTx extends Component {
               >
               { (coins || []).map(coin =>
                 <MenuItem key={coin.id} value={coin.id}>
-                  <CryptoIcon attrs={attrs} icon={coin.symbol} /> { coin.name }
+                  <CryptoIcon attrs={attrs(color)} icon={coin.symbol} /> { coin.name }
                 </MenuItem>) }
             </Select>
             <div style={{marginTop: '1em'}}/>
@@ -99,8 +101,8 @@ class AddTx extends Component {
             <DatePicker value={createdAt}
               error={errors.date}
               label="Trade Date"
-              leftArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
-              rightArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
+              leftArrowIcon={<CryptoIcon icon="BTC" attrs={attrs(color)} />}
+              rightArrowIcon={<CryptoIcon icon="BTC" attrs={attrs(color)} />}
               onChange={this.addChange('createdAt')}
               fullWidth />
             <div className="text-center">
@@ -141,4 +143,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(graphql(loadAllCoins)(AddTx))
+)(graphql(loadAllCoins)(withTheme()(AddTx)))

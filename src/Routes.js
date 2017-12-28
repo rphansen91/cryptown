@@ -10,6 +10,7 @@ import Add from './ui/Add';
 import Coin from './ui/Coin';
 import Terms from './ui/Terms';
 import Transactions from './ui/Txs';
+import Settings from './ui/Settings';
 import { init, pageview } from './utility/analytics';
 
 class Routes extends Component {
@@ -39,6 +40,7 @@ class Routes extends Component {
         <Route path={(process.env.PUBLIC_URL || '') + "/gql"} component={() => <GraphiQL style={{position: 'relative', height: '80vh', textAlign: 'initial'}}/>} />
         <Route path={(process.env.PUBLIC_URL || '') + "/coin/:id"} component={(props) => <Coin id={props.match.params.id} />} />
         <Route path={(process.env.PUBLIC_URL || '') + "/terms"} component={Terms} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/settings"} component={Settings} />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>

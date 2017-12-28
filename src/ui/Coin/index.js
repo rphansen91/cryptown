@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { withTheme } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import { CardActions } from 'material-ui/Card';
 import Button from 'material-ui/Button';
@@ -52,11 +53,13 @@ const computeValueAt = series => createdAt => {
   return 0
 }
 
-const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultColor, pos, neg, ...props }={} ) => {
+const Coin = ( { data: { loading, error, coin }, onRemove, txs, pos, neg, theme, ...props }={} ) => {
   if (loading) coin = loadingCoin()
   if (error) coin = defaultCoin()
   if (!coin) coin = defaultCoin()
 
+  console.log(props)
+  const color = theme.palette.text.secondary
   const point = (x, y) => ({ x, y, xAxis: 0, yAxis: 0 })
   const series = (coin.history || []).map((({ ts, value }) => [ts*1000, value]))
   const valueAt = computeValueAt(series)
@@ -142,4 +145,4 @@ export default connect(
   })
 )(graphql(coinQuery, {
   options: ({ id, pair }) => ({ variables: { id, pair } })
-})(withRouter(Coin)))
+})(withRouter(withTheme()(Coin))))

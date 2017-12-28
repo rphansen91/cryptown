@@ -7,7 +7,7 @@ import './style.css';
 export default withRouter((props) =>
 <div className="page-footer primary-gradient">
   <section>
-    <Brand onClick={coin => props.history.push((process.env.PUBLIC_URL || ''))} style={{cursor: "pointer"}} />
+    <Brand onClick={coin => props.history.push((process.env.PUBLIC_URL || ''))} style={{color: "#fff", cursor: "pointer"}} />
     <p className="footer-ps">
       Thank you to
       <a href="https://www.coinmarketcap.com" target="_blank">

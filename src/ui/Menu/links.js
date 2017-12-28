@@ -1,6 +1,7 @@
 import React from 'react';
 import List, { ListItemIcon, ListItemText } from 'material-ui/List';
 import HomeIcon from 'material-ui-icons/Home';
+import SettingsIcon from 'material-ui-icons/Settings';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import AddIcon from 'material-ui-icons/Add';
 import GQLIcon from 'material-ui-icons/NetworkCheck';
@@ -40,6 +41,12 @@ export const OtherListItems = withRouter((props) =>
       <HelpIcon />
     </ListItemIcon>
     <ListItemText primary="About" />
+  </RegItem>
+  <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/settings')}>
+    <ListItemIcon>
+      <SettingsIcon />
+    </ListItemIcon>
+    <ListItemText primary="Settings" />
   </RegItem>
   {
     process.env.NODE_ENV !== 'production' ?
