@@ -16,11 +16,7 @@ import { BrowserRouter } from 'react-router-dom';
 const theme = createMuiTheme({
   palette: {
     type: 'dark'
-  },
-  // palette: {
-  //   primary: grey,
-  //   secondary: lightBlue,
-  // }
+  }
 });
 
 const store = createStore(blockStore, window.__INITIAL_STATE__);

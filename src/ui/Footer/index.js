@@ -1,16 +1,13 @@
 import React from 'react';
 import AllCoins from '../../icons/AllCoins';
 import { withRouter } from 'react-router-dom';
-// import { BuyLTC } from '../../portfolio/Buy';
+import Brand from '../Brand';
 import './style.css';
 
 export default withRouter((props) =>
 <div className="page-footer primary-gradient">
   <section>
-    <p className="footer-p">
-      {/* <BuyLTC /> */}
-      by <a href="http://github.com/rphansen91">Ryan P. Hansen</a>
-    </p>
+    <Brand onClick={coin => props.history.push((process.env.PUBLIC_URL || ''))} style={{cursor: "pointer"}} />
     <p className="footer-ps">
       Thank you to
       <a href="https://www.coinmarketcap.com" target="_blank">

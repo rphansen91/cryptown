@@ -34,12 +34,19 @@ export function create (txs) {
   })
 }
 
-export const default_coins = [{ id: 'bitcoin', symbol: 'BTC'}, { id: 'ethereum', symbol: 'ETH'}, { id: 'litecoin', symbol: 'LTC'}]
+export function empty (portfolio={}) {
+  const add = (a, b) => a + b
+  return Object.values(portfolio).reduce(add, 0) === 0
+}
+
+export const default_coins = [{ id: 'bitcoin', symbol: 'BTC'}, { id: 'ethereum', symbol: 'ETH'}, { id: 'litecoin', symbol: 'LTC'}, {id: 'bitcoin-cash', symbol: 'BCH'}, {id: 'ripple', symbol: 'XRP'}, {id: 'dash', symbol: 'DASH'}, {id: 'monero', symbol: 'XRM'}]
 
 export function allCoins (txs, defaultCoins=default_coins) {
   const coins = Object.values(txs.reduce((acc, tx) => {
-    acc[tx.coin] = { id: tx.coin, symbol: tx.symbol }
-    return acc
-  }, {}))
+      acc[tx.coin] = { id: tx.coin, symbol: tx.symbol }
+      return acc
+    },
+    {}
+  ))
   return coins.length ? coins : defaultCoins
 }

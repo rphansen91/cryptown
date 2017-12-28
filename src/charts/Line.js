@@ -36,7 +36,10 @@ function line ({
     colors: colors,
 
     title: {
-      text: title
+      text: title,
+      style: {
+        color: '#fff'
+      }
     },
 
     subtitle: {

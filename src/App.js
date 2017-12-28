@@ -17,6 +17,7 @@ import { toggleMenu } from './store/reducers/menu'
 import { setTxs } from './store/reducers/transactions'
 import Menu from './ui/Menu';
 import Chat from './ui/Chat';
+import Brand from './ui/Brand';
 import cx from './utility/cx';
 import './App.css';
 
@@ -55,9 +56,7 @@ class App extends Component {
               <IconButton onClick={toggleMenu} color="contrast" aria-label="Menu" style={{width: 40, marginRight: 30}}>
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
-              <Typography onClick={this.goTo.bind(this, (process.env.PUBLIC_URL || '') + '/')} type="title" style={{color: "#fff", cursor: "pointer", verticalAlign: "middle", display: "flex", flex: 1, justifyContent: "center"}}>
-                <img src={(process.env.PUBLIC_URL || '') + '/icon.png'} style={{height: '1em', marginRight: 4, borderRadius: '0.1em'}} /> Hodl Stream
-              </Typography>
+              <Brand onClick={this.goTo.bind(this, (process.env.PUBLIC_URL || '') + '/')} style={{color: "#fff", cursor: "pointer", verticalAlign: "middle", display: "flex", flex: 1, justifyContent: "center"}} />
               <Pairs style={{width: 70}} />
             </Toolbar>
 

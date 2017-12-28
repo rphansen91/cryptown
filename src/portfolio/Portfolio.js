@@ -4,7 +4,7 @@ import React from 'react'
 import Stream from '../charts/Stream';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
-import { allCoins, current } from './compute';
+import { allCoins, current, empty } from './compute';
 import coinColor from '../icons/colors';
 import gql from 'graphql-tag';
 
@@ -33,11 +33,14 @@ const Portfolio = (props) => {
 
   const currentPortfolio = current(txs)
   const series = coins.filter(identity).reduce((acc, c) => {
-    acc[c.symbol] = (c.history || []).map(({ ts, value }) => {
+    acc[c.symbol] = (c.history || []).reduce((accc, { ts, value }) => {
       const p = currentPortfolio(ts)
       const v = (p[c.id] || 0)
-      return [ts * 1000, (v * value)]
-    }).filter(identity)
+      if (!accc.length && empty(p)) return accc
+      return accc.concat([
+        [ts * 1000, (v * value)]
+      ])
+    }, [])
     return acc
   }, {})
 

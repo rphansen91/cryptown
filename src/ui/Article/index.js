@@ -16,9 +16,12 @@ const styles = {
     height: 200,
   },
   content: {
-    maxHeight: "3em",
-    minHeight: "3em",
-    whiteSpace: "normal"
+    maxHeight: "4em",
+    minHeight: "4em",
+    whiteSpace: "normal",
+    overflow: "hidden",
+    padding: "0.4em",
+    lineHeight: "1em"
   }
 };
 
