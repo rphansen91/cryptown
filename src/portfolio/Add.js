@@ -5,6 +5,7 @@ import CryptoIcon from '../icons/CryptoIcon';
 import Button from 'material-ui/Button';
 import Dialog, { DialogTitle } from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
 import { DatePicker } from 'material-ui-pickers';
 import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
@@ -73,41 +74,46 @@ class AddTx extends Component {
     const { coin, value, createdAt, errors } = this.state
     return <div>
       <DialogTitle>{ error ? error.message : "New Transaction" }</DialogTitle>
-      <div className="add-form">
-        <form onSubmit={this.submit.bind(this)}>
-          <Select
-            error={errors.coin}
-            onChange={this.addChange('coin', ev => ev.target.value)}
-            value={coin}
-            fullWidth
-            >
-            { (coins || []).map(coin =>
-              <MenuItem key={coin.id} value={coin.id}>
-                <CryptoIcon attrs={attrs} icon={coin.symbol} /> { coin.name }
-              </MenuItem>) }
-          </Select>
-          <div style={{marginTop: '1em'}}/>
-          <TextField
-          value={value}
-          error={errors.value}
-          label="Coin Count"
-          onChange={this.addChange('value', ev => ev.target.value)}
-          fullWidth />
-          <div style={{marginTop: '1em'}}/>
-          <DatePicker value={createdAt}
-            error={errors.date}
-            label="Trade Date"
-            leftArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
-            rightArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
-            onChange={this.addChange('createdAt')}
+      <div>
+        <section>
+          <form onSubmit={this.submit.bind(this)}>
+            <Select
+              error={errors.coin}
+              onChange={this.addChange('coin', ev => ev.target.value)}
+              value={coin}
+              fullWidth
+              >
+              { (coins || []).map(coin =>
+                <MenuItem key={coin.id} value={coin.id}>
+                  <CryptoIcon attrs={attrs} icon={coin.symbol} /> { coin.name }
+                </MenuItem>) }
+            </Select>
+            <div style={{marginTop: '1em'}}/>
+            <TextField
+            value={value}
+            error={errors.value}
+            label="Coin Count"
+            onChange={this.addChange('value', ev => ev.target.value)}
             fullWidth />
-          <div className="text-center">
-            <Button type="submit" raised style={{margin: '1em'}}>Add</Button>
-          </div>
-        </form>
-        <List>
-          { txs.filter(({ value }) => value).map((tx, i) => <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />) }
-        </List>
+            <div style={{marginTop: '1em'}}/>
+            <DatePicker value={createdAt}
+              error={errors.date}
+              label="Trade Date"
+              leftArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
+              rightArrowIcon={<CryptoIcon icon="BTC" attrs={attrs} />}
+              onChange={this.addChange('createdAt')}
+              fullWidth />
+            <div className="text-center">
+              <Button type="submit" raised style={{margin: '1em'}}>Add</Button>
+            </div>
+          </form>
+        </section>
+        <section>
+          <Typography type="title">All Transactions</Typography>
+          <List className="text-initial">
+            { txs.filter(({ value }) => value).map((tx, i) => <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />) }
+          </List>
+        </section>
       </div>
     </div>
   }

@@ -7,6 +7,8 @@ export default () =>
     <SEO title='Add | Hodl Stream' path='/add' />
     <section />
     <section>
-      <Add />
+      <div className="contained">
+        <Add />
+      </div>
     </section>
   </div>

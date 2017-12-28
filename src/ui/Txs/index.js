@@ -15,10 +15,12 @@ const Txs = ({ txs, onChange=(v => v) }) =>
 
     <section />
     <section>
-      <Typography type="title">Transactions</Typography>
-      <List>
-        { txs.filter(({ value }) => value).map((tx, i) => <Tx key={i} tx={tx} onRemove={() => onChange(remove(txs, i))} />) }
-      </List>
+      <div className="contained">
+        <Typography type="title">Transactions</Typography>
+        <List className="text-initial">
+          { txs.filter(({ value }) => value).map((tx, i) => <Tx key={i} tx={tx} onRemove={() => onChange(remove(txs, i))} />) }
+        </List>
+      </div>
     </section>
   </div>
 
