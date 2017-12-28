@@ -21,7 +21,7 @@ const getMetaTags = ({
     { name: 'twitter:title', content: title },
     { name: 'twitter:description', content: description },
     { name: 'twitter:creator', content: twitter },
-    { name: 'twitter:image:src', content: seoImageURL(images, 'twitter') },
+    { name: 'twitter:image', content: seoImageURL(images, 'twitter') },
     { name: 'og:title', content: title },
     { name: 'og:type', content: contentType },
     { name: 'og:url', content: url },

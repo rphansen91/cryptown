@@ -87,8 +87,8 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, color=defaultCol
       <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={(iconAttrs + ' fill="' + color + '"')} />
       <Typography type="title">{ coin.name }</Typography>
       <div className="coin-details">
-        <p>{ usd.display(coin.price_usd) } USD</p>
-        <p>{ btc.display(coin.price_btc) } BTC</p>
+        <Typography type="body1">{ usd.display(coin.price_usd) } USD</Typography>
+        <Typography type="body2" >{ btc.display(coin.price_btc) } BTC</Typography>
         <div className="coin-seperator" />
         <Percent value={coin.percent_change_24h} pos={pos} neg={neg} />
       </div>

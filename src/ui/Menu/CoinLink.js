@@ -6,7 +6,7 @@ import CryptoIcon from '../../icons/CryptoIcon';
 import Percent from '../../explorer/Percent';
 
 const defaultCoin = (name) => ({ symbol: '', percent_change_24h: 0 })
-const attrs = 'height="24px" width="24px" style="fill: rgba(0, 0, 0, 0.54);"'
+const attrs = 'height="24px" width="24px" style="fill: rgba(255, 255, 255, 1);"'
 const style = { height: 24, width: 24, marginRight: 16, fontSize: 10 }
 
 export default coinQl(({ open, id, history, data: { loading, error, coin=defaultCoin } }) =>

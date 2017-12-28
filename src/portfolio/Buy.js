@@ -52,7 +52,7 @@ export class Buy extends React.Component {
 
     if (!crypto_currency || !whitelist.includes(crypto_currency)) return <div />
 
-    return <a className="coinbase-widget coinbase-button"
+    return <a className="coinbase-widget coinbase-button primary-gradient"
     // ref={el => this.loadWidget(el)}
     onClick={() => this.popout()}
     id="coinbase_widget"

@@ -17,7 +17,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(({ open, onClose }) =>
-  <Drawer open={open} onRequestClose={onClose} type="permanent" style={{overflowX: 'hidden'}}>
+  <Drawer open={open}
+    onRequestClose={onClose}
+    type="permanent"
+    style={{overflowX: 'hidden'}}>
     <MainListItems className={(open) ? 'links open' : 'links'} />
     <Divider />
     <CoinListItems className={(open) ? 'links open' : 'links'} />
