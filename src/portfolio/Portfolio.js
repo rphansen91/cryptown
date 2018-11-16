@@ -32,7 +32,12 @@ const Portfolio = (props) => {
   if (!coins) return <div style={{height: 400}} />
 
   const currentPortfolio = current(txs)
-  const series = coins.filter(identity).reduce((acc, c) => {
+  const now = new Date().getTime()
+  const series = coins
+  .filter(identity)
+  .filter((coin) => {
+    return currentPortfolio(now)[coin.id] > 0
+  }).reduce((acc, c) => {
     acc[c.symbol] = (c.history || []).reduce((accc, { ts, value }) => {
       const p = currentPortfolio(ts)
       const v = (p[c.id] || 0)

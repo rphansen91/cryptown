@@ -3,7 +3,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 import express from 'express';
 import path from 'path';
-
+import useCryptoIcon from './icon';
 import universalLoader from './universal';
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(compression());
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use('/svg', useCryptoIcon(path.resolve(__dirname, '../build/svg')));
 app.use(express.static(path.resolve(__dirname, '../build'), { index: false }));
 app.use('/', universalLoader);
 

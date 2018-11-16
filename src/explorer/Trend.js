@@ -7,7 +7,6 @@ import { defaultColor } from '../utility/styles';
 import { withTheme } from 'material-ui/styles';
 import './Coin.css';
 
-const iconAttrs = "height='4em'"
 const trendQuery = gql`
 query Coin($id: String!, $pair: String!) {
   coin(id: $id) {
@@ -37,7 +36,7 @@ const Trend = ( { data: { loading, error, coin }, theme, ...props }={} ) => {
   const color = theme.palette.text.secondary
   return <div className={["coin trend"].concat(props.classList).filter(c => c).join(' ')} style={{ color }} { ...props } >
     <div className="coin-header">
-      <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={(iconAttrs + ' fill="' + color + '"')} />
+      <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={{ fill: color }} style={{ height: "4em" }} />
     </div>
     <Line title={coin.name} subtitle={coin.price_usd} series={{ [coin.symbol]: series }} colors={[color]} />
   </div>

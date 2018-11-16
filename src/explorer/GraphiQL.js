@@ -1,10 +1,9 @@
 import React from 'react';
 import GraphiQL from 'graphiql';
 import 'graphiql/graphiql.css';
-import { uri } from '../gql/connection';
 
 function graphQLFetcher(graphQLParams) {
-  return fetch(uri, {
+  return fetch(process.env.REACT_APP_GRAPHQL, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(graphQLParams),

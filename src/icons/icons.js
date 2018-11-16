@@ -6,6 +6,6 @@ const isAlt = includes('-alt')
 
 module.exports = {
   all: () => icons,
-  main: () => icons.filter(t => !isAlt(t)).map(names),
-  alts: () => icons.filter(t => isAlt(t)).map(names),
+  main: () => icons.filter(t => !isAlt(t)).map(names),//.slice(0, 10),
+  alts: () => icons.filter(t => isAlt(t)).map(names),//.slice(0, 10),
 }

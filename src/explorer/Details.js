@@ -17,7 +17,6 @@ import { withTheme } from 'material-ui/styles';
 
 import './Details.css'
 
-const iconAttrs = "height='4em'"
 const detailsQuery = gql`
 query Details($id: String!) {
   coin(id: $id) {
@@ -66,7 +65,7 @@ class CoinDetails extends Component {
     return <Card className="details">
       <CardHeader
         avatar={
-          <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={(iconAttrs + ' fill="' + color + '"')} />
+          <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={{ fill: color }} style={{ height: "4em" }} />
         }
         title={ coin.name }
         subheader={ coin.price_usd }

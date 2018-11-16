@@ -19,7 +19,7 @@ export default class extends Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     loadScript('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9')
     .then(() => {
       this.setState({ loaded: true })

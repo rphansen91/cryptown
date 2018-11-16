@@ -6,15 +6,19 @@ import App from './App';
 import client from './gql/client';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import blockStore from './store/reducers/index';
 import grey from 'material-ui/colors/grey';
+import thunk from 'redux-thunk';
 import lightBlue from 'material-ui/colors/lightBlue';
 import { BrowserRouter } from 'react-router-dom';
 import storage from './utility/storage';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middleware = composeEnhancers(applyMiddleware(thunk));
+
 initialStore()
-.then(initial => createStore(blockStore, initial))
+.then(initial => createStore(blockStore, initial, middleware))
 .then(render);
 
 function initialStore () {

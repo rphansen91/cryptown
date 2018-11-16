@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withApollo } from 'react-apollo';
 import Portfolio from './portfolio/Portfolio';
 import txStore from './portfolio/txs';
 import AppBar from 'material-ui/AppBar';
@@ -16,6 +17,7 @@ import NavigationMenu from 'material-ui-icons/Menu';
 import { toggleMenu } from './store/reducers/menu';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { setTxs } from './store/reducers/transactions'
+import { queryExchangeTxs } from './gql/exchange'
 import Menu from './ui/Menu';
 import Chat from './ui/Chat';
 import Brand from './ui/Brand';
@@ -23,6 +25,7 @@ import cx from './utility/cx';
 import './App.css';
 
 const createTheme = (type='dark') => createMuiTheme({ palette: { type } });
+const concat = arr => arr.reduce((acc, c) => acc.concat(c), [])
 class App extends Component {
   constructor (props) {
     super(props)
@@ -33,19 +36,35 @@ class App extends Component {
     this.props.history.push(route)
   }
 
-  componentWillMount () {
-    this.txStore.get()
-    .then(txs => txs || [])
-    .then(txs => {
-      this.props.setTxs(txs)
+  removeJSS () {
+    const jssStyles = document.getElementById('jss-server-side');
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }
+
+  componentDidMount () {
+    this.removeJSS()
+
+    const { profile, setTxs } = this.props
+    const exOpts = name => Object.assign({ name }, profile[name])
+    const exTxs = name => queryExchangeTxs.call(this, exOpts(name))
+
+    Promise.all([
+      // exTxs('bittrex'),
+      // exTxs('hitbtc'),
+      this.txStore.get()
+    ])
+    .then(concat)
+    .then(setTxs)
+    .catch(e => {
+      console.log("Error", "get transactions", e)
     });
   }
 
   render() {
     const { location, menu, toggleMenu, profile } = this.props
     const display = (location.pathname === (process.env.PUBLIC_URL || '') + '/')
-
-    console.log(profile)
     const theme = createTheme(profile.theme)
     const backgroundColor = theme.palette.background.paper
     return (
@@ -62,7 +81,14 @@ class App extends Component {
               <IconButton onClick={toggleMenu} color="contrast" aria-label="Menu" style={{width: 40, marginRight: 30}}>
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
-              <Brand onClick={this.goTo.bind(this, (process.env.PUBLIC_URL || '') + '/')} style={{color: "#fff", cursor: "pointer", verticalAlign: "middle", display: "flex", flex: 1, justifyContent: "center"}} />
+              <Link to="/" style={{
+                verticalAlign: "middle",
+                display: "flex",
+                flex: 1,
+                justifyContent: "center",
+                textDecoration: "none"
+              }}><Brand style={{color: "#fff", cursor: "pointer"}} />
+              </Link>
               <Pairs style={{width: 70}} />
             </Toolbar>
 
@@ -90,4 +116,4 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(App));
+)(withApollo(App)));

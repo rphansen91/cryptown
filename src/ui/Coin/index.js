@@ -16,12 +16,13 @@ import CryptoIcon from '../../icons/CryptoIcon';
 import Percent from '../../explorer/Percent';
 import Tx from '../../portfolio/Tx';
 import { Buy } from '../../portfolio/Buy';
+import { current } from '../../portfolio/compute';
 import gql from 'graphql-tag';
 import SEO from '../SEO';
 import Article from '../Article';
 import './style.css';
 
-const iconAttrs = "height='4em'"
+const iconStyle = { height: '4em' }
 const coinQuery = gql`
 query Coin($id: String!, $pair: String!) {
   coin(id: $id) {
@@ -58,8 +59,9 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, pos, neg, theme,
   if (error) coin = defaultCoin()
   if (!coin) coin = defaultCoin()
 
-  console.log(props)
   const color = theme.palette.text.secondary
+  const image = (process.env.PUBLIC_URL || '') + '/png/' + coin.symbol +'.png'
+  const total = current(txs)(new Date().getTime())[coin.id]
   const point = (x, y) => ({ x, y, xAxis: 0, yAxis: 0 })
   const series = (coin.history || []).map((({ ts, value }) => [ts*1000, value]))
   const valueAt = computeValueAt(series)
@@ -84,16 +86,25 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, pos, neg, theme,
   ])
 
   return <div>
-    <SEO title={coin.symbol + ' | Hodl Stream'} path={'/coin/' + coin.id} />
+    <SEO
+      images={{
+        google: image,
+        facebook: image,
+        twitter: image
+      }}
+      title={coin.symbol + ' | Hodl Stream'}
+      path={'/coin/' + coin.id}
+       />
     <section />
     <section>
-      <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={(iconAttrs + ' fill="' + color + '"')} />
+      <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={{ fill: color }} style={iconStyle} />
       <Typography type="title">{ coin.name }</Typography>
       <div className="coin-details">
         <Typography type="body1">{ usd.display(coin.price_usd) } USD</Typography>
         <Typography type="body2" >{ btc.display(coin.price_btc) } BTC</Typography>
         <div className="coin-seperator" />
         <Percent value={coin.percent_change_24h} pos={pos} neg={neg} />
+        <Typography type="body2" >{total} {coin.symbol}</Typography>
       </div>
 
       <Line title="" subtitle=""
@@ -117,16 +128,15 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, pos, neg, theme,
       <div className="articles responsive">
          {
            (coin.articles || []).map((a, i) =>
-              <Article
-                key={i}
+              <a href={a.url} target="_blank" key={i}><Article
                 image={a.urlToImage}
                 title={a.title}
-                onClick={() => window.open(a.url)}
                 actions={<CardActions>
-                  <Button dense color="primary" onClick={() => window.open(a.url)}>
+                  <Button dense color="primary">
                     Read More
                   </Button>
-                </CardActions>}/>)
+                </CardActions>} />
+              </a>)
          }
       </div>
     </section>

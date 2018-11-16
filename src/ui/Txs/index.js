@@ -18,7 +18,12 @@ const Txs = ({ txs, onChange=(v => v) }) =>
       <div className="contained">
         <Typography type="title">Transactions</Typography>
         <List className="text-initial">
-          { txs.filter(({ value }) => value).map((tx, i) => <Tx key={i} tx={tx} onRemove={() => onChange(remove(txs, i))} />) }
+          { txs
+            .filter(({ value }) => value)
+            .map((tx, i) =>
+              <Tx key={i}
+                  tx={tx}
+                  onRemove={() => onChange(remove(txs, i))} />) }
         </List>
       </div>
     </section>

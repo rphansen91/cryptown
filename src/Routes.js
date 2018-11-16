@@ -5,6 +5,7 @@ import { closeMenu } from './store/reducers/menu';
 import Home from './ui/Home';
 import About from './ui/About';
 import NotFound from './ui/NotFound';
+import Post from './ui/Post';
 import GraphiQL from './explorer/GraphiQL';
 import Add from './ui/Add';
 import Coin from './ui/Coin';
@@ -39,6 +40,7 @@ class Routes extends Component {
         <Route path={(process.env.PUBLIC_URL || '') + "/add"} component={Add} />
         <Route path={(process.env.PUBLIC_URL || '') + "/gql"} component={() => <GraphiQL style={{position: 'relative', height: '80vh', textAlign: 'initial'}}/>} />
         <Route path={(process.env.PUBLIC_URL || '') + "/coin/:id"} component={(props) => <Coin id={props.match.params.id} />} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/post/:id"} component={(props) => <Post id={props.match.params.id} />} />
         <Route path={(process.env.PUBLIC_URL || '') + "/terms"} component={Terms} />
         <Route path={(process.env.PUBLIC_URL || '') + "/settings"} component={Settings} />
         <Route path="*" component={NotFound} />

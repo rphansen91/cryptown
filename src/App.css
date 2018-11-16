@@ -2,6 +2,10 @@
   overflow-x: hidden;
 }
 
+a {
+  text-decoration: none;
+}
+
 .App {
   position: relative;
   text-align: center;

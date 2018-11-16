@@ -9,7 +9,6 @@ import CryptoIcon from '../icons/CryptoIcon';
 import Percent from './Percent';
 import './Coin.css';
 
-const iconAttrs = "height='4em'"
 const coinQuery = gql`
 query Coin($id: String!) {
   coin(id: $id) {
@@ -34,7 +33,7 @@ const Coin = ( { data: { loading, error, coin }, pos, neg, theme, ...props }={} 
   const color = theme.palette.text.secondary
   return <div className={["coin"].concat(props.classList).filter(c => c).join(' ')} style={{ color }} { ...props } >
     <div className="coin-header">
-      <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={(iconAttrs + ' fill="' + color + '"')} />
+      <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={{ fill: color }} style={{ height: '4em' }} />
     </div>
     <div className="coin-details">
       <p className="coin-name">{ coin.name }</p>

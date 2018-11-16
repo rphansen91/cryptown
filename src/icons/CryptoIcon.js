@@ -2,40 +2,31 @@ import React, { Component } from 'react'
 import IconButton from 'material-ui/IconButton'
 import defaultIcon from './defaultIcon'
 import fetch from 'isomorphic-fetch'
-export default class extends Component {
+import { loadSvg } from '../store/reducers/svgs'
+import { connect } from 'react-redux'
+
+class CryptoIcon extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      svg: defaultIcon
-    }
   }
-  componentWillMount () {
-    const { icon } = this.props
-    loadIcon(icon, svg => this.setState({ svg }))
-  }
-  componentWillUpdate ({ icon: nextIcon }, nextState) {
-    const { icon } = this.props
-    if (nextIcon === icon) return
-    loadIcon(nextIcon, svg => this.setState({ svg }))
-  }
+  // componentWillMount () {
+  //   const { loadIcon } = this.props;
+  //   loadIcon();
+  // }
+
+  // componentWillUpdate () {
+  //   const { loadIcon } = this.props;
+  //   loadIcon();
+  // }
+
   render () {
-    const { attrs, button, onClick=(v=>v) } = this.props
-    const { svg } = this.state
-    const __html = (svg || '').replace('viewBox', (attrs ? attrs + ' viewBox' : 'viewBox'))
-    const icon = <span {...this.props} onClick={onClick} className='icon' dangerouslySetInnerHTML={{ __html }} />
-    if (!button) return icon
-    return <IconButton onClick={onClick}>{ icon }</IconButton>
+    const { icon, attrs, button, onClick=(v=>v), btnstyle, loadIcon } = this.props
+    const query = Object.keys(attrs).map(k => `${k}=${attrs[k]}`).join("&")
+    const Icon = <img className='icon' src={`/svg/${icon}.svg?${query}`} {...this.props} onClick={onClick} />
+
+    if (!button) return Icon
+    return <IconButton onClick={onClick} style={btnstyle}>{ Icon }</IconButton>
   }
 }
 
-function loadIcon (icon, fn) {
-  fetch((process.env.PUBLIC_URL || '') + '/svg/' + icon + '.svg')
-  .then(res => res.text())
-  .then(res => {
-    if (!typeof res === 'string') return Promise.reject('Not found')
-    if (res.trim().indexOf('<svg') !== 0) return Promise.reject('Not svg')
-    return res
-  })
-  .then(icon => fn(icon))
-  .catch(() => fn(defaultIcon))
-}
+export default CryptoIcon

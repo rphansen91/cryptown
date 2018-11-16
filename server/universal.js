@@ -17,44 +17,46 @@ import createServerStore from './store';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { create } from 'jss';
-import preset from 'jss-preset-default';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 import grey from 'material-ui/colors/grey';
 import lightBlue from 'material-ui/colors/lightBlue';
 
 import App from '../src/App';
-import client from '../src/gql/client';
-import { getDataFromTree } from "react-apollo"
+import client from '../src/gql/server';
+import { renderToStringWithData } from "react-apollo"
+import manifest from "../build/asset-manifest.json"
 
-const theme = createMuiTheme({
-  palette: {
-    primary: grey,
-    secondary: lightBlue,
-  }
-});
 const filePath = path.resolve(__dirname, '../build/index.html');
+const cssPath = path.resolve(__dirname, `../build/${manifest["main.css"]}`);
 const htmlData = fs.readFileSync(filePath, 'utf8');
-const prepHTML = (data, { html, head, body, css }) => {
-  return data.replace('<html lang="en">', `<html ${html}`)
-  .replace(/<!-- begin meta -->(.*)<!-- end meta -->/, head)
-  .replace('</head>', `<style>${css}</style></head>`)
+const cssData = fs.readFileSync(cssPath, 'utf8');
+const prepHTML = (data, { html, head, body, css, state }) => {
+  return data.replace('<html lang="en">', `<html ${html}>`)
+  .replace('<head>', '<head>' + head)
+  .replace('</head>', `<style id="jss-server-side">${cssData} ${css}</style></head>`)
+  .replace('</head>', `<script>window.__APOLLO_STATE__=${JSON.stringify(state).replace(/</g, '\\u003c')}</script></head>`)
   .replace(/<div id="root">.*<\/div>/, `<div id="root">${body}</div>`)
 };
 
 const universalLoader = (req, res) => {
   const sheetsRegistry = new SheetsRegistry();
-  const jss = create(preset());
   const { store } = createServerStore(req.path);
-
-  jss.options.createGenerateClassName = createGenerateClassName;
-  const apolloClient = client(fetch)
-  const app = (
-    <StaticRouter location={ req.url } context={ {} }>
+  const apolloClient = client(fetch);
+  const theme = createMuiTheme({
+    palette: {
+      primary: grey,
+      secondary: lightBlue,
+    }
+  });
+  const generateClassName = createGenerateClassName()
+  const sheetsManager = new Map()
+  const context = {}
+  const ServerApp = (
+    <StaticRouter location={ req.url } context={context}>
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
-          <JssProvider registry={sheetsRegistry} jss={jss}>
-            <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+          <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+            <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
               <App />
             </MuiThemeProvider>
           </JssProvider>
@@ -63,11 +65,10 @@ const universalLoader = (req, res) => {
     </StaticRouter>
   );
 
-  getDataFromTree(app).then(() => {
-    const css = sheetsRegistry.toString();
+  renderToStringWithData(ServerApp).then((body) => {
     const helmet = Helmet.renderStatic();
-    const routeMarkup = renderToString(app);
     const initialState = apolloClient.extract();
+    const css = sheetsRegistry.toString();
     const html = prepHTML(htmlData, {
       state: initialState,
       html: helmet.htmlAttributes.toString(),
@@ -75,11 +76,15 @@ const universalLoader = (req, res) => {
         helmet.title.toString() +
         helmet.meta.toString() +
         helmet.link.toString(),
-      css: css,
-      body: routeMarkup
+      css,
+      body
     });
 
     res.send(html);
+  })
+  .catch(e => {
+    console.log(e);
+    res.send(htmlData);
   });
 
 };

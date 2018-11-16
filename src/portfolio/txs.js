@@ -8,7 +8,7 @@ export default function () {
   const store = storage('txs')
   emitter.add = function (tx) {
     return store.get()
-    .then(txs => (txs || []).concat(tx))
+    .then(txs => (txs || []).concat(tx).filter(identity))
     .then(txs => store.save(txs))
     .then(txs => {
       emitter.emit('change', txs)
@@ -17,10 +17,11 @@ export default function () {
   }
   emitter.get = function () {
     return store.get()
+    .then((txs) => txs.filter(identity))
     .catch(() => defaultTxs)
   }
   emitter.save = function (txs) {
-    return store.save(txs)
+    return store.save(txs.filter(tx => tx.coin && !tx.__typename))
     .then(txs => {
       emitter.emit('change', txs)
       return txs
@@ -38,4 +39,8 @@ export default function () {
     })
   }
   return emitter
+}
+
+function identity (v) {
+  return v
 }
