@@ -6,7 +6,7 @@ import randomId from './randomId'
 export default class extends Component {
   constructor (props) {
     super(props)
-    this.id = randomId('chart')
+    this.id = 'chart-' + props.name || randomId()
     this.renderer = render(this.id)
   }
 
@@ -45,6 +45,7 @@ function render (id) {
       prevChart = chart
     } catch (err) {
       console.log(err)
+      prevChart = null
     }
   }
 }

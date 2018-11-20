@@ -7,7 +7,7 @@ import { CardActions } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import List from 'material-ui/List';
 import Line from '../../charts/Line';
-import { graphql } from 'react-apollo';
+import { graphql, Query } from 'react-apollo';
 import usd from '../../utility/usd';
 import btc from '../../utility/btc';
 import { setAdding } from '../../store/reducers/adding';
@@ -17,6 +17,7 @@ import Percent from '../../explorer/Percent';
 import Tx from '../../portfolio/Tx';
 import { Buy } from '../../portfolio/Buy';
 import { current } from '../../portfolio/compute';
+import { TopBannerDisplayAd } from '../../ads/slots';
 import gql from 'graphql-tag';
 import SEO from '../SEO';
 import Article from '../Article';
@@ -24,7 +25,7 @@ import './style.css';
 
 const iconStyle = { height: '4em' }
 const coinQuery = gql`
-query Coin($id: String!, $pair: String!) {
+query CoinDetail($id: String!, $pair: String!) {
   coin(id: $id) {
     id
     name
@@ -54,14 +55,14 @@ const computeValueAt = series => createdAt => {
   return 0
 }
 
-const Coin = ( { data: { loading, error, coin }, onRemove, txs, pos, neg, theme, ...props }={} ) => {
+const Coin = ( { id, data: { loading, error, coin }, onRemove, txs, pos, neg, theme, ...props }={} ) => {
   if (loading) coin = loadingCoin()
   if (error) coin = defaultCoin()
   if (!coin) coin = defaultCoin()
 
   const color = theme.palette.text.secondary
   const image = (process.env.PUBLIC_URL || '') + '/png/' + coin.symbol +'.png'
-  const total = current(txs)(new Date().getTime())[coin.id]
+  const total = current(txs)(new Date().getTime())[id]
   const point = (x, y) => ({ x, y, xAxis: 0, yAxis: 0 })
   const series = (coin.history || []).map((({ ts, value }) => [ts*1000, value]))
   const valueAt = computeValueAt(series)
@@ -93,8 +94,10 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, pos, neg, theme,
         twitter: image
       }}
       title={coin.symbol + ' | Hodl Stream'}
-      path={'/coin/' + coin.id}
+      path={'/coin/' + id}
        />
+    <section />
+    <TopBannerDisplayAd />
     <section />
     <section>
       <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={{ fill: color }} style={iconStyle} />
@@ -107,12 +110,12 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, pos, neg, theme,
         <Typography type="body2" >{total} {coin.symbol}</Typography>
       </div>
 
-      <Line title="" subtitle=""
+      <Line title={coin.id && !series.length ? `No ${coin.id} historical data found` : ""} subtitle=""
+        name={`coin-${id}`}
         series={{ [coin.symbol]: series }}
         annotations={annotations}
         colors={[color]}
         onClick={(e) => {
-          console.log(e)
           props.setAdding(coin.id, e.point.x)
           props.history.push((process.env.PUBLIC_URL || '') + '/add')
         }} />
@@ -146,13 +149,17 @@ const Coin = ( { data: { loading, error, coin }, onRemove, txs, pos, neg, theme,
   </div>
 }
 
-export default connect(
+const connector = connect(
   ({ txs, pair }) => ({ txs, pair }),
   dispatch => ({
     setAdding: (coin, createdAt) => {
       dispatch(setAdding({ coin, createdAt }))
     }
   })
-)(graphql(coinQuery, {
-  options: ({ id, pair }) => ({ variables: { id, pair } })
-})(withRouter(withTheme()(Coin))))
+)
+
+const ConnCoin = withRouter(withTheme()(Coin))
+
+export default connector((props) => <Query query={coinQuery} variables={props}>{
+  (data) => <ConnCoin {...props} {...data} />
+}</Query>)

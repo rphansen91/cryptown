@@ -64,7 +64,7 @@ class App extends Component {
 
   render() {
     const { location, menu, toggleMenu, profile } = this.props
-    const display = (location.pathname === (process.env.PUBLIC_URL || '') + '/')
+    const display = location.pathname === '/'
     const theme = createTheme(profile.theme)
     const backgroundColor = theme.palette.background.paper
     return (
@@ -78,7 +78,7 @@ class App extends Component {
             "gradient-animated": menu
           })}>
             <Toolbar>
-              <IconButton onClick={toggleMenu} color="contrast" aria-label="Menu" style={{width: 40, marginRight: 30}}>
+              <IconButton onClick={toggleMenu} color="contrast" aria-label="Menu" style={{width: 40}}>
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
               <Link to="/" style={{
@@ -87,7 +87,7 @@ class App extends Component {
                 flex: 1,
                 justifyContent: "center",
                 textDecoration: "none"
-              }}><Brand style={{color: "#fff", cursor: "pointer"}} />
+              }}><Brand style={{color: "#fff", cursor: "pointer", whiteSpace: "nowrap"}} />
               </Link>
               <Pairs style={{width: 70}} />
             </Toolbar>

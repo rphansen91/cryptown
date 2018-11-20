@@ -1,14 +1,18 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setProfile } from '../../store/reducers/profile';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
+import List, { ListItem } from 'material-ui/List';
+import { Link } from 'react-router-dom';
 import Switch from 'material-ui/Switch';
+import { withTheme } from 'material-ui/styles';
 import storage from '../../utility/storage';
 import Exchange from '../Exchange';
 import SEO from '../SEO';
 
-export default connect(
+const withProfile = connect(
   ({ profile }) => ({ profile }),
   dispatch => ({
     setProfile: (p) => {
@@ -16,7 +20,9 @@ export default connect(
       .then(() => dispatch(setProfile(p)))
     }
   })
-)(({ profile, setProfile }) =>
+)
+
+export default compose(withTheme(), withProfile)(({ theme, profile, setProfile }) =>
   <div>
     <SEO title='Settings | Hodl Stream' path='/settings' />
     <section>
@@ -54,6 +60,15 @@ export default connect(
                 />} />
           </FormGroup>
         </section>
+
+        <section>
+          <List>
+            <ListItem><Link to="/terms" style={{
+              color: theme.palette.text.secondary
+            }}>Terms and Conditions</Link></ListItem>
+          </List>
+        </section>
+
       </div>
     </section>
   </div>)

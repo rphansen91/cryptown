@@ -3,7 +3,9 @@ import createHistory from 'history/createMemoryHistory';
 import rootReducer from '../src/store/reducers';
 
 const createServerStore = (path = '/') => {
-  const initialState = {}
+  const initialState = {
+    coins: []
+  }
   const store = createStore(rootReducer, initialState)
   return { store }
 }

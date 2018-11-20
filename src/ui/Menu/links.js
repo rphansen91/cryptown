@@ -9,16 +9,21 @@ import HelpIcon from 'material-ui-icons/Help';
 import SendIcon from 'material-ui-icons/Send';
 import CoinLink from './CoinLink';
 import RegItem from './Item';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import { withTheme } from 'material-ui/styles';
 
-const linkStyle = {
+const linkStyle = color => ({
   flex: "1 1 auto",
   padding: "0 16px",
-  color: "white"
-}
+  color
+})
 
-export const MainListItems = withRouter((props) =>
+export const MainListItems = compose(
+  withTheme(),
+  withRouter
+)((props) =>
 <List className={props.className || ""}>
   <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/')}>
     <Link to="/">
@@ -26,7 +31,7 @@ export const MainListItems = withRouter((props) =>
         <HomeIcon />
       </ListItemIcon>
     </Link>
-    <Link to="/" style={linkStyle}>Home</Link>
+    <Link to="/" style={linkStyle(props.theme.palette.text.secondary)}>Home</Link>
   </RegItem>
   <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/tx')}>
     <Link to="/tx">
@@ -34,7 +39,7 @@ export const MainListItems = withRouter((props) =>
         <SendIcon />
       </ListItemIcon>
     </Link>
-    <Link to="/tx" style={linkStyle}>Trades</Link>
+    <Link to="/tx" style={linkStyle(props.theme.palette.text.secondary)}>Trades</Link>
   </RegItem>
   <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/add')}>
     <Link to="/add">
@@ -42,11 +47,14 @@ export const MainListItems = withRouter((props) =>
         <AddIcon />
       </ListItemIcon>
     </Link>
-    <Link to="/add" style={linkStyle}>Add</Link>
+    <Link to="/add" style={linkStyle(props.theme.palette.text.secondary)}>Add</Link>
   </RegItem>
 </List>)
 
-export const OtherListItems = withRouter((props) =>
+export const OtherListItems = compose(
+  withTheme(),
+  withRouter
+)((props) =>
 <List className={props.className || ""}>
   <RegItem  onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/about')}>
     <Link to="/about">
@@ -54,7 +62,7 @@ export const OtherListItems = withRouter((props) =>
         <HelpIcon />
       </ListItemIcon>
     </Link>
-    <Link to="/about" style={linkStyle}>About</Link>
+    <Link to="/about" style={linkStyle(props.theme.palette.text.secondary)}>About</Link>
   </RegItem>
   <RegItem  onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/settings')}>
     <Link to="/settings">
@@ -62,7 +70,7 @@ export const OtherListItems = withRouter((props) =>
         <SettingsIcon />
       </ListItemIcon>
     </Link>
-    <Link to="/settings" style={linkStyle}>Settings</Link>
+    <Link to="/settings" style={linkStyle(props.theme.palette.text.secondary)}>Settings</Link>
   </RegItem>
   {
     process.env.NODE_ENV !== 'production' ?
@@ -72,7 +80,7 @@ export const OtherListItems = withRouter((props) =>
           <GQLIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/gql" style={linkStyle}>GraphQL</Link>
+      <Link to="/gql" style={linkStyle(props.theme.palette.text.secondary)}>GraphQL</Link>
     </RegItem> :
     <div />
   }

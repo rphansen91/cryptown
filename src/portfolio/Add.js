@@ -74,6 +74,7 @@ class AddTx extends Component {
   }
   render () {
     const {
+      id,
       data: {loading, error, coins},
       open=false,
       onClose=(v=>v),
@@ -93,7 +94,7 @@ class AddTx extends Component {
               fullWidth
               >
               { (coins || []).map(coin =>
-                <MenuItem key={coin.id} value={coin.id}>
+                <MenuItem key={id} value={id}>
                   <CryptoIcon attrs={attrs(color)} icon={coin.symbol} style={iconStyle} /> { coin.name }
                 </MenuItem>) }
             </Select>

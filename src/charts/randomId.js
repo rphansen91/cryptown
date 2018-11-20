@@ -3,4 +3,4 @@ export function generateId(len) {
   return count++
 }
 
-export default name => `${name}-${generateId(20)}`
+export default () => `${generateId(20)}`

@@ -52,6 +52,7 @@ class CoinDetails extends Component {
 
   render () {
     let {
+      id,
       data: { loading, error, coin },
       theme: { palette: { text: { secondary: color } } },
       pos, neg, pair
@@ -88,7 +89,7 @@ class CoinDetails extends Component {
       </CardActions>
       <Collapse in={this.state.open} timeout="auto" unmountOnExit>
         { this.state.open ?
-          <Chart color={color} id={coin.id} pair={pair} /> :
+          <Chart color={color} id={id} name={`details-${id}`} pair={pair} /> :
           <div />
         }
       </Collapse>

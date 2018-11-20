@@ -69,7 +69,7 @@ a {
 }
 
 .contained {
-  width: 100%;
+  width: 95%;
   max-width: 20em;
   margin: auto;
 }
@@ -85,7 +85,7 @@ a {
 .content {
   position: relative;
   height: 100%;
-  padding-bottom: 312px;
+  padding-bottom: calc(315px + 3em);
 }
 
 section {

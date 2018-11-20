@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Stream from '../charts/Stream';
-import { graphql } from 'react-apollo';
+import { graphql, Query } from 'react-apollo';
 import { connect } from 'react-redux';
 import { allCoins, current, empty } from './compute';
 import coinColor from '../icons/colors';
@@ -49,7 +49,7 @@ const Portfolio = (props) => {
     return acc
   }, {})
 
-  return <Stream {...props} series={series} colors={Object.keys(series).map(coinColor)} />
+  return <Stream {...props} name="portfolio" series={series} colors={Object.keys(series).map(coinColor)} />
 }
 
 export default connect(

@@ -25,6 +25,7 @@
     "morgan": "^1.9.0",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
+    "react-adsense": "^0.0.6",
     "react-apollo": "^2.0.1",
     "react-dom": "^16.0.0",
     "react-ga": "^2.3.5",
@@ -39,8 +40,7 @@
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-delta": "^0.1.2",
-    "redux-thunk": "^2.3.0",
-    "svg2png": "^4.1.1"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "express": "^4.16.2",
@@ -54,7 +54,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "serve": "REACT_APP_GRAPHQL=https://laqr73ujn2.execute-api.us-east-1.amazonaws.com/dev/graphql NODE_ENV=development nodemon server/index.js",
+    "serve": "REACT_APP_GRAPHQL=http://localhost:3000/graphql NODE_ENV=development nodemon server/index.js",
     "predeploy": "npm run build",
     "deploy": "npm run deploy:static && npm run deploy:index",
     "deploy:static": "aws s3 sync build/ s3://hodlstream.com --exclude 'index.html'",

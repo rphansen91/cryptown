@@ -31,6 +31,7 @@ const cssPath = path.resolve(__dirname, `../build/${manifest["main.css"]}`);
 const htmlData = fs.readFileSync(filePath, 'utf8');
 const cssData = fs.readFileSync(cssPath, 'utf8');
 const prepHTML = (data, { html, head, body, css, state }) => {
+  console.log(state)
   return data.replace('<html lang="en">', `<html ${html}>`)
   .replace('<head>', '<head>' + head)
   .replace('</head>', `<style id="jss-server-side">${cssData} ${css}</style></head>`)
@@ -51,7 +52,7 @@ const universalLoader = (req, res) => {
   const generateClassName = createGenerateClassName()
   const sheetsManager = new Map()
   const context = {}
-  const ServerApp = (
+  const ServerApp = () => (
     <StaticRouter location={ req.url } context={context}>
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
@@ -65,7 +66,10 @@ const universalLoader = (req, res) => {
     </StaticRouter>
   );
 
-  renderToStringWithData(ServerApp).then((body) => {
+  Promise.resolve()
+  // .then(() => renderToString(<ServerApp />))
+  .then(() => renderToStringWithData(<ServerApp />))
+  .then((body) => {
     const helmet = Helmet.renderStatic();
     const initialState = apolloClient.extract();
     const css = sheetsRegistry.toString();

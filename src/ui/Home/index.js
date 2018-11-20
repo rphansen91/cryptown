@@ -5,6 +5,7 @@ import Coin from '../../explorer/Coin';
 import Trend from '../../explorer/Trend';
 import coinColor from '../../icons/colors';
 import { withRouter } from 'react-router-dom';
+import { TopBannerDisplayAd } from '../../ads/slots';
 import SEO from '../SEO';
 import './style.css';
 
@@ -17,7 +18,11 @@ export default connect(
 
   <section />
 
-  <section>
+  <TopBannerDisplayAd />
+
+  <section />
+
+  {/* <section>
     <Typography type="title">Tickers</Typography>
     <div className="icons">
       { coins.map(c => <Coin
@@ -26,7 +31,7 @@ export default connect(
         color={coinColor(c.id)}
         onClick={() => history.push((process.env.PUBLIC_URL || '') + '/coin/' + c.id)} />) }
     </div>
-  </section>
+  </section> */}
 
   <section>
     <Typography type="title">Trends</Typography>
