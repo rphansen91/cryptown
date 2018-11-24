@@ -6,6 +6,7 @@ import path from 'path';
 import useCryptoIcon from './icon';
 import universalLoader from './universal';
 
+const forceSecure = require("force-secure-express");
 const app = express();
 const PORT = process.env.PORT || 8081;
 
@@ -14,6 +15,7 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/svg', useCryptoIcon(path.resolve(__dirname, '../build/svg')));
+app.use(forceSecure("hodlstream.com"));
 app.use(express.static(path.resolve(__dirname, '../build'), { index: false }));
 app.use('/', universalLoader);
 

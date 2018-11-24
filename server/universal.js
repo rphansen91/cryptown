@@ -31,7 +31,6 @@ const cssPath = path.resolve(__dirname, `../build/${manifest["main.css"]}`);
 const htmlData = fs.readFileSync(filePath, 'utf8');
 const cssData = fs.readFileSync(cssPath, 'utf8');
 const prepHTML = (data, { html, head, body, css, state }) => {
-  console.log(state)
   return data.replace('<html lang="en">', `<html ${html}>`)
   .replace('<head>', '<head>' + head)
   .replace('</head>', `<style id="jss-server-side">${cssData} ${css}</style></head>`)

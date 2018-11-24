@@ -21,13 +21,13 @@ export default (publicPath) => {
   return (req, res, next) => {
     const iconPath = publicPath + req.url.split("?")[0]
 
-    if (cached[iconPath]) return handleRequest(cached[iconPath]);
+    // if (cached[iconPath]) return handleRequest(cached[iconPath]);
 
     fs.exists(iconPath, (exists) => {
       if (!exists) return notFound()
       fs.readFile(iconPath, 'utf8', function (e, d) {
         if (e || !d) return notFound()
-        cached[iconPath] = d
+        // cached[iconPath] = d
         handleRequest(d)
       })
     })
