@@ -1,5 +1,3 @@
-import ReactGA from 'react-ga';
-
 const mock = (...args) => console.info('Mocklytics', ...args)
 
 export const active = (fn, name) => {
@@ -10,13 +8,13 @@ export const active = (fn, name) => {
 }
 
 export const init = active(() => {
-  ReactGA.initialize(process.env.REACT_APP_GA)
+  require('react-ga').default.initialize(process.env.REACT_APP_GA)
 }, 'Initialize')
 
 export const pageview = active(() => {
-  ReactGA.pageview(window.location.pathname + window.location.search)
+  require('react-ga').default.pageview(window.location.pathname + window.location.search)
 }, 'Page View')
 
 export const event = active((category, action, label, value) => {
-  ReactGA.event({ category, action, label, value })
+  require('react-ga').default.event({ category, action, label, value })
 }, 'Event')
