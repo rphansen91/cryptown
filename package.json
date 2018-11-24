@@ -6,6 +6,7 @@
   "homepage": "https://hodlstream.com",
   "dependencies": {
     "apollo-client-preset": "^1.0.4",
+    "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
     "express": "^4.16.2",
