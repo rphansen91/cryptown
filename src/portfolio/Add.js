@@ -23,7 +23,7 @@ import { event } from '../utility/analytics';
 
 const loadAllCoins = gql`
 query AllCoins {
-  coins {
+  all_coins {
     id
     name
     symbol
@@ -75,7 +75,7 @@ class AddTx extends Component {
   render () {
     const {
       id,
-      data: {loading, error, coins},
+      data: {loading, error, all_coins},
       open=false,
       onClose=(v=>v),
       txs=[],
@@ -83,7 +83,10 @@ class AddTx extends Component {
     } = this.props
     const { coin, value, createdAt, errors } = this.state
     return <div>
-      <DialogTitle>{ error ? error.message : "New Transaction" }</DialogTitle>
+      <section>
+        <DialogTitle>{ error ? error.message : "New Transaction" }</DialogTitle>
+        <Typography type="subtitle" color="secondary">&#9432; All transaction data is stored locally and will never be sent to our servers.</Typography>
+      </section>
       <div>
         <section>
           <form onSubmit={this.submit.bind(this)}>
@@ -93,8 +96,8 @@ class AddTx extends Component {
               value={coin}
               fullWidth
               >
-              { (coins || []).map(coin =>
-                <MenuItem key={id} value={id}>
+              { (all_coins || []).map(coin =>
+                <MenuItem key={coin.id} value={coin.id}>
                   <CryptoIcon attrs={attrs(color)} icon={coin.symbol} style={iconStyle} /> { coin.name }
                 </MenuItem>) }
             </Select>
