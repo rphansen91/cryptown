@@ -47,9 +47,11 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "node-env-run": "^3.0.2",
     "react-scripts": "1.1.2"
   },
   "scripts": {
+    "auth": "$(aws ecr get-login --no-include-email --region us-east-1)",
     "dev": "nodemon exec \"yarn build && yarn serve\"",
     "start": "react-scripts start",
     "start:server": "node server/index.js",
@@ -57,13 +59,20 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "serve": "REACT_APP_GRAPHQL=http://localhost:3000/graphql NODE_ENV=development nodemon server/index.js",
-    "predeploy": "npm run build",
-    "make": "docker build -t hodlstream . && npm run tag && npm run push",
-    "tag": "docker tag hodlstream:latest 530472910524.dkr.ecr.us-east-1.amazonaws.com/hodlstream:latest",
-    "push": "$(aws ecr get-login --no-include-email --region us-east-1) && docker push 530472910524.dkr.ecr.us-east-1.amazonaws.com/hodlstream:latest",
-    "connect": "ssh -i ./hodlstream.pem ec2-user@ec2-18-208-137-23.compute-1.amazonaws.com",
-    "deploy": "npm run deploy:static && npm run deploy:index",
-    "deploy:static": "aws s3 sync build/ s3://hodlstream.com --exclude 'index.html'",
-    "deploy:index": "aws s3 cp build/index.html s3://hodlstream.com/index.html --cache-control 'public, must-revalidate, proxy-revalidate, max-age=0'"
+    "deploy:s3": "npm run deploy:static && npm run deploy:index",
+    "deploy:s3:static": "aws s3 sync build/ s3://hodlstream.com --exclude 'index.html'",
+    "deploy:s3:index": "aws s3 cp build/index.html s3://hodlstream.com/index.html --cache-control 'public, must-revalidate, proxy-revalidate, max-age=0'",
+    "conn": "ssh -i ${PEM:?\"Path to pem required\"} ec2-user@${EC2:?\"EC2 dns required\"}",
+    "conn:main": "nodenv --env .env.local --exec \"npm run conn\"",
+    "conn:staging": "nodenv --env .env.staging --exec \"npm run conn\"",
+    "apply": "scp -i ${PEM:?\"Path to pem required\"} -r ${CONFIG:-./prod} ec2-user@${EC2:?\"EC2 dns required\"}:./",
+    "apply:main": "CONFIG=./prod nodenv --env ./.env.local --exec \"npm run apply\"",
+    "apply:staging": "nodenv --env .env.staging --exec \"npm run apply\"",
+    "sup": "npm run conn -- -t \"docker-compose up -d\"",
+    "sup:main": "nodenv --env .env.local --exec \"npm run sup\"",
+    "sup:staging": "nodenv --env .env.staging --exec \"npm run sup\"",
+    "deploy": "scp -i ${PEM:?\"Path to pem required\"} -r ${DIST:?\"Path to dist required\"} ec2-user@${EC2:?\"EC2 dns required\"}:./data/sellwild",
+    "deploy:main": "nodenv --env .env.local --exec \"npm run deploy\"",
+    "deploy:staging": "nodenv --env .env.staging --exec \"npm run deploy\""
   }
 }

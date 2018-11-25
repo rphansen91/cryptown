@@ -5,7 +5,7 @@ import Coin from '../../explorer/Coin';
 import Trend from '../../explorer/Trend';
 import coinColor from '../../icons/colors';
 import { withRouter } from 'react-router-dom';
-import { TopBannerDisplayAd } from '../../ads/slots';
+import { TopBannerDisplayAd, BottomBannerDisplayAd } from '../../ads/slots';
 import SEO from '../SEO';
 import './style.css';
 
@@ -44,4 +44,8 @@ export default connect(
         onClick={() => history.push((process.env.PUBLIC_URL || '') + '/coin/' + c.id)} />) }
     </div>
   </section>
+
+  <BottomBannerDisplayAd />
+
+  <section />
 </div>))

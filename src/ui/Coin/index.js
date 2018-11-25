@@ -17,7 +17,7 @@ import Percent from '../../explorer/Percent';
 import Tx from '../../portfolio/Tx';
 import { Buy } from '../../portfolio/Buy';
 import { current } from '../../portfolio/compute';
-import { TopBannerDisplayAd } from '../../ads/slots';
+import { TopBannerDisplayAd, BottomBannerDisplayAd } from '../../ads/slots';
 import gql from 'graphql-tag';
 import SEO from '../SEO';
 import Article from '../Article';
@@ -145,6 +145,9 @@ const Coin = ( { id, data: { loading, error, coin }, onRemove, txs, pos, neg, th
     </section>
     <section style={{marginLeft: 25}}>
       <Buy crypto_currency={coin.symbol} />
+    </section>
+    <section>
+      <BottomBannerDisplayAd />
     </section>
   </div>
 }
