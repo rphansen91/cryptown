@@ -33,6 +33,9 @@ const CurrentValue = (props) => {
     value_btc: 0
   })
 
+  console.log({ value_usd, value_btc })
+  if (!value_usd) return ""
+
   return <div {...props}>
     <p style={{fontSize: '2em', lineHeight: '1em', margin: 0}}>{ usd.display(value_usd) } USD</p>
     <p style={{margin: 0, marginBottom: '1em'}}>{ btc.display(value_btc) } BTC</p>

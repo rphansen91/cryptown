@@ -81,6 +81,7 @@ class AddTx extends Component {
       txs=[],
       theme: { palette: { text: { secondary: color } } }
     } = this.props
+    console.log(txs);
     const { coin, value, createdAt, errors } = this.state
     return <div>
       <section>

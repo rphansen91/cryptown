@@ -26,7 +26,7 @@ const loadingCoin = (name) => ({ symbol: '', name: 'Loading', price_usd: 0, pric
 const defaultCoin = () => ({ symbol: 'NaC', name: 'Not Found', price_usd: 0, price_btc: 0, percent_change_24h: 0 })
 
 const Coin = ( { data, pos, neg, theme, ...props }={} ) => {
-  const { loading, error, coin } = data || {};
+  let { loading, error, coin } = data || {};
 
   if (loading) coin = loadingCoin()
   if (error) coin = defaultCoin()

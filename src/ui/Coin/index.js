@@ -56,7 +56,7 @@ const computeValueAt = series => createdAt => {
 }
 
 const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
-  const { loading, error, coin } = data || {};
+  let { loading, error, coin } = data || {};
 
   if (loading) coin = loadingCoin()
   if (error) coin = defaultCoin()
