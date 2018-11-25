@@ -5,6 +5,7 @@ import List from 'material-ui/List';
 import Tx from '../../portfolio/Tx';
 import txStore from '../../portfolio/txs';
 import { setTxs } from '../../store/reducers/transactions';
+import { TopBannerDisplayAd, BottomBannerDisplayAd } from '../../ads/slots';
 import remove from '../../utility/remove';
 import SEO from '../SEO';
 import './style.css'
@@ -13,6 +14,8 @@ const Txs = ({ txs, onChange=(v => v) }) =>
   <div>
     <SEO title={'Transactions | Hodl Stream'} path={'/tx'} />
 
+    <section />
+    <TopBannerDisplayAd />
     <section />
     <section>
       <div className="contained">
@@ -27,6 +30,8 @@ const Txs = ({ txs, onChange=(v => v) }) =>
         </List>
       </div>
     </section>
+    <BottomBannerDisplayAd />
+    <section />
   </div>
 
 const store = txStore()

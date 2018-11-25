@@ -78,7 +78,7 @@ class App extends Component {
             "gradient-animated": menu
           })}>
             <Toolbar>
-              <IconButton onClick={toggleMenu} color="contrast" aria-label="Menu" style={{width: 40}}>
+              <IconButton onClick={toggleMenu} color="default" aria-label="Menu" style={{width: 40}}>
                 { menu ? <NavigationClose color="#fff" /> : <NavigationMenu color="#fff" /> }
               </IconButton>
               <Link to="/" style={{

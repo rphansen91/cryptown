@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setProfile } from '../../store/reducers/profile';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
+import { TopBannerDisplayAd, BottomBannerDisplayAd } from '../../ads/slots';
 import List, { ListItem } from 'material-ui/List';
 import { Link } from 'react-router-dom';
 import Switch from 'material-ui/Switch';
@@ -26,6 +27,8 @@ export default compose(withTheme(), withProfile)(({ theme, profile, setProfile }
   <div>
     <SEO title='Settings | Hodl Stream' path='/settings' />
     <section>
+
+      <TopBannerDisplayAd />
 
       <section />
 
@@ -68,6 +71,10 @@ export default compose(withTheme(), withProfile)(({ theme, profile, setProfile }
             }}>Terms and Conditions</Link></ListItem>
           </List>
         </section>
+
+        <BottomBannerDisplayAd />
+
+        <section />
 
       </div>
     </section>

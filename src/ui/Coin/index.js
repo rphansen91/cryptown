@@ -17,7 +17,7 @@ import Percent from '../../explorer/Percent';
 import Tx from '../../portfolio/Tx';
 import { Buy } from '../../portfolio/Buy';
 import { current } from '../../portfolio/compute';
-import { TopBannerDisplayAd, BottomBannerDisplayAd } from '../../ads/slots';
+import { TopBannerDisplayAd, BottomBannerDisplayAd, NewsDisplayAd } from '../../ads/slots';
 import gql from 'graphql-tag';
 import SEO from '../SEO';
 import Article from '../Article';
@@ -130,7 +130,10 @@ const Coin = ( { id, data: { loading, error, coin }, onRemove, txs, pos, neg, th
     <section>
       <div className="articles responsive">
          {
-           (coin.articles || []).map((a, i) =>
+           (coin.articles || [])
+           .reduce((acc, a, i) => {
+             if (i % 2) acc.push(<NewsDisplayAd key={i + "ad"} />)
+             acc.push(
               <a href={a.url} target="_blank" key={i}><Article
                 image={a.urlToImage}
                 title={a.title}
@@ -139,7 +142,10 @@ const Coin = ( { id, data: { loading, error, coin }, onRemove, txs, pos, neg, th
                     Read More
                   </Button>
                 </CardActions>} />
-              </a>)
+              </a>
+             )
+             return acc
+           }, [])
          }
       </div>
     </section>

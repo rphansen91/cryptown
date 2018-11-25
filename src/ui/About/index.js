@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
+import { TopBannerDisplayAd, BottomBannerDisplayAd } from '../../ads/slots';
 import SEO from '../SEO';
 import Social from '../Social';
 import './style.css';
@@ -7,6 +8,8 @@ import './style.css';
 export default () =>
   <div>
     <SEO title={'About | Hodl Stream'} path='/about' />
+    <section />
+    <TopBannerDisplayAd />
     <section />
     <section className="about">
       <div className="about-content">
@@ -16,4 +19,6 @@ export default () =>
         <Social page="hodlstream" name="Hodl Stream" tabs="timeline, events" />
       </div>
     </section>
+    <BottomBannerDisplayAd />
+    <section />
   </div>
