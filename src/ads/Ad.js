@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, Children } from "react"
 
 export default class Ad extends Component {
   componentDidMount () {
@@ -6,6 +6,6 @@ export default class Ad extends Component {
   }
   render () {
     const { children } = this.props;
-    return <div>{children}</div>;
+    return Children.only(children)
   }
 }

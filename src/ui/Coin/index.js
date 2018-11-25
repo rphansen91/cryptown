@@ -132,8 +132,13 @@ const Coin = ( { id, data: { loading, error, coin }, onRemove, txs, pos, neg, th
          {
            (coin.articles || [])
            .reduce((acc, a, i) => {
-             if (i % 2) acc.push(<NewsDisplayAd key={i + "ad"} />)
-             acc.push(
+             if (i % 2 === 0) {
+               acc.push(<NewsDisplayAd style={{
+                  display: "inline-block",
+                  width: 350
+                }} key={i + "ad"} />)
+            }
+            acc.push(
               <a href={a.url} target="_blank" key={i}><Article
                 image={a.urlToImage}
                 title={a.title}
@@ -143,10 +148,10 @@ const Coin = ( { id, data: { loading, error, coin }, onRemove, txs, pos, neg, th
                   </Button>
                 </CardActions>} />
               </a>
-             )
-             return acc
-           }, [])
-         }
+            )
+            return acc
+          }, [])
+        }
       </div>
     </section>
     <section style={{marginLeft: 25}}>

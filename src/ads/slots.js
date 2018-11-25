@@ -18,9 +18,9 @@ export const BottomBannerDisplayAd = () =>
     data-full-width-responsive="true" /></Ad>
 
 
-export const NewsDisplayAd = () =>
+export const NewsDisplayAd = ({ style }) =>
   <Ad><ins className="adsbygoogle"
-    style={{ display: "block" }}
+    style={style}
     data-ad-client="ca-pub-7183056818143738"
     data-ad-slot="4394011205"
     data-ad-format="auto"
