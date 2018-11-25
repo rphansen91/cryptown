@@ -3,8 +3,10 @@
 import React from 'react'
 import Stream from '../charts/Stream';
 import { graphql, Query } from 'react-apollo';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { allCoins, current, empty } from './compute';
+import Button from 'material-ui/Button';
 import coinColor from '../icons/colors';
 import gql from 'graphql-tag';
 
@@ -48,6 +50,13 @@ const Portfolio = (props) => {
     }, [])
     return acc
   }, {})
+
+  if (!txs.some((coin) => {
+    return currentPortfolio(now)[coin.id] > 0
+  })) return <section>
+    <p>No transactions found</p>
+    <Link to="/add"><Button raised>Add TXs</Button></Link>
+  </section>
 
   return <Stream {...props} name="portfolio" series={series} colors={Object.keys(series).map(coinColor)} />
 }
