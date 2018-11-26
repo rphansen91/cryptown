@@ -81,7 +81,6 @@ class AddTx extends Component {
       txs=[],
       theme: { palette: { text: { secondary: color } } }
     } = this.props
-    console.log(txs);
     const { coin, value, createdAt, errors } = this.state
     return <div>
       <section>
@@ -123,7 +122,8 @@ class AddTx extends Component {
           </form>
         </section>
         <section>
-          <Typography type="title">All Transactions</Typography>
+          { txs.some((coin) => coin.value) && 
+            <Typography type="title">All Transactions</Typography> }
           <List className="text-initial">
             { txs.filter(({ value }) => value).map((tx, i) => <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />) }
           </List>

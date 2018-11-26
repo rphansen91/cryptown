@@ -35,3 +35,9 @@
 .footer-ps a img {
   vertical-align: middle;
 }
+
+@media screen and (max-width: 32em) {
+  .page-footer {
+    left: 0;
+  } 
+}

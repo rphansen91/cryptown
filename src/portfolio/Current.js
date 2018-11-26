@@ -33,7 +33,6 @@ const CurrentValue = (props) => {
     value_btc: 0
   })
 
-  console.log({ value_usd, value_btc })
   if (!value_usd) return ""
 
   return <div {...props}>

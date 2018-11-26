@@ -123,6 +123,18 @@ section {
 }
 
 @media screen and (max-width: 32em) {
+  .App {
+    padding-left: 0;
+  }
+
+  .links {
+    width: 0;
+  }
+
+  .links.open {
+    width: 250px;
+  }
+
   .icons.responsive {
     flex-direction: column;
   }
