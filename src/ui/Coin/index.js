@@ -98,7 +98,6 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
       title={coin.symbol + ' | Hodl Stream'}
       path={'/coin/' + id}
        />
-    <section />
     <TopBannerDisplayAd />
     <section />
     <section>
@@ -159,9 +158,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
     <section style={{marginLeft: 25}}>
       <Buy crypto_currency={coin.symbol} />
     </section>
-    <section>
-      <BottomBannerDisplayAd />
-    </section>
+    <BottomBannerDisplayAd />
   </div>
 }
 

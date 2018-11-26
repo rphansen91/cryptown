@@ -13,8 +13,6 @@ import './style.css'
 const Txs = ({ txs, onChange=(v => v) }) =>
   <div>
     <SEO title={'Transactions | Hodl Stream'} path={'/tx'} />
-
-    <section />
     <TopBannerDisplayAd />
     <section />
     <section>
@@ -31,7 +29,6 @@ const Txs = ({ txs, onChange=(v => v) }) =>
       </div>
     </section>
     <BottomBannerDisplayAd />
-    <section />
   </div>
 
 const store = txStore()

@@ -8,7 +8,6 @@ import './style.css';
 export default () =>
   <div>
     <SEO title={'About | Hodl Stream'} path='/about' />
-    <section />
     <TopBannerDisplayAd />
     <section />
     <section className="about">
@@ -20,5 +19,4 @@ export default () =>
       </div>
     </section>
     <BottomBannerDisplayAd />
-    <section />
   </div>

@@ -6,13 +6,12 @@ import SEO from '../SEO';
 export default () =>
   <div>
     <SEO title='Add | Hodl Stream' path='/add' />
-    <section />
     <TopBannerDisplayAd />
+    <section />
     <section>
       <div className="contained">
         <Add />
       </div>
     </section>
     <BottomBannerDisplayAd />
-    <section />
   </div>

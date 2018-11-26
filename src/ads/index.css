@@ -1,0 +1,8 @@
+@media screen and (min-width: 32em) {
+    .top-banner-display-ad {
+        margin-top: 10px;
+    }
+    .bottom-banner-display-ad {
+        margin-bottom: 10px
+    }
+}

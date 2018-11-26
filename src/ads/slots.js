@@ -1,8 +1,9 @@
 import React from "react"
 import Ad from "./Ad"
+import "./index.css"
 
 export const TopBannerDisplayAd = () =>
-  <Ad><ins className="adsbygoogle"
+  <Ad><ins className="adsbygoogle top-banner-display-ad"
     style={{ display: "block" }}
     data-ad-client="ca-pub-7183056818143738"
     data-ad-slot="3387340853"
@@ -10,7 +11,7 @@ export const TopBannerDisplayAd = () =>
     data-full-width-responsive="true" /></Ad>
 
 export const BottomBannerDisplayAd = () =>
-  <Ad><ins className="adsbygoogle"
+  <Ad><ins className="adsbygoogle bottom-banner-display-ad"
     style={{ display: "block" }}
     data-ad-client="ca-pub-7183056818143738"
     data-ad-slot="9637764870"

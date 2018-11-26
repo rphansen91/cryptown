@@ -73,9 +73,6 @@ export default compose(withTheme(), withProfile)(({ theme, profile, setProfile }
         </section>
 
         <BottomBannerDisplayAd />
-
-        <section />
-
       </div>
     </section>
   </div>)

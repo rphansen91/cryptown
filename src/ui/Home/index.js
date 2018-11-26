@@ -10,16 +10,13 @@ import SEO from '../SEO';
 import './style.css';
 
 export default connect(
-  ({ coins, pair }) => ({ coins, pair }),
-  dispatch => ({})
+  ({ coins, pair }) => ({ coins, pair })
 )(withRouter(({ coins, pair, history }) =>
 <div>
   <SEO />
 
-  <section />
-
   <TopBannerDisplayAd />
-
+  
   <section />
 
   {/* <section>
@@ -46,6 +43,4 @@ export default connect(
   </section>
 
   <BottomBannerDisplayAd />
-
-  <section />
 </div>))
