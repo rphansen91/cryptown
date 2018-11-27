@@ -135,7 +135,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
          {
            (coin.articles || [])
            .reduce((acc, a, i) => {
-             if (i % 2 === 0) {
+             if (i && i % 2 === 0) {
                acc.push(<NewsDisplayAd style={{
                   display: "inline-block",
                   width: 350
