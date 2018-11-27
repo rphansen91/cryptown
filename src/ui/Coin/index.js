@@ -12,6 +12,7 @@ import { graphql, Query } from 'react-apollo';
 import usd from '../../utility/usd';
 import btc from '../../utility/btc';
 import { setAdding } from '../../store/reducers/adding';
+import { setPost } from '../../store/reducers/post';
 import { defaultColor } from '../../utility/styles';
 import CryptoIcon from '../../icons/CryptoIcon';
 import Percent from '../../explorer/Percent';
@@ -57,7 +58,10 @@ const computeValueAt = series => createdAt => {
   return 0
 }
 
-const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
+const Coin = connect(
+  ({}) => ({}),
+  ({ setPost })
+)(({ setPost, id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
   let { loading, error, coin } = data || {};
 
   if (loading) coin = loadingCoin()
@@ -142,7 +146,8 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
                 }} key={i + "ad"} />)
             }
             acc.push(
-              <Link to={`/post/${coin.id}/${a.publishedAt}`} key={i}><Article
+              <Link onClick={() => setPost(a)}
+                to={`/post/${coin.id}/${a.publishedAt}`} key={i}><Article
                 image={a.urlToImage}
                 title={a.title}
                 actions={<CardActions>
@@ -162,7 +167,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
     </section>
     <BottomBannerDisplayAd />
   </div>
-}
+})
 
 const connector = connect(
   ({ txs, pair }) => ({ txs, pair }),

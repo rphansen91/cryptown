@@ -9,6 +9,7 @@ import { graphql, Query } from 'react-apollo';
 import Button from 'material-ui/Button';
 import { CardActions } from 'material-ui/Card';
 import { withRouter } from 'react-router-dom';
+import { setPost } from '../../store/reducers/post';
 import { TopBannerDisplayAd, BottomBannerDisplayAd, NewsDisplayAd } from '../../ads/slots';
 import Article from '../Article';
 import gql from 'graphql-tag';
@@ -26,8 +27,10 @@ query Blog($q: String!, $from: String) {
 }
 `
 
-const Post = ({ q, loading, data, error, path }) => {
-  const [post, ...posts] = (data.news || [{}])
+const Post = connect(
+  ({}) => ({}),
+  ({ setPost })
+)(({ setPost, q, loading, post={}, news, error, path }) => {
   return <div>
       <div className="container">
       <SEO title={`Hodl Stream | ${post.title || ""}`} path={path} />
@@ -39,13 +42,13 @@ const Post = ({ q, loading, data, error, path }) => {
         <Typography type="subtitle" color="secondary">{post.content}</Typography>
       </section>
       <section>
-        <a href={post.url} target="_blank"><Button raised>Read More</Button></a>
+        {post.url && <a href={post.url} target="_blank"><Button raised>Read More</Button></a>}
       </section>
     </div>
     <section>
       <div className="articles responsive">
           {
-            (posts || [])
+            (news || [])
             .reduce((acc, a, i) => {
               if (i && i % 2 === 0) {
                 acc.push(<NewsDisplayAd style={{
@@ -54,7 +57,8 @@ const Post = ({ q, loading, data, error, path }) => {
                 }} key={i + "ad"} />)
             }
             acc.push(
-              <Link to={`/post/${q}/${a.publishedAt}`} key={i}><Article
+              <Link onClick={() => setPost(a)} 
+                to={`/post/${q}/${a.publishedAt}`} key={i}><Article
                 image={a.urlToImage}
                 title={a.title}
                 actions={<CardActions>
@@ -70,23 +74,29 @@ const Post = ({ q, loading, data, error, path }) => {
       </div>
     </section>
   </div>
-}
+})
+
+const first = a => a && a[0]
 
 export default connect(
-  ({ coins, pair }) => ({ coins, pair }),
-  dispatch => ({})
-)(withRouter(({ match: { params }, location, data }) =>
+  ({ post, coins, pair }) => ({ coins, pair, post }),
+)(withRouter(({ match: { params }, location, post }) =>
 <div>
   <TopBannerDisplayAd />
   <section />
   
-  {
-    console.log({ data }) || data
-    ? <Post {...data} {...params} path={location.pathname} />
-    : <Query query={blogQuery} variables={params}>
-      {(data) => <Post {...data} {...params} path={location.pathname} />}
-    </Query>
-  }
+  <Query query={blogQuery} variables={params}>
+    {({ loading, data: { news } = {}, error }) => {
+      const p = post && post.data || first(news)
+      return <Post 
+      loading={loading}
+      error={error}
+      post={p}
+      news={(news || []).filter(v => v).filter(v => v.title !== p.title)}
+      {...params} 
+      path={location.pathname} />
+    }}
+  </Query>
   
   <BottomBannerDisplayAd />
 </div>))

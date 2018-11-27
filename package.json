@@ -61,15 +61,15 @@
     "deploy:s3:index": "aws s3 cp build/index.html s3://hodlstream.com/index.html --cache-control 'public, must-revalidate, proxy-revalidate, max-age=0'",
     "conn": "ssh -i ${PEM:?\"Path to pem required\"} ec2-user@${EC2:?\"EC2 dns required\"}",
     "conn:main": "nodenv --env .env.local --exec \"npm run conn\"",
-    "conn:staging": "nodenv --env .env.staging --exec \"npm run conn\"",
+    "conn:staging": "nodenv --env ./staging/.env --exec \"npm run conn\"",
     "apply": "scp -i ${PEM:?\"Path to pem required\"} -r ${CONFIG:-./prod/.} ec2-user@${EC2:?\"EC2 dns required\"}:.",
     "apply:main": "CONFIG=./prod/. nodenv --env ./.env.local --exec \"npm run apply\"",
     "apply:staging": "nodenv --env .env.staging --exec \"npm run apply\"",
     "sup": "npm run conn -- -t \"docker-compose up -d\"",
     "sup:main": "nodenv --env .env.local --exec \"npm run sup\"",
-    "sup:staging": "nodenv --env .env.staging --exec \"npm run sup\"",
-    "deploy": "scp -i ${PEM:?\"Path to pem required\"} -r ${DIST:?\"Path to dist required\"} ec2-user@${EC2:?\"EC2 dns required\"}:./data/sellwild",
+    "sup:staging": "nodenv --env ./staging/.env --exec \"npm run sup\"",
+    "deploy": "scp -i ${PEM:?\"Path to pem required\"} -r ./src  -r ./server ./package.json ./Dockerfile ./docker-compose.yml ./staging/.env ec2-user@${EC2:?\"EC2 dns required\"}:.",
     "deploy:main": "nodenv --env .env.local --exec \"npm run deploy\"",
-    "deploy:staging": "nodenv --env .env.staging --exec \"npm run deploy\""
+    "deploy:staging": "nodenv --env ./staging/.env --exec \"npm run deploy\""
   }
 }

@@ -5,6 +5,7 @@ import pair from './pair'
 import menu from './menu'
 import coins from './coins'
 import profile from './profile'
+import { post } from './post'
 
 const app = combineReducers({
   txs,
@@ -12,7 +13,8 @@ const app = combineReducers({
   coins,
   menu,
   pair,
-  profile
+  profile,
+  post
 })
 
 export default app

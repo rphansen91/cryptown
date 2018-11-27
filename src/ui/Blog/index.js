@@ -9,6 +9,7 @@ import { graphql, Query } from 'react-apollo';
 import Button from 'material-ui/Button';
 import { CardActions } from 'material-ui/Card';
 import { withRouter } from 'react-router-dom';
+import { setPost } from '../../store/reducers/post';
 import { TopBannerDisplayAd, BottomBannerDisplayAd, NewsDisplayAd } from '../../ads/slots';
 import Article from '../Article';
 import gql from 'graphql-tag';
@@ -25,7 +26,10 @@ query Blog($q: String!, $from: String) {
 }
 `
 
-const Blog = ({ q, loading, data, error }) => (
+const Blog = connect(
+    ({}) => ({}),
+    ({ setPost })
+  )(({ setPost, q, loading, data, error }) => (
     <div>
          {
            (data.news || [])
@@ -37,7 +41,8 @@ const Blog = ({ q, loading, data, error }) => (
                 }} key={i + "ad"} />)
             }
             acc.push(
-              <Link to={`/post/${q}/${a.publishedAt}`} key={i}><Article
+              <Link onClick={() => setPost(a)}
+                to={`/post/${q}/${a.publishedAt}`} key={i}><Article
                 image={a.urlToImage}
                 title={a.title}
                 actions={<CardActions>
@@ -51,11 +56,11 @@ const Blog = ({ q, loading, data, error }) => (
           }, [])
         }
     </div>
-)
+))
 
 export default connect(
   ({ coins, pair }) => ({ coins, pair }),
-  dispatch => ({})
+  ({  })
 )(withRouter(({ q="cryptocurrency" }) =>
 <div>
   <SEO title={'Blog | Hodl Stream'} path={'/blog'}/>
