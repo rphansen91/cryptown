@@ -84,8 +84,6 @@ a {
 
 .content {
   position: relative;
-  height: 100%;
-  padding-bottom: calc(385px + 3em);
 }
 
 section {

@@ -104,38 +104,41 @@ const Coin = connect(
       title={coin.symbol + ' | Hodl Stream'}
       path={'/coin/' + id}
        />
-    <TopBannerDisplayAd />
-    <section />
-    <section>
-      <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={{ fill: color }} style={iconStyle} />
-      <Typography type="title">{ coin.name }</Typography>
-      <div className="coin-details">
-        <Typography type="body1">{ usd.display(coin.price_usd) } USD</Typography>
-        <Typography type="body2" >{ btc.display(coin.price_btc) } BTC</Typography>
-        <div className="coin-seperator" />
-        <Percent value={coin.percent_change_24h} pos={pos} neg={neg} />
-        <Typography type="body2" >{total} {coin.symbol}</Typography>
+    <div className="row">
+      <div className="col-md-9 pr-0">
+        <TopBannerDisplayAd />
+        <section />
+        <section>
+          <CryptoIcon icon={coin.symbol} className={(loading ? "App-logo" : "")} attrs={{ fill: color }} style={iconStyle} />
+          <Typography type="title">{ coin.name }</Typography>
+          <div className="coin-details">
+            <Typography type="body1">{ usd.display(coin.price_usd) } USD</Typography>
+            <Typography type="body2" >{ btc.display(coin.price_btc) } BTC</Typography>
+            <div className="coin-seperator" />
+            <Percent value={coin.percent_change_24h} pos={pos} neg={neg} />
+            <Typography type="body2" >{total} {coin.symbol}</Typography>
+          </div>
+
+          <Line title={coin.id && !series.length ? `No ${coin.id} historical data found` : ""} subtitle=""
+            name={`coin-${id}`}
+            series={{ [coin.symbol]: series }}
+            annotations={annotations}
+            colors={[color]}
+            onClick={(e) => {
+              props.setAdding(coin.id, e.point.x)
+              props.history.push((process.env.PUBLIC_URL || '') + '/add')
+            }} />
+        </section>
+
+        <section style={{marginLeft: 25}}>
+          <Buy crypto_currency={coin.symbol} />
+        </section>
+        <BottomBannerDisplayAd />
+        <dection />
       </div>
-
-      <Line title={coin.id && !series.length ? `No ${coin.id} historical data found` : ""} subtitle=""
-        name={`coin-${id}`}
-        series={{ [coin.symbol]: series }}
-        annotations={annotations}
-        colors={[color]}
-        onClick={(e) => {
-          props.setAdding(coin.id, e.point.x)
-          props.history.push((process.env.PUBLIC_URL || '') + '/add')
-        }} />
-
-      {/* <List>
-        {
-          txs.filter(({ value }) => value).filter(tx => tx.coin === coin.id)
-          .map((tx, i) => <Tx key={i} tx={tx} />)
-        }
-      </List> */}
-    </section>
-    <section>
-      <div className="articles responsive">
+      <div className="col-md-3 border-left pl-0">
+        <Typography type="title" className="my-2">Articles</Typography>
+        <div className="article-sidebar">
          {
            (coin.articles || [])
            .reduce((acc, a, i) => {
@@ -160,12 +163,9 @@ const Coin = connect(
             return acc
           }, [])
         }
+        </div>
       </div>
-    </section>
-    <section style={{marginLeft: 25}}>
-      <Buy crypto_currency={coin.symbol} />
-    </section>
-    <BottomBannerDisplayAd />
+    </div>
   </div>
 })
 

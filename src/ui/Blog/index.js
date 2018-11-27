@@ -15,7 +15,7 @@ import Article from '../Article';
 import gql from 'graphql-tag';
 import SEO from '../SEO';
 
-const blogQuery = gql`
+export const blogQuery = gql`
 query Blog($q: String!, $from: String) {
   news(q: $q, from: $from) {
     url
@@ -26,7 +26,7 @@ query Blog($q: String!, $from: String) {
 }
 `
 
-const Blog = connect(
+export const Blog = connect(
     ({}) => ({}),
     ({ setPost })
   )(({ setPost, q, loading, data, error }) => (
