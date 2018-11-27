@@ -41,34 +41,34 @@ const Post = ({ q, loading, data, error, path }) => {
       <section>
         <a href={post.url} target="_blank"><Button raised>Read More</Button></a>
       </section>
-      <section>
-      </section>
     </div>
-    <div className="articles responsive">
-        {
-          (posts || [])
-          .reduce((acc, a, i) => {
-            if (i && i % 2 === 0) {
-              acc.push(<NewsDisplayAd style={{
-                display: "inline-block",
-                width: 350
-              }} key={i + "ad"} />)
-          }
-          acc.push(
-            <Link to={`/post/${q}/${a.publishedAt}`} key={i}><Article
-              image={a.urlToImage}
-              title={a.title}
-              actions={<CardActions>
-                <Button dense color="primary">
-                  Read More
-                </Button>
-              </CardActions>} />
-            </Link>
-          )
-          return acc
-        }, [])
-      }
-    </div>
+    <section>
+      <div className="articles responsive">
+          {
+            (posts || [])
+            .reduce((acc, a, i) => {
+              if (i && i % 2 === 0) {
+                acc.push(<NewsDisplayAd style={{
+                  display: "inline-block",
+                  width: 350
+                }} key={i + "ad"} />)
+            }
+            acc.push(
+              <Link to={`/post/${q}/${a.publishedAt}`} key={i}><Article
+                image={a.urlToImage}
+                title={a.title}
+                actions={<CardActions>
+                  <Button dense color="primary">
+                    Read More
+                  </Button>
+                </CardActions>} />
+              </Link>
+            )
+            return acc
+          }, [])
+        }
+      </div>
+    </section>
   </div>
 }
 
