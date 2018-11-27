@@ -19,11 +19,11 @@ function SimpleMediaCard(props) {
         title={title}
       />
       <CardContent style={{
-        maxHeight: "4.4em",
-        minHeight: "4.4em",
+        maxHeight: "3em",
+        minHeight: "3em",
         whiteSpace: "normal",
         overflow: "hidden",
-        padding: "0.4em",
+        padding: "0 0.4em",
         lineHeight: "1em"
       }}>
         <Typography type="title" component="p">
