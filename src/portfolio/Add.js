@@ -36,8 +36,8 @@ const attrs = c => ({
 })
 const iconStyle = ({
   height: "1em",
-  "vertical-align": "top",
-  "margin": "0 0.2em"
+  verticalAlign: "top",
+  margin: "0 0.2em"
 })
 const initial = ({ coin='bitcoin', value='', errors={}, ...props}) => ({ coin, value, createdAt: props.createdAt ? moment(props.createdAt) : moment(props.createdAt), errors })
 class AddTx extends Component {

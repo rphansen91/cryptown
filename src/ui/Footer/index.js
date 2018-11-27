@@ -1,6 +1,7 @@
 import React from 'react';
 import AllCoins from '../../icons/AllCoins';
 import { withRouter } from 'react-router-dom';
+import TwitterFollow from '../Social/TwitterFollow';
 import Brand from '../Brand';
 import './style.css';
 
@@ -19,6 +20,10 @@ export default withRouter((props) =>
       </a>
       for charting.
     </p>
+  </section>
+  <section>
+    <div className="sharethis-inline-follow-buttons"></div>
+    {/* <TwitterFollow username="hodl_stream" /> */}
   </section>
   <AllCoins color="#fff" />
 </div>)

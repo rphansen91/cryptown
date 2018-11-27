@@ -4,6 +4,7 @@
 }
 .about-content {
   flex: 1;
+  margin-bottom: 1em;
 }
 .about-sidebar {
   padding: 10px;

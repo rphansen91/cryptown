@@ -5,6 +5,7 @@ import { withTheme } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import { CardActions } from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import { Link } from 'react-router-dom';
 import List from 'material-ui/List';
 import Line from '../../charts/Line';
 import { graphql, Query } from 'react-apollo';
@@ -41,6 +42,7 @@ query CoinDetail($id: String!, $pair: String!) {
       title
       url
       urlToImage
+      publishedAt
     }
   }
 }
@@ -140,7 +142,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
                 }} key={i + "ad"} />)
             }
             acc.push(
-              <a href={a.url} target="_blank" key={i}><Article
+              <Link to={`/post/${coin.id}/${a.publishedAt}`} key={i}><Article
                 image={a.urlToImage}
                 title={a.title}
                 actions={<CardActions>
@@ -148,7 +150,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props }={}) => {
                     Read More
                   </Button>
                 </CardActions>} />
-              </a>
+              </Link>
             )
             return acc
           }, [])

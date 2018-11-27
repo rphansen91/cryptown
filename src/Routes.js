@@ -8,6 +8,7 @@ import NotFound from './ui/NotFound';
 import Post from './ui/Post';
 import GraphiQL from './explorer/GraphiQL';
 import Add from './ui/Add';
+import Blog from './ui/Blog';
 import Coin from './ui/Coin';
 import Terms from './ui/Terms';
 import Transactions from './ui/Txs';
@@ -38,9 +39,10 @@ class Routes extends Component {
         <Route path={(process.env.PUBLIC_URL || '') + "/about"} component={About} />
         <Route path={(process.env.PUBLIC_URL || '') + "/tx"} component={Transactions} />
         <Route path={(process.env.PUBLIC_URL || '') + "/add"} component={Add} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/blog"} component={Blog} />
         <Route path={(process.env.PUBLIC_URL || '') + "/gql"} component={() => <GraphiQL style={{position: 'relative', height: '80vh', textAlign: 'initial'}}/>} />
         <Route path={(process.env.PUBLIC_URL || '') + "/coin/:id"} component={(props) => <Coin id={props.match.params.id} />} />
-        <Route path={(process.env.PUBLIC_URL || '') + "/post/:id"} component={(props) => <Post id={props.match.params.id} />} />
+        <Route path={(process.env.PUBLIC_URL || '') + "/post/:q/:from"} component={(props) => <Post id={props.match.params.id} {...props} />} />
         <Route path={(process.env.PUBLIC_URL || '') + "/terms"} component={Terms} />
         <Route path={(process.env.PUBLIC_URL || '') + "/settings"} component={Settings} />
         <Route path="*" component={NotFound} />

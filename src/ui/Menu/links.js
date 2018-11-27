@@ -4,6 +4,7 @@ import HomeIcon from 'material-ui-icons/Home';
 import SettingsIcon from 'material-ui-icons/Settings';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import AddIcon from 'material-ui-icons/Add';
+import NoteIcon from 'material-ui-icons/Note';
 import GQLIcon from 'material-ui-icons/NetworkCheck';
 import HelpIcon from 'material-ui-icons/Help';
 import SendIcon from 'material-ui-icons/Send';
@@ -48,6 +49,14 @@ export const MainListItems = compose(
       </ListItemIcon>
     </Link>
     <Link to="/add" style={linkStyle(props.theme.palette.text.secondary)}>Add</Link>
+  </RegItem>
+  <RegItem onClick={() => props.history.push((process.env.PUBLIC_URL || '') + '/blog')}>
+    <Link to="/blog">
+      <ListItemIcon>
+        <NoteIcon />
+      </ListItemIcon>
+    </Link>
+    <Link to="/blog" style={linkStyle(props.theme.palette.text.secondary)}>Blog</Link>
   </RegItem>
 </List>)
 

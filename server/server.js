@@ -3,43 +3,37 @@ import compression from 'compression';
 import morgan from 'morgan';
 import express from 'express';
 import path from 'path';
+import throng from 'throng';
 import useCryptoIcon from './icon';
 import universalLoader from './universal';
 
-const forceSecure = require("force-secure-express");
-const app = express();
-const PORT = process.env.PORT || 8081;
+const port = process.env.PORT || 8081;
+const workers = Number(process.env.WORKERS) || 1;
+const lifetime = Number(process.env.LIFETIME) || Infinity;
+const morganFormat = id => 
+  (process.env.MORGAN_FORMAT || ':id :method :url :status :res[content-length] - :response-time ms')
+  .replace(':id', id)
 
-app.use(compression());
-app.use(morgan('combined'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/svg', useCryptoIcon(path.resolve(__dirname, '../build/svg')));
-app.use(forceSecure("hodlstream.com"));
-app.use(express.static(path.resolve(__dirname, '../build'), { index: false }));
-app.use('/', universalLoader);
+throng({ start, workers, lifetime });
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
-});
+function start (id) {
+  const app = express();
+  const forceSecure = require("force-secure-express");
 
-app.on('error', error => {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
+  app.use(compression());
+  app.use(morgan(morganFormat(id)));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use('/svg', useCryptoIcon(path.resolve(__dirname, '../build/svg')));
+  app.use(forceSecure("hodlstream.com"));
+  app.use(express.static(path.resolve(__dirname, '../build'), { index: false }));
+  app.use('/', universalLoader);
 
-  const bind = typeof PORT === 'string' ? 'Pipe ' + PORT : 'Port ' + PORT;
+  app.listen(port, () => {
+    console.log(`Worker ${id} listening on port ${port}!`);
+  });
 
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-});
+  app.on('error', error => {
+    console.log(error)
+  });
+}

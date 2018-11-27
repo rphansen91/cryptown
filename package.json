@@ -40,7 +40,8 @@
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-delta": "^0.1.2",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "throng": "^4.0.0"
   },
   "devDependencies": {
     "node-env-run": "^3.0.2",
