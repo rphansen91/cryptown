@@ -87,7 +87,7 @@ export default connect(
   
   <Query query={blogQuery} variables={params}>
     {({ loading, data: { news } = {}, error }) => {
-      const p = post && post.data || first(news)
+      const p = (post && post.data) ? post.data : first(news)
       return <Post 
       loading={loading}
       error={error}
