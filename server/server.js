@@ -1,5 +1,5 @@
 import bodyParser from 'body-parser';
-import compression from 'compression';
+// import compression from 'compression';
 import morgan from 'morgan';
 import express from 'express';
 import path from 'path';
@@ -20,7 +20,7 @@ function start (id) {
   const app = express();
   const forceSecure = require("force-secure-express");
 
-  app.use(compression());
+  // app.use(compression());
   app.use(morgan(morganFormat(id)));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,6 +34,6 @@ function start (id) {
   });
 
   app.on('error', error => {
-    console.log(error)
+    console.log(id, error);
   });
 }
