@@ -9,7 +9,6 @@ a {
 .App {
   position: relative;
   text-align: center;
-  min-height: 100vh;
   padding-left: 60px;
   transition: transform 0.1s ease-in;
 }
@@ -20,7 +19,7 @@ a {
 }
 
 .links {
-  flex: none!important;
+  flex: none !important;
   overflow-x: hidden;
   overflow-y: auto;
   width: 60px;
@@ -96,7 +95,7 @@ section {
   width: 100%;
 }
 .white-text {
-  color: #fff!important;
+  color: #fff !important;
 }
 .white-fill {
   fill: #fff;
@@ -106,10 +105,10 @@ section {
   border-radius: 5px;
   padding: 0.7em 1.4em;
   line-height: 1.3;
-  background-color: #116FDE;
+  background-color: #116fde;
   color: #fff;
   text-decoration: none;
-  border: 1px solid #116FDE;
+  border: 1px solid #116fde;
   transition: 0.15s ease all;
   text-shadow: none;
   font-weight: 400;

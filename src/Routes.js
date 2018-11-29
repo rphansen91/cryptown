@@ -28,6 +28,7 @@ class Routes extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       this.props.closeMenu();
+      (window.scroll || (v => v))(0, 0);
       pageview();
     }
   }
