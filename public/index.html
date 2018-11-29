@@ -1,22 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json"> -->
-    <link rel="shortcut icon" href="%PUBLIC_URL%/icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
-    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest">
-    <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#00b89a">
-    <meta name="msapplication-TileColor" content="#00b89a">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/icon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%PUBLIC_URL%/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="%PUBLIC_URL%/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="%PUBLIC_URL%/favicon-16x16.png"
+    />
+    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="%PUBLIC_URL%/safari-pinned-tab.svg"
+      color="#00b89a"
+    />
+    <meta name="msapplication-TileColor" content="#00b89a" />
+    <meta name="theme-color" content="#ffffff" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -28,24 +49,60 @@
     -->
 
     <!-- begin meta -->
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="/" />
     <title>Hodl Stream</title>
-    <meta itemprop="name" content="Hodl Stream">
-    <meta itemprop="description" content="Track your crypto portfolio and visualize how it changes over time.">
-    <meta itemprop="image" content="%PUBLIC_URL%/icon_540.png">
-    <meta name="description" content="Track your crypto portfolio and visualize how it changes over time.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@hodl_stream">
-    <meta name="twitter:title" content="Hodl Stream">
-    <meta name="twitter:description" content="Track your crypto portfolio and visualize how it changes over time.">
-    <meta name="twitter:creator" content="@hodl_stream">
-    <meta name="twitter:image" content="/icon_540.png">
-    <meta name="og:title" content="Hodl Stream">
-    <meta name="og:type" content="">
-    <meta name="og:url" content="/">
-    <meta name="og:image" content="%PUBLIC_URL%/icon_540.png">
-    <meta name="og:description" content="Track your crypto portfolio and visualize how it changes over time.">
-    <meta name="og:site_name" content="Hodl Stream" data-react-helmet="true">
+    <meta itemprop="name" content="Hodl Stream" data-react-helmet="true" />
+    <meta
+      itemprop="description"
+      content="Track your crypto portfolio and visualize how it changes over time."
+      data-react-helmet="true"
+    />
+    <meta
+      itemprop="image"
+      content="%PUBLIC_URL%/icon_540.png"
+      data-react-helmet="true"
+    />
+    <meta
+      name="description"
+      content="Track your crypto portfolio and visualize how it changes over time."
+      data-react-helmet="true"
+    />
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+      data-react-helmet="true"
+    />
+    <meta name="twitter:site" content="@hodl_stream" data-react-helmet="true" />
+    <meta name="twitter:title" content="Hodl Stream" data-react-helmet="true" />
+    <meta
+      name="twitter:description"
+      content="Track your crypto portfolio and visualize how it changes over time."
+      data-react-helmet="true"
+    />
+    <meta
+      name="twitter:creator"
+      content="@hodl_stream"
+      data-react-helmet="true"
+    />
+    <meta
+      name="twitter:image"
+      content="/icon_540.png"
+      data-react-helmet="true"
+    />
+    <meta name="og:title" content="Hodl Stream" data-react-helmet="true" />
+    <meta name="og:type" content="" data-react-helmet="true" />
+    <meta name="og:url" content="/" data-react-helmet="true" />
+    <meta
+      name="og:image"
+      content="%PUBLIC_URL%/icon_540.png"
+      data-react-helmet="true"
+    />
+    <meta
+      name="og:description"
+      content="Track your crypto portfolio and visualize how it changes over time."
+      data-react-helmet="true"
+    />
+    <meta name="og:site_name" content="Hodl Stream" data-react-helmet="true" />
     <!-- end meta -->
 
     <style>
@@ -63,9 +120,13 @@
       }
 
       #apploader:after {
-        content: '';
+        content: "";
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
         background-image: url(%PUBLIC_URL%/icon_540.png);
         background-repeat: no-repeat;
         background-position: center;
@@ -76,7 +137,7 @@
         -webkit-animation: GradientOpacity 2s linear infinite;
         -moz-animation: GradientOpacity 2s linear infinite;
         animation: GradientOpacity 2s linear infinite;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6)
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
       }
 
       .primary-gradient {
@@ -93,32 +154,63 @@
       }
 
       @-webkit-keyframes GradientOpacity {
-        0% {opacity: 0.4}
-        80% {opacity: 1}
-        100% {opacity: 0.4}
+        0% {
+          opacity: 0.4;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.4;
+        }
       }
 
       @-webkit-keyframes GradientAnimation {
-        0%{background-position:0% 50%}
-        50%{background-position:100% 50%}
-        100%{background-position:0% 50%}
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       @-moz-keyframes GradientAnimation {
-        0%{background-position:0% 50%}
-        50%{background-position:100% 50%}
-        100%{background-position:0% 50%}
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       @keyframes GradientAnimation {
-        0%{background-position:0% 50%}
-        50%{background-position:100% 50%}
-        100%{background-position:0% 50%}
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
-
     </style>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script
+      async
+      src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "ca-pub-7183056818143738",
@@ -127,9 +219,7 @@
     </script>
   </head>
   <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root">
       <div id="apploader" class="primary-gradient gradient-animated"></div>
     </div>
@@ -140,12 +230,17 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="//platform-api.sharethis.com/js/sharethis.js#property=5bfc4d6311765800112fa14c&product=inline-follow-buttons"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GA%"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GA%"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '%REACT_APP_GA%');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "%REACT_APP_GA%");
     </script>
     <!--
       This HTML file is a template.
@@ -158,8 +253,11 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script type="text/javascript">
-      var subscribersSiteId = '%REACT_APP_SUBSCRIBERS%';
+      var subscribersSiteId = "%REACT_APP_SUBSCRIBERS%";
     </script>
-    <script type="text/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.subscribers.com/assets/subscribers.js"
+    ></script>
   </body>
 </html>
