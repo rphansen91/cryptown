@@ -22,6 +22,11 @@ const Post = ({ loading, post = {}, path }) => {
             title={`Hodl Stream | ${post.title || ""}`}
             description={post.content}
             path={path}
+            images={{
+              google: post.urlToImage,
+              facebook: post.urlToImage,
+              twitter: post.urlToImage
+            }}
           />
           <TopBannerDisplayAd />
           <section />
