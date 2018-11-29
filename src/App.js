@@ -15,6 +15,7 @@ import IconButton from "material-ui/IconButton";
 import NavigationClose from "material-ui-icons/Close";
 import NavigationMenu from "material-ui-icons/Menu";
 import { toggleMenu } from "./store/reducers/menu";
+import { PortfolioBannerAd } from "./ads/slots";
 import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
 import { setTxs } from "./store/reducers/transactions";
 import { queryExchangeTxs } from "./gql/exchange";
@@ -120,6 +121,7 @@ class App extends Component {
                   overflow: "hidden"
                 }}
               >
+                <PortfolioBannerAd />
                 <Current className="white-text" style={{ marginTop: "1em" }} />
                 <Portfolio title="" />
               </div>
