@@ -1,0 +1,11 @@
+.article {
+  display: inline-block;
+  border: 0.2em solid;
+  border-radius: 0.4em;
+  box-shadow: 0.4em 0.1em 1em rgba(0, 0, 0, 0.3);
+  padding: 0.6em;
+  margin: 1em;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+  box-sizing: border-box;
+}

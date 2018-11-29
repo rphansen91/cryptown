@@ -2,7 +2,12 @@ import React, { Component, Children } from "react"
 
 export default class Ad extends Component {
   componentDidMount () {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
+    this.frame = window.requestAnimationFrame(() => {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    })
+  }
+  componentWillUnmount () {
+    window.cancelAnimationFrame(this.frame)
   }
   render () {
     const { children } = this.props;

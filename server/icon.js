@@ -1,13 +1,8 @@
-const path = require("path");
 const fs = require("fs");
 
 const toAttrs = obj => Object.keys(obj || {})
   .map(k => `${k}="${obj[k]}"`)
   .join(" ")
-
-const cached = {
-
-}
 
 const defaultIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.8 226.8">
 <path d="M113.4,59.6c-29.6,0-53.8,24.1-53.8,53.8c0,29.6,24.1,53.8,53.8,53.8c29.6,0,53.8-24.1,53.8-53.8S143,59.6,113.4,59.6z
@@ -18,16 +13,18 @@ const defaultIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.8 
 </svg>`
 
 export default (publicPath) => {
+  const cached = {}
+
   return (req, res, next) => {
     const iconPath = publicPath + req.url.split("?")[0]
 
-    // if (cached[iconPath]) return handleRequest(cached[iconPath]);
+    if (cached[iconPath]) return handleRequest(cached[iconPath]);
 
     fs.exists(iconPath, (exists) => {
       if (!exists) return notFound()
       fs.readFile(iconPath, 'utf8', function (e, d) {
         if (e || !d) return notFound()
-        // cached[iconPath] = d
+        cached[iconPath] = d
         handleRequest(d)
       })
     })

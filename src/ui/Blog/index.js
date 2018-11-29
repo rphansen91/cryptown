@@ -1,77 +1,80 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Typography from 'material-ui/Typography';
-import Coin from '../../explorer/Coin';
-import Trend from '../../explorer/Trend';
-import coinColor from '../../icons/colors';
-import { graphql, Query } from 'react-apollo';
-import Button from 'material-ui/Button';
-import { CardActions } from 'material-ui/Card';
-import { withRouter } from 'react-router-dom';
-import { setPost } from '../../store/reducers/post';
-import { TopBannerDisplayAd, BottomBannerDisplayAd, NewsDisplayAd } from '../../ads/slots';
-import Article from '../Article';
-import gql from 'graphql-tag';
-import SEO from '../SEO';
+import React from "react";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import Typography from "material-ui/Typography";
+import Coin from "../../explorer/Coin";
+import Trend from "../../explorer/Trend";
+import coinColor from "../../icons/colors";
+import { graphql, Query } from "react-apollo";
+import Button from "material-ui/Button";
+import { CardActions } from "material-ui/Card";
+import { withRouter } from "react-router-dom";
+import withArticles from "../Article/withArticles";
+import { setPost, withPost } from "../../store/reducers/post";
+import {
+  TopBannerDisplayAd,
+  BottomBannerDisplayAd,
+  NewsDisplayAd
+} from "../../ads/slots";
+import Article from "../Article";
+import SEO from "../SEO";
 
-export const blogQuery = gql`
-query Blog($q: String!, $from: String) {
-  news(q: $q, from: $from) {
-    url
-    title
-    publishedAt
-    urlToImage
-  }
-}
-`
-
-export const Blog = connect(
-    ({}) => ({}),
-    ({ setPost })
-  )(({ setPost, q, loading, data, error }) => (
-    <div>
-         {
-           (data.news || [])
-           .reduce((acc, a, i) => {
-             if (i && i % 2 === 0) {
-               acc.push(<NewsDisplayAd style={{
-                  display: "inline-block",
-                  width: 350
-                }} key={i + "ad"} />)
-            }
-            acc.push(
-              <Link onClick={() => setPost(a)}
-                to={`/post/${q}/${a.publishedAt}`} key={i}><Article
-                image={a.urlToImage}
-                title={a.title}
-                actions={<CardActions>
-                  <Button dense color="primary">
+export const Blog = compose(
+  withArticles,
+  withPost
+)(({ setPost, q, loading, data, error }) => (
+  <div class="row">
+    {(data.news || []).reduce((acc, a, i) => {
+      if (i && i % 2 === 0) {
+        acc.push(
+          <div className="col-md-3">
+            <NewsDisplayAd
+              style={{
+                margin: "1em"
+              }}
+              key={i + "ad"}
+            />
+          </div>
+        );
+      }
+      acc.push(
+        <div className="col-md-3">
+          <Link
+            onClick={() => setPost(a)}
+            to={`/post/${a.publishedAt}`}
+            key={i}
+          >
+            <Article
+              imageSize={160}
+              image={a.urlToImage}
+              title={a.title}
+              actions={
+                <CardActions>
+                  <Button dense color="primary" raised>
                     Read More
                   </Button>
-                </CardActions>} />
-              </Link>
-            )
-            return acc
-          }, [])
-        }
-    </div>
-))
+                </CardActions>
+              }
+            />
+          </Link>
+        </div>
+      );
+      return acc;
+    }, [])}
+  </div>
+));
 
-export default connect(
-  ({ coins, pair }) => ({ coins, pair }),
-  ({  })
-)(withRouter(({ q="cryptocurrency" }) =>
-<div>
-  <SEO title={'Blog | Hodl Stream'} path={'/blog'}/>
-  <TopBannerDisplayAd />
-  <section />
-  <Typography type="title">Blog</Typography>
-  <section />
-  <section>
-    <Query query={blogQuery} variables={{ q }}>
-        {(data) => <Blog q={q} {...data} />}
-    </Query>
-  </section>
-  <BottomBannerDisplayAd />
-</div>))
+export default () => (
+  <div>
+    <SEO title={"Blog | Hodl Stream"} path={"/blog"} />
+    <TopBannerDisplayAd />
+    <section />
+    <Typography type="title">Blog</Typography>
+    <section />
+    <section>
+      <Blog />
+    </section>
+    <BottomBannerDisplayAd />
+  </div>
+);

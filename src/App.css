@@ -120,6 +120,14 @@ section {
   cursor: pointer;
 }
 
+.border-left-2 {
+  border-left: solid 0.2em;
+}
+
+.border-bottom-2 {
+  border-bottom: solid 0.2em;
+}
+
 @media screen and (max-width: 32em) {
   .App {
     padding-left: 0;
