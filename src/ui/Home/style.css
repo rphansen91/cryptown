@@ -1,7 +1,0 @@
-@media screen and (min-width: 32em) {
-    .article-sidebar {
-        overflow-y: auto;
-        height: -webkit-fill-available;
-        padding-bottom: 20px;
-    }
-}

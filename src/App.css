@@ -127,7 +127,7 @@ section {
   border-bottom: solid 0.2em;
 }
 
-@media screen and (max-width: 32em) {
+@media screen and (max-width: 768px) {
   .App {
     padding-left: 0;
   }

@@ -26,16 +26,16 @@ export const Blog = compose(
 )(({ setPost, q, loading, data, error }) => (
   <div class="row">
     {(data.news || []).reduce((acc, a, i) => {
-      if (i && i % 2 === 0) {
+      if ((i + 1) % 2 === 0) {
         acc.push(
-          <div className="col-md-3">
-            <NewsDisplayAd
-              style={{
-                margin: "1em"
-              }}
-              key={i + "ad"}
-            />
-          </div>
+          <NewsDisplayAd
+            style={{
+              width: 350,
+              display: "inline-block",
+              margin: "1em"
+            }}
+            key={i + "ad"}
+          />
         );
       }
       acc.push(
