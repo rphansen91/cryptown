@@ -7,6 +7,7 @@
   "dependencies": {
     "apollo-client-preset": "^1.0.4",
     "body-parser": "^1.18.2",
+    "compression": "^1.7.3",
     "express": "^4.16.2",
     "force-secure-express": "^1.0.0",
     "graphiql": "^0.11.10",
