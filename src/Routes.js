@@ -29,6 +29,7 @@ class Routes extends Component {
     if (this.props.location !== prevProps.location) {
       this.props.closeMenu();
       (window.scroll || (v => v))(0, 0);
+      window.__sharethis__ && window.__sharethis__.load("inline-share-buttons");
       pageview();
     }
   }

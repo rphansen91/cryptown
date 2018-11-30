@@ -25,7 +25,7 @@ export default compose(
         acc.push(
           <NewsDisplayAd
             style={{
-              display: "d-block",
+              display: "block",
               maxWidth: "100%",
               width: 350
             }}
