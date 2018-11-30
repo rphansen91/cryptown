@@ -30,9 +30,7 @@ export default compose(
                 id={c.id}
                 pair={pair}
                 color={coinColor(c.id)}
-                onClick={() =>
-                  history.push((process.env.PUBLIC_URL || "") + "/coin/" + c.id)
-                }
+                onClick={() => history.push("/coin/" + c.id)}
               />
             ))}
           </div>

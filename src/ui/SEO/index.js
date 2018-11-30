@@ -1,13 +1,12 @@
 import React from "react";
 import Helmet from "react-helmet";
 
-const seoURL = path =>
-  (process.env.PUBLIC_URL || "https://hodlstream.com") + path;
+const seoURL = path => process.env.PUBLIC_URL + path;
 const seoImageURL = (images, provider) => {
   if (images && typeof images === "string") return images;
   if (images && images[provider] && typeof images[provider] === "string")
     return images[provider];
-  return (process.env.PUBLIC_URL || "https://hodlstream.com") + "/icon_540.png";
+  return process.env.PUBLIC_URL + "/icon_540.png";
 };
 
 const getMetaTags = ({

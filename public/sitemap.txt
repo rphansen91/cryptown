@@ -2,6 +2,7 @@ https://hodlstream.com
 https://hodlstream.com/add
 https://hodlstream.com/tx
 https://hodlstream.com/about
+https://hodlstream.com/blog
 https://hodlstream.com/coin/bitcoin
 https://hodlstream.com/coin/ethereum
 https://hodlstream.com/coin/litecoin

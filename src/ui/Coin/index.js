@@ -76,11 +76,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props } = {}) => {
   if (!coin) coin = defaultCoin();
 
   const color = theme.palette.text.secondary;
-  const image =
-    (process.env.PUBLIC_URL || "https://hodlstream.com") +
-    "/png/" +
-    coin.symbol +
-    ".png";
+  const image = process.env.PUBLIC_URL + "/png/" + coin.symbol + ".png";
   const total = current(txs)(new Date().getTime())[id];
   const point = (x, y) => ({ x, y, xAxis: 0, yAxis: 0 });
   const series = (coin.history || []).map(({ ts, value }) => [
