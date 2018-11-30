@@ -25,7 +25,7 @@ const getMetaTags = ({
     { itemprop: "name", content: title },
     { itemprop: "description", content: description },
     { itemprop: "image", content: seoImageURL(images, "google") },
-    { property: "description", content: description },
+    { name: "description", content: description },
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:site", content: "@hodl_stream" },
     { property: "twitter:title", content: title },
