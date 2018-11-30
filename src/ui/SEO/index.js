@@ -52,7 +52,7 @@ const getMetaTags = ({
   if (category)
     metaTags.push({ property: "article:section", content: category });
   if (tags) metaTags.push({ property: "article:tag", content: tags });
-  console.log(metaTags);
+
   return metaTags;
 };
 
