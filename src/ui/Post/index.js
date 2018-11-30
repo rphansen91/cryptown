@@ -42,7 +42,9 @@ const Post = ({ loading, post = {}, path }) => {
           <section>
             {post.url && (
               <a href={post.url} target="_blank">
-                <Button raised>Read More</Button>
+                <Button raised aria-label="Read More">
+                  Read More
+                </Button>
               </a>
             )}
           </section>

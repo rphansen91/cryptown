@@ -96,6 +96,7 @@ class App extends Component {
                 </IconButton>
                 <Link
                   to="/"
+                  aria-label="Home"
                   style={{
                     verticalAlign: "middle",
                     display: "flex",

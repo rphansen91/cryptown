@@ -41,6 +41,7 @@ export const Blog = compose(
       acc.push(
         <div className="col-md-3">
           <Link
+            aria-label="Read More"
             className="d-block"
             onClick={() => setPost(a)}
             to={`/post/${a.publishedAt}`}
@@ -52,7 +53,7 @@ export const Blog = compose(
               title={a.title}
               actions={
                 <CardActions>
-                  <Button dense color="primary" raised>
+                  <Button dense color="primary" aria-label="Read More" raised>
                     Read More
                   </Button>
                 </CardActions>

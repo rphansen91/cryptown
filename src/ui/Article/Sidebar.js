@@ -35,6 +35,7 @@ export default compose(
       }
       acc.push(
         <Link
+          aria-label="Read More"
           className="d-block"
           onClick={() => setPost(a)}
           to={`/post/${a.publishedAt}`}
@@ -45,7 +46,7 @@ export default compose(
             title={a.title}
             actions={
               <CardActions>
-                <Button dense color="primary" raised>
+                <Button dense color="primary" aria-label="Read More" raised>
                   Read More
                 </Button>
               </CardActions>

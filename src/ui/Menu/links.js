@@ -28,41 +28,41 @@ export const MainListItems = compose(
   <List className={props.className || ""}>
     <RegItem onClick={() => props.history.push("/")}>
       <Link to="/">
-        <ListItemIcon>
+ aria-label="">"        <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link to="/"  aria-label="""style={linkStyle(props.theme.palette.text.secondary)}>
         Home
       </Link>
     </RegItem>
     <RegItem onClick={() => props.history.push("/tx")}>
-      <Link to="/tx">
+      <Link to="/tx" aria-label="tx">
         <ListItemIcon>
           <SendIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/tx" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link to="/tx" aria-label="tx" style={linkStyle(props.theme.palette.text.secondary)}>
         Trades
       </Link>
     </RegItem>
     <RegItem onClick={() => props.history.push("/add")}>
-      <Link to="/add">
+      <Link to="/add" aria-label="add">
         <ListItemIcon>
           <AddIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/add" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link to="/add" aria-label="add" style={linkStyle(props.theme.palette.text.secondary)}>
         Add
       </Link>
     </RegItem>
     <RegItem onClick={() => props.history.push("/blog")}>
-      <Link to="/blog">
+      <Link to="/blog" aria-label="blog">
         <ListItemIcon>
           <NoteIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/blog" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link to="/blog" aria-label="blog" style={linkStyle(props.theme.palette.text.secondary)}>
         Blog
       </Link>
     </RegItem>
@@ -75,23 +75,23 @@ export const OtherListItems = compose(
 )(props => (
   <List className={props.className || ""}>
     <RegItem onClick={() => props.history.push("/about")}>
-      <Link to="/about">
+      <Link to="/about" aria-label="about">
         <ListItemIcon>
           <HelpIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/about" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link to="/about" aria-label="about" style={linkStyle(props.theme.palette.text.secondary)}>
         About
       </Link>
     </RegItem>
     <RegItem onClick={() => props.history.push("/settings")}>
-      <Link to="/settings">
+      <Link to="/settings" aria-label="settings">
         <ListItemIcon>
           <SettingsIcon />
         </ListItemIcon>
       </Link>
       <Link
-        to="/settings"
+        to="/settings" aria-label="settings"
         style={linkStyle(props.theme.palette.text.secondary)}
       >
         Settings
@@ -99,12 +99,12 @@ export const OtherListItems = compose(
     </RegItem>
     {process.env.NODE_ENV !== "production" ? (
       <RegItem onClick={() => props.history.push("/gql")}>
-        <Link to="/gql">
+        <Link to="/gql" aria-label="gql">
           <ListItemIcon>
             <GQLIcon />
           </ListItemIcon>
         </Link>
-        <Link to="/gql" style={linkStyle(props.theme.palette.text.secondary)}>
+        <Link to="/gql" aria-label="gql" style={linkStyle(props.theme.palette.text.secondary)}>
           GraphQL
         </Link>
       </RegItem>

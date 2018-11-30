@@ -1,33 +1,36 @@
-import React from 'react';
-import Typography from 'material-ui/Typography';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { setProfile } from '../../store/reducers/profile';
-import { FormControlLabel, FormGroup } from 'material-ui/Form';
-import { TopBannerDisplayAd, BottomBannerDisplayAd } from '../../ads/slots';
-import List, { ListItem } from 'material-ui/List';
-import { Link } from 'react-router-dom';
-import Switch from 'material-ui/Switch';
-import { withTheme } from 'material-ui/styles';
-import storage from '../../utility/storage';
-import Exchange from '../Exchange';
-import SEO from '../SEO';
+import React from "react";
+import Typography from "material-ui/Typography";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { setProfile } from "../../store/reducers/profile";
+import { FormControlLabel, FormGroup } from "material-ui/Form";
+import { TopBannerDisplayAd, BottomBannerDisplayAd } from "../../ads/slots";
+import List, { ListItem } from "material-ui/List";
+import { Link } from "react-router-dom";
+import Switch from "material-ui/Switch";
+import { withTheme } from "material-ui/styles";
+import storage from "../../utility/storage";
+import Exchange from "../Exchange";
+import SEO from "../SEO";
 
 const withProfile = connect(
   ({ profile }) => ({ profile }),
   dispatch => ({
-    setProfile: (p) => {
-      storage('profile').save(p)
-      .then(() => dispatch(setProfile(p)))
+    setProfile: p => {
+      storage("profile")
+        .save(p)
+        .then(() => dispatch(setProfile(p)));
     }
   })
-)
+);
 
-export default compose(withTheme(), withProfile)(({ theme, profile, setProfile }) =>
+export default compose(
+  withTheme(),
+  withProfile
+)(({ theme, profile, setProfile }) => (
   <div>
-    <SEO title='Settings | Hodl Stream' path='/settings' />
+    <SEO title="Settings | Hodl Stream" path="/settings" />
     <section>
-
       <TopBannerDisplayAd />
 
       <section />
@@ -50,29 +53,40 @@ export default compose(withTheme(), withProfile)(({ theme, profile, setProfile }
           <Typography type="subheading">Theme</Typography>
           <FormGroup>
             <FormControlLabel
-              label={profile.theme !== 'light' ? 'Dark' : 'Light'}
+              label={profile.theme !== "light" ? "Dark" : "Light"}
               control={
                 <Switch
-                  checked={profile.theme !== 'light'}
+                  checked={profile.theme !== "light"}
                   onChange={(event, checked) => {
                     const p = Object.assign({}, p, {
-                      theme: checked ? 'dark' : 'light'
-                    })
-                    setProfile(p)
+                      theme: checked ? "dark" : "light"
+                    });
+                    setProfile(p);
                   }}
-                />} />
+                />
+              }
+            />
           </FormGroup>
         </section>
 
         <section>
           <List>
-            <ListItem><Link to="/terms" style={{
-              color: theme.palette.text.secondary
-            }}>Terms and Conditions</Link></ListItem>
+            <ListItem>
+              <Link
+                aria-label="terms"
+                to="/terms"
+                style={{
+                  color: theme.palette.text.secondary
+                }}
+              >
+                Terms and Conditions
+              </Link>
+            </ListItem>
           </List>
         </section>
 
         <BottomBannerDisplayAd />
       </div>
     </section>
-  </div>)
+  </div>
+));
