@@ -33,15 +33,18 @@ const getMetaTags = ({
     { property: "twitter:creator", content: twitter },
     { property: "twitter:image", content: seoImageURL(images, "twitter") },
     { property: "og:title", content: title },
-    { property: "og:type", content: contentType },
+    { property: "og:type", content: contentType || "website" },
     { property: "og:url", content: url },
     { property: "og:image", content: seoImageURL(images, "facebook") },
     { property: "og:description", content: description },
     { property: "og:site_name", content: "Hodl Stream" }
   ];
 
-  if (process.env.FB_APP_ID)
-    metaTags.push({ property: "fb:app_id", content: process.env.FB_APP_ID });
+  if (process.env.REACT_APP_FB_APP_ID)
+    metaTags.push({
+      property: "fb:app_id",
+      content: process.env.REACT_APP_FB_APP_ID
+    });
   if (published)
     metaTags.push({ property: "article:published_time", content: published });
   if (updated)
