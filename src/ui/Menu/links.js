@@ -27,12 +27,17 @@ export const MainListItems = compose(
 )(props => (
   <List className={props.className || ""}>
     <RegItem onClick={() => props.history.push("/")}>
-      <Link to="/">
- aria-label="">"        <ListItemIcon>
+      <Link to="/" aria-label="home">
+        {" "}
+        <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/"  aria-label="""style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link
+        to="/"
+        aria-label="home"
+        style={linkStyle(props.theme.palette.text.secondary)}
+      >
         Home
       </Link>
     </RegItem>
@@ -42,7 +47,11 @@ export const MainListItems = compose(
           <SendIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/tx" aria-label="tx" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link
+        to="/tx"
+        aria-label="tx"
+        style={linkStyle(props.theme.palette.text.secondary)}
+      >
         Trades
       </Link>
     </RegItem>
@@ -52,7 +61,11 @@ export const MainListItems = compose(
           <AddIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/add" aria-label="add" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link
+        to="/add"
+        aria-label="add"
+        style={linkStyle(props.theme.palette.text.secondary)}
+      >
         Add
       </Link>
     </RegItem>
@@ -62,7 +75,11 @@ export const MainListItems = compose(
           <NoteIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/blog" aria-label="blog" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link
+        to="/blog"
+        aria-label="blog"
+        style={linkStyle(props.theme.palette.text.secondary)}
+      >
         Blog
       </Link>
     </RegItem>
@@ -80,7 +97,11 @@ export const OtherListItems = compose(
           <HelpIcon />
         </ListItemIcon>
       </Link>
-      <Link to="/about" aria-label="about" style={linkStyle(props.theme.palette.text.secondary)}>
+      <Link
+        to="/about"
+        aria-label="about"
+        style={linkStyle(props.theme.palette.text.secondary)}
+      >
         About
       </Link>
     </RegItem>
@@ -91,7 +112,8 @@ export const OtherListItems = compose(
         </ListItemIcon>
       </Link>
       <Link
-        to="/settings" aria-label="settings"
+        to="/settings"
+        aria-label="settings"
         style={linkStyle(props.theme.palette.text.secondary)}
       >
         Settings
@@ -104,7 +126,11 @@ export const OtherListItems = compose(
             <GQLIcon />
           </ListItemIcon>
         </Link>
-        <Link to="/gql" aria-label="gql" style={linkStyle(props.theme.palette.text.secondary)}>
+        <Link
+          to="/gql"
+          aria-label="gql"
+          style={linkStyle(props.theme.palette.text.secondary)}
+        >
           GraphQL
         </Link>
       </RegItem>

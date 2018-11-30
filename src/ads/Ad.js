@@ -1,16 +1,20 @@
-import React, { Component, Children } from "react"
+import React, { Component, Children } from "react";
 
 export default class Ad extends Component {
-  componentDidMount () {
-    this.frame = window.requestAnimationFrame(() => {
+  constructor(props) {
+    super(props);
+    this.timer = props.timer || 400;
+  }
+  componentDidMount() {
+    this.timerId = setTimeout(() => {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
-    })
+    }, this.timer);
   }
-  componentWillUnmount () {
-    window.cancelAnimationFrame(this.frame)
+  componentWillUnmount() {
+    clearTimeout(this.timerId);
   }
-  render () {
+  render() {
     const { children } = this.props;
-    return Children.only(children)
+    return Children.only(children);
   }
 }

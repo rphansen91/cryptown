@@ -76,7 +76,7 @@ export default compose(
   withArticles,
   withRouter,
   activePost
-)(({ match: { params }, location, post, loading, data: { news }, error }) => (
+)(({ match: { params }, location, post, loading, error }) => (
   <Post
     loading={loading}
     error={error}
