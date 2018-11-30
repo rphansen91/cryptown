@@ -77,7 +77,7 @@ export default ({
     htmlAttributes={{
       lang: "en",
       itemscope: undefined,
-      itemtype: `http://schema.org/${schema}`
+      itemtype: schema ? `http://schema.org/${schema}` : ""
     }}
     title={title.slice(0, 60)}
     link={[{ rel: "canonical", href: seoURL(path) }]}

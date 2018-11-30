@@ -19,6 +19,7 @@ const Post = ({ loading, post = {}, path }) => {
       content={
         <section>
           <SEO
+            schema="Article"
             title={`Hodl Stream | ${post.title || ""}`}
             description={post.content}
             path={path}
