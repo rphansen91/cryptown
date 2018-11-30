@@ -9,13 +9,13 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 768px) {
-  .article {
-    width: 1em auto;
-  }
-}
-
 @media screen and (min-width: 768px) {
+  .main-content {
+    padding-right: 0;
+  }
+  .sidebar-content {
+    padding-left: 0;
+  }
   .article-sidebar {
     overflow-y: auto;
     height: -webkit-fill-available;

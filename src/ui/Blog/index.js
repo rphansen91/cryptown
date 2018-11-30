@@ -41,6 +41,7 @@ export const Blog = compose(
       acc.push(
         <div className="col-md-3">
           <Link
+            className="d-block"
             onClick={() => setPost(a)}
             to={`/post/${a.publishedAt}`}
             key={i}

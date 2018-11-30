@@ -25,7 +25,8 @@ export default compose(
         acc.push(
           <NewsDisplayAd
             style={{
-              display: "inline-block",
+              display: "d-block",
+              maxWidth: "100%",
               width: 350
             }}
             key={i + "ad"}
@@ -33,7 +34,12 @@ export default compose(
         );
       }
       acc.push(
-        <Link onClick={() => setPost(a)} to={`/post/${a.publishedAt}`} key={i}>
+        <Link
+          className="d-block"
+          onClick={() => setPost(a)}
+          to={`/post/${a.publishedAt}`}
+          key={i}
+        >
           <Article
             image={a.urlToImage}
             title={a.title}

@@ -25,29 +25,30 @@ const getMetaTags = ({
     { itemprop: "name", content: title },
     { itemprop: "description", content: description },
     { itemprop: "image", content: seoImageURL(images, "google") },
-    { name: "description", content: description },
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:site", content: "@hodl_stream" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:creator", content: twitter },
-    { name: "twitter:image", content: seoImageURL(images, "twitter") },
-    { name: "og:title", content: title },
-    { name: "og:type", content: contentType },
-    { name: "og:url", content: url },
-    { name: "og:image", content: seoImageURL(images, "facebook") },
-    { name: "og:description", content: description },
-    { name: "og:site_name", content: "Hodl Stream" }
+    { property: "description", content: description },
+    { property: "twitter:card", content: "summary_large_image" },
+    { property: "twitter:site", content: "@hodl_stream" },
+    { property: "twitter:title", content: title },
+    { property: "twitter:description", content: description },
+    { property: "twitter:creator", content: twitter },
+    { property: "twitter:image", content: seoImageURL(images, "twitter") },
+    { property: "og:title", content: title },
+    { property: "og:type", content: contentType },
+    { property: "og:url", content: url },
+    { property: "og:image", content: seoImageURL(images, "facebook") },
+    { property: "og:description", content: description },
+    { property: "og:site_name", content: "Hodl Stream" }
   ];
 
   if (process.env.FB_APP_ID)
-    metaTags.push({ name: "fb:app_id", content: process.env.FB_APP_ID });
+    metaTags.push({ property: "fb:app_id", content: process.env.FB_APP_ID });
   if (published)
-    metaTags.push({ name: "article:published_time", content: published });
+    metaTags.push({ property: "article:published_time", content: published });
   if (updated)
-    metaTags.push({ name: "article:modified_time", content: updated });
-  if (category) metaTags.push({ name: "article:section", content: category });
-  if (tags) metaTags.push({ name: "article:tag", content: tags });
+    metaTags.push({ property: "article:modified_time", content: updated });
+  if (category)
+    metaTags.push({ property: "article:section", content: category });
+  if (tags) metaTags.push({ property: "article:tag", content: tags });
   console.log(metaTags);
   return metaTags;
 };

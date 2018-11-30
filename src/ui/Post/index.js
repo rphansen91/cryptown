@@ -65,8 +65,6 @@ const activePost = Cmp => props => {
     (news || []).find(({ publishedAt }) => publishedAt === params.from) ||
     first(news);
 
-  console.log({ news, selected });
-
   return <Cmp {...props} post={selected} />;
 };
 
