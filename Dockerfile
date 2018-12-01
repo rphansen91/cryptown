@@ -1,11 +1,11 @@
-FROM node:8
+FROM node:8-alpine
 RUN mkdir /app
 WORKDIR /app
 COPY package.json /app
-RUN npm install -g yarn
+# RUN npm install -g yarn
 RUN npm install -g babel-cli
-RUN yarn
+# RUN npm install
 COPY . /app
-RUN yarn build
+RUN npm run build
 EXPOSE 3000
-CMD ["npm", "run", "start:server"]
+CMD npm run start:server

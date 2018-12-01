@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { compose } from "redux";
 import { withApollo } from "react-apollo";
 import Portfolio from "./portfolio/Portfolio";
 import txStore from "./portfolio/txs";
@@ -14,10 +14,11 @@ import Routes from "./Routes";
 import IconButton from "material-ui/IconButton";
 import NavigationClose from "material-ui-icons/Close";
 import NavigationMenu from "material-ui-icons/Menu";
-import { toggleMenu } from "./store/reducers/menu";
+import { withMenu } from "./store/reducers/menu";
+import { withProfile } from "./store/reducers/profile";
 import { PortfolioBannerAd } from "./ads/slots";
 import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
-import { setTxs } from "./store/reducers/transactions";
+import { withTxs } from "./store/reducers/transactions";
 import { queryExchangeTxs } from "./gql/exchange";
 import Menu from "./ui/Menu";
 import Chat from "./ui/Chat";
@@ -137,15 +138,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => state;
-const mapDispatchToProps = dispatch => ({
-  toggleMenu: () => dispatch(toggleMenu()),
-  setTxs: txs => dispatch(setTxs(txs))
-});
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withApollo(App))
-);
+export default compose(
+  withRouter,
+  withProfile,
+  withMenu,
+  withTxs,
+  withApollo
+)(App);

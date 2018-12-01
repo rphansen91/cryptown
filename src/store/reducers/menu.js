@@ -1,22 +1,29 @@
-export const SET_MENU_OPEN = 'SET_MENU_OPEN'
-export const SET_MENU_CLOSED = 'SET_MENU_CLOSED'
-export const TOGGLE_MENU = 'TOGGLE_MENU'
+import { connect } from "react-redux";
 
-export const openMenu = () => ({ type: SET_MENU_OPEN })
-export const closeMenu = () => ({ type: SET_MENU_CLOSED })
-export const toggleMenu = () => ({ type: TOGGLE_MENU })
+export const SET_MENU_OPEN = "SET_MENU_OPEN";
+export const SET_MENU_CLOSED = "SET_MENU_CLOSED";
+export const TOGGLE_MENU = "TOGGLE_MENU";
+
+export const openMenu = () => ({ type: SET_MENU_OPEN });
+export const closeMenu = () => ({ type: SET_MENU_CLOSED });
+export const toggleMenu = () => ({ type: TOGGLE_MENU });
+
+export const withMenu = connect(
+  ({ menu }) => ({ menu }),
+  { openMenu, closeMenu, toggleMenu }
+);
 
 const menu = (state = false, action) => {
   switch (action.type) {
     case SET_MENU_OPEN:
-      return true
+      return true;
     case SET_MENU_CLOSED:
-      return false
+      return false;
     case TOGGLE_MENU:
-      return !state
+      return !state;
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default menu
+export default menu;

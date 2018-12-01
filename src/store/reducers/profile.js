@@ -1,17 +1,22 @@
-export const SET_PROFILE = 'SET_PROFILE'
+import { connect } from "react-redux";
+
+export const SET_PROFILE = "SET_PROFILE";
 
 export const setProfile = payload => ({
   type: SET_PROFILE,
   payload
-})
+});
 
-const profile = (state = { theme: 'dark' }, action) => {
+export const withProfile = connect(
+  ({ profile }) => ({ profile }),
+  { setProfile }
+);
+
+export default (state = { theme: "dark" }, action) => {
   switch (action.type) {
     case SET_PROFILE:
-      return action.payload
+      return action.payload;
     default:
-      return state
+      return state;
   }
-}
-
-export default profile
+};
