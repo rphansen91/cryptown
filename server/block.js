@@ -1,11 +1,27 @@
 const createWhitelist = require("force-secure-express/src/whitelist");
 const get = require("force-secure-express/src/get");
 
+const getPath = req => get(req, "path");
 const getHost = req => get(req, "headers.host");
 const getQualys = req => get(req, "headers.qualys-scan");
 const isQualysVM = req => getQualys(req) === "VM";
 
-module.exports = function blockHosts(hosts) {
+const blockRequest = (
+  shouldBlockCb = v => false,
+  message = "Invalid Request"
+) => (req, res, next) => {
+  if (shouldBlockCb(req)) {
+    console.log("Blocked", getPath(req), getHost(req), message);
+    res.writeHead(504);
+    res.end(message);
+  } else {
+    next();
+  }
+};
+
+const blockQualys = blockRequest(isQualysVM, "Invalid VM");
+
+const blockHosts = function(hosts) {
   const whitelist = createWhitelist(hosts);
 
   function isMatch(req) {
@@ -14,13 +30,11 @@ module.exports = function blockHosts(hosts) {
     return whitelist[host];
   }
 
-  return function(req, res, next) {
-    if (isQualysVM(req) || isMatch(req)) {
-      res.writeHead(504);
-      res.end("Invalid Request");
-      return;
-    }
+  return blockRequest(isMatch, "Invalid Host");
+};
 
-    next();
-  };
+module.exports = {
+  blockRequest,
+  blockQualys,
+  blockHosts
 };

@@ -8,31 +8,38 @@ import useCryptoIcon from "./icon";
 import universalLoader from "./universal";
 
 const port = process.env.PORT || 8081;
-const workers = Number(process.env.WORKERS) || 1;
+const workers = require("os").cpus().length; //Number(process.env.WORKERS)
 const lifetime = Number(process.env.LIFETIME) || Infinity;
-const morganFormat = id =>
-  (
-    process.env.MORGAN_FORMAT ||
-    ":id :method :url :status :res[content-length] - :response-time ms"
-  ).replace(":id", id);
+const morganFormat =
+  process.env.MORGAN_FORMAT ||
+  ":id :date[clf] :host :method :url :status :res[content-length] - :response-time ms";
 
 throng({ start, workers, lifetime });
 
+function isMalicious() {
+  return false;
+}
+
 function start(id) {
   const app = express();
+  const get = require("force-secure-express/src/get");
   const forceSecure = require("force-secure-express");
-  const blockHosts = require("./block");
+  const { blockHosts, blockRequest, blockQualys } = require("./block");
 
-  app.use(morgan(morganFormat(id)));
+  morgan.token("id", () => id);
+  morgan.token("host", req => get(req, "headers.host"));
+  app.use(morgan(morganFormat));
+  app.use(blockQualys);
   app.use(blockHosts(["ec2-100-25-64-237.compute-1.amazonaws.com"]));
+  app.use(blockRequest(isMalicious));
   app.use(compression());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use("/svg", useCryptoIcon(path.resolve(__dirname, "../build/svg")));
+  app.use(forceSecure(["hodlstream.com", "www.hodlstream.com"]));
   app.use(
     express.static(path.resolve(__dirname, "../build"), { index: false })
   );
-  app.use(forceSecure(["hodlstream.com"]));
   app.use("/", universalLoader);
 
   app.listen(port, () => {
