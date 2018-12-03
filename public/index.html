@@ -11,80 +11,62 @@
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="shortcut icon" href="%PUBLIC_URL%/icon.png" />
+    <link rel="shortcut icon" href="/icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="%PUBLIC_URL%/apple-touch-icon.png"
-    />
-    <link
-      href="%PUBLIC_URL%/splashscreens/iphone5_splash.png"
+      href="/splashscreens/iphone5_splash.png"
       media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/iphone6_splash.png"
+      href="/splashscreens/iphone6_splash.png"
       media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/iphoneplus_splash.png"
+      href="/splashscreens/iphoneplus_splash.png"
       media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/iphonex_splash.png"
+      href="/splashscreens/iphonex_splash.png"
       media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/iphonexr_splash.png"
+      href="/splashscreens/iphonexr_splash.png"
       media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/iphonexsmax_splash.png"
+      href="/splashscreens/iphonexsmax_splash.png"
       media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/ipad_splash.png"
+      href="/splashscreens/ipad_splash.png"
       media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/ipadpro1_splash.png"
+      href="/splashscreens/ipadpro1_splash.png"
       media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/ipadpro3_splash.png"
+      href="/splashscreens/ipadpro3_splash.png"
       media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image"
     />
     <link
-      href="%PUBLIC_URL%/splashscreens/ipadpro2_splash.png"
+      href="/splashscreens/ipadpro2_splash.png"
       media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image"
     />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="%PUBLIC_URL%/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="%PUBLIC_URL%/favicon-16x16.png"
-    />
-    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest" />
-    <link
-      rel="mask-icon"
-      href="%PUBLIC_URL%/safari-pinned-tab.svg"
-      color="#00b89a"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00b89a" />
     <meta name="msapplication-TileColor" content="#00b89a" />
     <meta name="theme-color" content="#ffffff" />
     <!--
@@ -105,11 +87,7 @@
       content="Track your crypto portfolio and visualize how it changes over time."
       data-react-helmet="true"
     />
-    <meta
-      itemprop="image"
-      content="%PUBLIC_URL%/icon_540.png"
-      data-react-helmet="true"
-    />
+    <meta itemprop="image" content="/icon_540.png" data-react-helmet="true" />
     <meta
       property="description"
       content="Track your crypto portfolio and visualize how it changes over time."
@@ -187,7 +165,7 @@
         right: 0;
         bottom: 0;
         margin: auto;
-        background-image: url(%PUBLIC_URL%/icon_540.png);
+        background-image: url(/icon_540.png);
         background-repeat: no-repeat;
         background-position: center;
         width: 120px;
@@ -273,7 +251,7 @@
     ></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-7183056818143738",
+        google_ad_client: "%REACT_APP_GOOGLE_AD_CLIENT%",
         enable_page_level_ads: true
       });
     </script>
@@ -288,7 +266,9 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/annotations.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="//platform-api.sharethis.com/js/sharethis.js#property=5bfc4d6311765800112fa14c&product=inline-follow-buttons"></script>
+    <!--
+      <script src="//platform-api.sharethis.com/js/sharethis.js#property=5bfc4d6311765800112fa14c&product=inline-follow-buttons"></script>
+    -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async

@@ -27,6 +27,7 @@ export default compose(
             style={{
               display: "block",
               maxWidth: "100%",
+              margin: "auto",
               width: 350
             }}
             key={i + "ad"}
@@ -42,7 +43,7 @@ export default compose(
           key={i}
         >
           <Article
-            image={a.urlToImage}
+            // image={a.urlToImage}
             title={a.title}
             actions={
               <CardActions>

@@ -37,6 +37,6 @@ export default withRouter(props => (
       <div className="sharethis-inline-follow-buttons" />
       {/* <TwitterFollow username="hodl_stream" /> */}
     </section>
-    <AllCoins color="#fff" />
+    {/* <AllCoins color="#fff" /> */}
   </div>
 ));

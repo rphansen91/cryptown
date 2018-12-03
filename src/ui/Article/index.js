@@ -26,11 +26,13 @@ function SimpleMediaCard(props) {
       }}
       onClick={onClick || (v => v)}
     >
-      <CardMedia
-        style={{ height: imageSize, width: large ? "inherit" : imageSize }}
-        image={image}
-        title={title}
-      />
+      {image && (
+        <CardMedia
+          style={{ height: imageSize, width: large ? "inherit" : imageSize }}
+          image={image}
+          title={title}
+        />
+      )}
       <div style={large ? {} : { flex: 1 }}>
         <CardContent
           style={{

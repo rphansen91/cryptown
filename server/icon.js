@@ -33,7 +33,7 @@ export default publicPath => {
     function sendSvg(svg) {
       res.writeHead(200, {
         "Content-Type": "image/svg+xml",
-        "Cache-Control": "max-age=86400"
+        "Cache-Control": `max-age=${86400 * 30}`
       });
       res.end(svg);
     }

@@ -6,6 +6,8 @@ export default class Ad extends Component {
     this.timer = props.timer || 400;
   }
   componentDidMount() {
+    if (!process.env.REACT_APP_GOOGLE_AD_CLIENT) return;
+
     this.timerId = setTimeout(() => {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     }, this.timer);
