@@ -45,9 +45,11 @@ export const PortfolioBannerAd = ({}) => (
   <Ad>
     <ins
       className="adsbygoogle"
-      style={{ display: "inline-block", width: "100%", height: 60 }}
+      style={{ display: "block" }}
       data-ad-client="ca-pub-7183056818143738"
       data-ad-slot="3292492573"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
     />
   </Ad>
 );

@@ -21,7 +21,7 @@ export default compose(
 
     {loading && <CircularProgress style={{ margin: "auto" }} />}
     {(data.news || []).filter(filter).reduce((acc, a, i) => {
-      if (i && i % 2 === 0) {
+      if (i % 2 === 0) {
         acc.push(
           <NewsDisplayAd
             style={{
