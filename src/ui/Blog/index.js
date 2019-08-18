@@ -27,7 +27,7 @@ export const Blog = compose(
 )(({ setPost, q, loading, data, error }) => (
   <div>
     {loading && <CircularProgress style={{ margin: "auto" }} />}
-    <div class="row">
+    <div className="row">
       {data
         ? (data.news || []).reduce((acc, a, i) => {
             acc.push(

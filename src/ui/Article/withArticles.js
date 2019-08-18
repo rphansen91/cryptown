@@ -7,6 +7,10 @@ const sidebarQuery = gql`
     news(q: $q, from: $from) {
       url
       title
+      author
+      source {
+        name
+      }
       publishedAt
       urlToImage
       content

@@ -6,7 +6,10 @@ import { TopBannerDisplayAd, BottomBannerDisplayAd } from "../../ads/slots";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import PersonIcon from "@material-ui/icons/Person";
+import TimelapseIcon from "@material-ui/icons/Timelapse";
 import ArticleSidebar from "../Article/Sidebar";
+import AddThis from "../AddThis";
 import withArticles from "../Article/withArticles";
 import Layout from "../Layout";
 import SEO from "../SEO";
@@ -33,13 +36,41 @@ const Post = ({ loading, post = {}, path }) => {
             )}
           </section>
           <section className="container">
-            <Typography variant="h4" color="textPrimary">
+            <Typography paragraph variant="h4" color="textPrimary">
               {post.title}
             </Typography>
+
+            <div className="d-flex border-bottom pb-2 mb-4">
+              <div className="text-left">
+                <Typography
+                  variant="caption"
+                  color="textSecondary"
+                  className="d-block"
+                >
+                  <PersonIcon className="mr-1" />
+                  {post.author}
+                  {post.source && post.source.name ? " - " : ""}
+                  {post.source && post.source.name ? post.source.name : ""}
+                </Typography>
+                <Typography
+                  variant="caption"
+                  color="textSecondary"
+                  className="d-block"
+                >
+                  <TimelapseIcon className="mr-1" />
+                  {post.publishedAt
+                    ? new Date(post.publishedAt).toLocaleString()
+                    : ""}
+                </Typography>
+              </div>
+              <div className="flex-grow-1" />
+              <div className="addthis_inline_share_toolbox" />
+            </div>
+
             <Typography variant="subtitle1" color="textSecondary">
               {post.content}
             </Typography>
-            {/* <div dangerouslySetInnerHTML={{ __html: post.htmlContent }} /> */}
+            <div dangerouslySetInnerHTML={{ __html: post.htmlContent }} />
           </section>
           <section>
             {post.url && (
@@ -49,6 +80,7 @@ const Post = ({ loading, post = {}, path }) => {
             )}
           </section>
           <BottomBannerDisplayAd />
+          <AddThis />
         </div>
       }
       sidebar={<ArticleSidebar activePost={post} />}
