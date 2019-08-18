@@ -52,12 +52,12 @@ export const Blog = compose(
                     }
                   />
                 </Link>
-              </div>,
-              <div className="col-lg-4 col-md-6 mb-4" key={i + "ad"}>
-                <NewsDisplayAd
-                  style={{ maxWidth: "100%", margin: "auto", width: 350 }}
-                />
               </div>
+              // <div className="col-lg-4 col-md-6 mb-4" key={i + "ad"}>
+              //   <NewsDisplayAd
+              //     style={{ maxWidth: "100%", margin: "auto", width: 350 }}
+              //   />
+              // </div>
             );
             return acc;
           }, [])
