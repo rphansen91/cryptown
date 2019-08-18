@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import Trend from "../../explorer/Trend";
 import coinColor from "../../icons/colors";
+import Add from "../../portfolio/Add";
 import { withRouter } from "react-router-dom";
 import { TopBannerDisplayAd, BottomBannerDisplayAd } from "../../ads/slots";
 import Layout from "../Layout";
@@ -19,25 +20,33 @@ export default compose(
     <SEO />
     <Layout
       content={
-        <section>
+        <div>
           <TopBannerDisplayAd />
           <section />
-          <Typography variant="h4" color="textPrimary">
-            Trends
-          </Typography>
-          <div className="icons responsive">
-            {coins.map(c => (
-              <Trend
-                key={c.id}
-                id={c.id}
-                pair={pair}
-                color={coinColor(c.id)}
-                onClick={() => history.push("/coin/" + c.id)}
-              />
-            ))}
+          <div className="container">
+            <Typography variant="h4" color="textPrimary" className="mb-3">
+              Trends
+            </Typography>
+            <div className="row">
+              {coins.map(c => (
+                <div className="col-md-6 mb-3" key={c.id}>
+                  <Trend
+                    id={c.id}
+                    pair={pair}
+                    color={coinColor(c.id)}
+                    onClick={() => history.push("/coin/" + c.id)}
+                  />
+                </div>
+              ))}
+              <div className="col-md-6 mb-3">
+                <div className="trend h-100">
+                  <Add />
+                </div>
+              </div>
+            </div>
           </div>
           <BottomBannerDisplayAd />
-        </section>
+        </div>
       }
       sidebar={<ArticleSidebar />}
     />

@@ -48,6 +48,7 @@ const defaultCoin = () => ({
 const Trend = ({
   id,
   data: { loading, error, coin },
+  className,
   pos,
   neg,
   ...props
@@ -65,8 +66,8 @@ const Trend = ({
   const color = theme.palette.text.secondary;
   return (
     <div
-      className={["coin trend"]
-        .concat(props.classList)
+      className={["trend"]
+        .concat(className)
         .filter(c => c)
         .join(" ")}
       style={{ color }}

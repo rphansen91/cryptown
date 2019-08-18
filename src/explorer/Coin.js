@@ -36,7 +36,7 @@ const defaultCoin = () => ({
   percent_change_24h: 0
 });
 
-const Coin = ({ data, pos, neg, ...props } = {}) => {
+const Coin = ({ data, pos, neg, className, ...props } = {}) => {
   let { loading, error, coin } = data || {};
   const theme = useTheme();
   if (loading) coin = loadingCoin();
@@ -47,7 +47,7 @@ const Coin = ({ data, pos, neg, ...props } = {}) => {
   return (
     <div
       className={["coin"]
-        .concat(props.classList)
+        .concat(className)
         .filter(c => c)
         .join(" ")}
       style={{ color }}
