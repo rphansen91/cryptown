@@ -82,10 +82,6 @@ class AddTx extends Component {
     });
     this.setState(initial(this.props));
   }
-  remove(i) {
-    const { onChange = v => v, txs = [] } = this.props;
-    onChange(txs.slice(0, i).concat(txs.slice(i + 1)));
-  }
   render() {
     const {
       id,
@@ -160,7 +156,14 @@ class AddTx extends Component {
   }
 }
 
-export const Transactions = connect(({ txs }) => ({ txs }))(({ txs }) => {
+export const Transactions = connect(
+  ({ txs }) => ({ txs }),
+  dispatch => ({
+    remove: i => {
+      store.remove(i).then(txs => dispatch(setTxs(txs)));
+    }
+  })
+)(({ txs, remove }) => {
   return (
     <section>
       {txs.some(coin => coin.value) && (
@@ -172,7 +175,7 @@ export const Transactions = connect(({ txs }) => ({ txs }))(({ txs }) => {
         {txs
           .filter(({ value }) => value)
           .map((tx, i) => (
-            <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />
+            <Tx key={i} tx={tx} onRemove={() => remove(i)} />
           ))}
       </List>
     </section>
