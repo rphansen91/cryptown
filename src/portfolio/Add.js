@@ -98,7 +98,14 @@ class AddTx extends Component {
     return (
       <div>
         <section>
-          <DialogTitle>{error ? error.message : "New Transaction"}</DialogTitle>
+          <Typography variant="h4" color="textPrimary">
+            New Transaction
+          </Typography>
+          {error && (
+            <Typography variant="subtitle1" color="secondary">
+              {error.message}
+            </Typography>
+          )}
           <Typography variant="subtitle1" color="textSecondary">
             &#9432; All transaction data is stored locally and will never be
             sent to our servers.
