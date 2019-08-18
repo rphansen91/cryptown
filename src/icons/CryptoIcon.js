@@ -11,15 +11,15 @@ export default ({
   ...props
 }) => {
   const theme = useTheme();
-  const color = theme.palette.text.secondary;
-  const attrs = Object.assign({ color }, _attrs);
+  const fill = theme.palette.text.secondary;
+  const attrs = Object.assign({ fill }, _attrs);
   const query = Object.keys(attrs)
     .map(k => `${k}=${attrs[k]}`)
     .join("&");
   const Icon = (
     <img
       className="icon"
-      src={`/svg/${icon}.svg?${query}`}
+      src={process.env.PUBLIC_URL + `/svg/${icon}.svg?${query}`}
       {...props}
       onClick={onClick}
     />

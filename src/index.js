@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import client from "./gql/client";
-import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from "react-redux";
 import { compose, createStore, applyMiddleware } from "redux";
 import blockStore from "./store/reducers/index";
@@ -44,5 +43,3 @@ function render(store) {
     document.getElementById("root")
   );
 }
-
-registerServiceWorker();
