@@ -45,7 +45,7 @@ export const Shop = compose(
       {data
         ? (data.products || []).reduce((acc, a, i) => {
             acc.push(
-              <div className="col-lg-4 col-md-6" key={i}>
+              <div className="col-lg-4 col-md-6 mb-4" key={i}>
                 <Article
                   imageSize={260}
                   image={a.images[0]}
