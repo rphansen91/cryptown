@@ -1,7 +1,7 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import Typography from "material-ui/Typography";
+import Typography from "@material-ui/core/Typography";
 import Trend from "../../explorer/Trend";
 import coinColor from "../../icons/colors";
 import { withRouter } from "react-router-dom";
@@ -22,7 +22,9 @@ export default compose(
         <section>
           <TopBannerDisplayAd />
           <section />
-          <Typography type="title">Trends</Typography>
+          <Typography variant="h4" color="textPrimary">
+            Trends
+          </Typography>
           <div className="icons responsive">
             {coins.map(c => (
               <Trend

@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withTheme } from "material-ui/styles";
-import Card, { CardActions, CardContent, CardMedia } from "material-ui/Card";
-import Button from "material-ui/Button";
-import Typography from "material-ui/Typography";
+import { useTheme } from "@material-ui/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import "./index.css";
 
 function SimpleMediaCard(props) {
@@ -13,16 +16,18 @@ function SimpleMediaCard(props) {
     title,
     actions,
     large = true,
-    theme,
-    imageSize = "6em"
+    imageSize = "6em",
+    ...style
   } = props;
+  const theme = useTheme();
   const color = theme.palette.text.secondary;
   return (
     <Card
       className="article"
       style={{
         color,
-        cursor: "pointer"
+        cursor: "pointer",
+        ...style
       }}
       onClick={onClick || (v => v)}
     >
@@ -36,16 +41,17 @@ function SimpleMediaCard(props) {
       <div style={large ? {} : { flex: 1 }}>
         <CardContent
           style={{
-            maxHeight: "3em",
-            minHeight: "3em",
+            maxHeight: "3.6em",
+            minHeight: "3.6em",
             whiteSpace: "normal",
             overflow: "hidden",
-            padding: "0 0.4em",
+            padding: "0.4em",
+            paddingBottom: 0,
             lineHeight: "1em",
             textAlign: "left"
           }}
         >
-          <Typography type="title" component="p">
+          <Typography variant="subtitle1" color="textPrimary" component="p">
             {title}
           </Typography>
         </CardContent>
@@ -55,4 +61,4 @@ function SimpleMediaCard(props) {
   );
 }
 
-export default withTheme()(SimpleMediaCard);
+export default SimpleMediaCard;

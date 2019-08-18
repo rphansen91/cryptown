@@ -9,6 +9,7 @@ import Post from "./ui/Post";
 import GraphiQL from "./explorer/GraphiQL";
 import Add from "./ui/Add";
 import Blog from "./ui/Blog";
+import Shop from "./ui/Shop";
 import Coin from "./ui/Coin";
 import Terms from "./ui/Terms";
 import Transactions from "./ui/Txs";
@@ -21,6 +22,7 @@ export const routes = {
   "/tx": Transactions,
   "/add": Add,
   "/blog": Blog,
+  "/shop": Shop,
   "/terms": Terms,
   "/settings": Settings,
   "/gql": () => (

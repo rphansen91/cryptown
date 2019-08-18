@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { withTheme } from "material-ui/styles";
-import Typography from "material-ui/Typography";
-import { CardActions } from "material-ui/Card";
-import Button from "material-ui/Button";
+import Typography from "@material-ui/core/Typography";
+import CardActions from "@material-ui/core/CardActions";
+import Button from "@material-ui/core/Button";
+import { useTheme } from "@material-ui/styles";
 import { Link } from "react-router-dom";
-import List from "material-ui/List";
+import List from "@material-ui/core/List";
 import Line from "../../charts/Line";
 import { graphql, Query } from "react-apollo";
 import usd from "../../utility/usd";
@@ -68,8 +68,9 @@ const computeValueAt = series => createdAt => {
   return 0;
 };
 
-const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props } = {}) => {
+const Coin = ({ id, data, onRemove, txs, pos, neg, ...props } = {}) => {
   let { loading, error, coin } = data || {};
+  const theme = useTheme();
 
   if (loading) coin = loadingCoin();
   if (error) coin = defaultCoin();
@@ -130,7 +131,9 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, theme, ...props } = {}) => {
                 attrs={{ fill: color }}
                 style={iconStyle}
               />
-              <Typography type="title">{coin.name}</Typography>
+              <Typography variant="h4" color="textPrimary">
+                {coin.name}
+              </Typography>
               <div className="coin-details">
                 <Typography type="body1">
                   {usd.display(coin.price_usd)} USD
@@ -184,7 +187,7 @@ const connector = connect(
   })
 );
 
-const ConnCoin = withRouter(withTheme()(Coin));
+const ConnCoin = withRouter(Coin);
 
 export default connector(props => (
   <Query query={coinQuery} variables={props}>

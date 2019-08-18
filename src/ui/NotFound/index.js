@@ -1,11 +1,14 @@
-import React from 'react'
-import Typography from 'material-ui/Typography';
-import './style.css'
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import "./style.css";
 
-export default () =>
+export default () => (
   <div>
     <section />
     <section>
-      <Typography type="title">Not Found</Typography>
+      <Typography variant="h4" color="textPrimary">
+        Not Found
+      </Typography>
     </section>
   </div>
+);

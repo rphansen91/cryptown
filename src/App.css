@@ -14,8 +14,9 @@ a {
 }
 
 .App.open {
-  transform: translate3d(190px, 0, 0);
+  /* transform: translate3d(190px, 0, 0); */
   /* padding-left: 250px */
+  margin-left: 190px;
 }
 
 .links {
@@ -125,6 +126,10 @@ section {
 
 .border-bottom-2 {
   border-bottom: solid 0.2em;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {

@@ -20,25 +20,37 @@ import {
 import Article from "../Article";
 import SEO from "../SEO";
 
-export const Blog = compose(
+export const Shop = compose(
   withArticles,
   withPost
 )(({ setPost, q, loading, data, error }) => (
   <div class="row">
     {(data.news || []).reduce((acc, a, i) => {
+      if ((i + 1) % 2 === 0) {
+        acc.push(
+          <NewsDisplayAd
+            style={{
+              width: 350,
+              display: "inline-block",
+              margin: "1em"
+            }}
+            key={i + "ad"}
+          />
+        );
+      }
       acc.push(
-        <div className="col-lg-4 col-md-6" key={i}>
+        <div className="col-md-3">
           <Link
             aria-label="Read More"
             className="d-block"
             onClick={() => setPost(a)}
             to={`/post/${a.publishedAt}`}
+            key={i}
           >
             <Article
               imageSize={160}
               image={a.urlToImage}
               title={a.title}
-              style={{ width: "100%" }}
               actions={
                 <CardActions>
                   <Button color="primary" aria-label="Read More">
@@ -48,15 +60,6 @@ export const Blog = compose(
               }
             />
           </Link>
-        </div>,
-        <div className="col-lg-4 col-md-6" key={i + "ad"}>
-          <NewsDisplayAd
-            style={{
-              width: 350,
-              display: "inline-block",
-              margin: "1em"
-            }}
-          />
         </div>
       );
       return acc;
@@ -66,15 +69,15 @@ export const Blog = compose(
 
 export default () => (
   <div>
-    <SEO title={"Blog | Hodl Stream"} path={"/blog"} />
+    <SEO title={"Shop | Hodl Stream"} path={"/shop"} />
     <TopBannerDisplayAd />
     <section />
     <Typography variant="h4" color="textPrimary">
-      Blog
+      Shop
     </Typography>
     <section />
-    <section className="container">
-      <Blog />
+    <section>
+      <Shop />
     </section>
     <BottomBannerDisplayAd />
   </div>

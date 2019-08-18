@@ -1,21 +1,27 @@
-import React from 'react';
-import Typography from 'material-ui/Typography';
-import { TopBannerDisplayAd, BottomBannerDisplayAd } from '../../ads/slots';
-import SEO from '../SEO';
-import FbFeed from '../Social/FbFeed';
-import InstaPosts from '../Social/InstaPosts';
-import TwitterFeed from '../Social/TwitterFeed';
-import './style.css';
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import { TopBannerDisplayAd, BottomBannerDisplayAd } from "../../ads/slots";
+import SEO from "../SEO";
+import FbFeed from "../Social/FbFeed";
+import InstaPosts from "../Social/InstaPosts";
+import TwitterFeed from "../Social/TwitterFeed";
+import "./style.css";
 
-export default () =>
+export default () => (
   <div>
-    <SEO title={'About | Hodl Stream'} path='/about' />
+    <SEO title={"About | Hodl Stream"} path="/about" />
     <TopBannerDisplayAd />
     <section />
     <section>
-      <Typography type="title">About</Typography>
-      <Typography type="subtitle" color="secondary">Track your crypto portfolio and visualize how it changes over time.</Typography>
-      <Typography type="subtitle" color="secondary">Your transaction data is never transmitted to our servers.</Typography>
+      <Typography variant="h4" color="textPrimary">
+        About
+      </Typography>
+      <Typography variant="subtitle1" color="textSecondary">
+        Track your crypto portfolio and visualize how it changes over time.
+      </Typography>
+      <Typography variant="subtitle1" color="textSecondary">
+        Your transaction data is never transmitted to our servers.
+      </Typography>
     </section>
     <section className="about">
       <div className="about-content">
@@ -25,8 +31,12 @@ export default () =>
         <TwitterFeed username="hodl_stream" />
       </div>
       <div className="about-content">
-        <InstaPosts username="hodlstream" link="edfee4f5133f008b0c0787bf13bede2b061e23953e3298f30356155e5f35197e" />
+        <InstaPosts
+          username="hodlstream"
+          link="edfee4f5133f008b0c0787bf13bede2b061e23953e3298f30356155e5f35197e"
+        />
       </div>
     </section>
     <BottomBannerDisplayAd />
   </div>
+);

@@ -8,9 +8,9 @@ import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from "react-redux";
 import { compose, createStore, applyMiddleware } from "redux";
 import blockStore from "./store/reducers/index";
-import grey from "material-ui/colors/grey";
+import grey from "@material-ui/core/colors/grey";
 import thunk from "redux-thunk";
-import lightBlue from "material-ui/colors/lightBlue";
+import lightBlue from "@material-ui/core/colors/lightBlue";
 import { BrowserRouter } from "react-router-dom";
 import storage from "./utility/storage";
 

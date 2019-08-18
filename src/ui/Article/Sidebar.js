@@ -1,21 +1,21 @@
 import React from "react";
 import { compose } from "redux";
-import Typography from "material-ui/Typography";
+import Typography from "@material-ui/core/Typography";
 import { NewsDisplayAd } from "../../ads/slots";
 import Article from "../Article";
 import { withPost } from "../../store/reducers/post";
 import withArticles from "./withArticles";
-import { CardActions } from "material-ui/Card";
-import Button from "material-ui/Button";
+import CardActions from "@material-ui/core/CardActions";
+import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import { CircularProgress } from "material-ui/Progress";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default compose(
   withPost,
   withArticles
 )(({ q, loading, data, error, setPost, filter = v => v }) => (
   <div className="article-sidebar">
-    <Typography type="title" className="my-2">
+    <Typography variant="h4" color="textPrimary" className="my-2">
       Articles {error ? `- ${error}` : ""}
     </Typography>
 
@@ -37,7 +37,7 @@ export default compose(
       acc.push(
         <Link
           aria-label="Read More"
-          className="d-block"
+          className="d-block p-2"
           onClick={() => setPost(a)}
           to={`/post/${a.publishedAt}`}
           key={i}
@@ -47,7 +47,7 @@ export default compose(
             title={a.title}
             actions={
               <CardActions>
-                <Button dense color="primary" aria-label="Read More" raised>
+                <Button color="primary" aria-label="Read More">
                   Read More
                 </Button>
               </CardActions>

@@ -1,7 +1,8 @@
-import React from 'react';
-import { ListItem } from 'material-ui/List';
+import React from "react";
+import ListItem from "@material-ui/core/ListItem";
 
-export default ({ children, onClick }) =>
+export default ({ children, onClick }) => (
   <ListItem button onClick={onClick}>
-    { children }
+    {children}
   </ListItem>
+);

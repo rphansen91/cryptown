@@ -16,12 +16,13 @@ import { ApolloProvider } from "react-apollo";
 import { Provider } from "react-redux";
 import { Route, StaticRouter } from "react-router-dom";
 import createServerStore from "./store";
-import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { SheetsRegistry } from "react-jss/lib/jss";
+import { ServerStyleSheets, ThemeProvider } from "@material-ui/styles";
+import { createGenerateClassName } from "@material-ui/styles";
 import JssProvider from "react-jss/lib/JssProvider";
-import createGenerateClassName from "material-ui/styles/createGenerateClassName";
-import grey from "material-ui/colors/grey";
-import lightBlue from "material-ui/colors/lightBlue";
+import grey from "@material-ui/core/colors/grey";
+import lightBlue from "@material-ui/core/colors/lightBlue";
 import { routes } from "../src/Routes";
 import App from "../src/App";
 import client from "../src/gql/server";
@@ -29,17 +30,14 @@ import { renderToStringWithData } from "react-apollo";
 import manifest from "../build/asset-manifest.json";
 
 const filePath = path.resolve(__dirname, "../build/index.html");
-const cssPath = path.resolve(__dirname, `../build/${manifest["main.css"]}`);
+// const cssPath = path.resolve(__dirname, `../build/${manifest["main.css"]}`);
 const htmlData = fs.readFileSync(filePath, "utf8");
-const cssData = fs.readFileSync(cssPath, "utf8");
+// const cssData = fs.readFileSync(cssPath, "utf8");
 const prepHTML = (data, { html, head, body, css, state }) => {
   return data
     .replace('<html lang="en">', `<html ${html}>`)
     .replace("<head>", "<head>" + head)
-    .replace(
-      "</head>",
-      `<style id="jss-server-side">${cssData} ${css}</style></head>`
-    )
+    .replace("</head>", `<style id="jss-server-side">${css}</style></head>`)
     .replace(
       "</head>",
       `<script>window.__APOLLO_STATE__=${JSON.stringify(state).replace(
@@ -48,10 +46,11 @@ const prepHTML = (data, { html, head, body, css, state }) => {
       )}</script></head>`
     )
     .replace(/<div id="root">.*<\/div>/, `<div id="root">${body}</div>`);
+  // .replace("</body>", "<script src=" + manifest["main.js"] + "></script>");
 };
 
 const universalLoader = (req, res) => {
-  const sheetsRegistry = new SheetsRegistry();
+  const sheets = new ServerStyleSheets();
   const { store } = createServerStore(req.path);
   const apolloClient = client(fetch);
   const theme = createMuiTheme({
@@ -60,25 +59,19 @@ const universalLoader = (req, res) => {
       secondary: lightBlue
     }
   });
-  const generateClassName = createGenerateClassName();
-  const sheetsManager = new Map();
   const context = {};
-  const ServerApp = () => (
-    <StaticRouter location={req.url} context={context}>
-      <Provider store={store}>
-        <ApolloProvider client={apolloClient}>
-          <JssProvider
-            registry={sheetsRegistry}
-            generateClassName={generateClassName}
-          >
-            <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+  const ServerApp = () =>
+    sheets.collect(
+      <StaticRouter location={req.url} context={context}>
+        <Provider store={store}>
+          <ApolloProvider client={apolloClient}>
+            <MuiThemeProvider theme={theme}>
               <App />
             </MuiThemeProvider>
-          </JssProvider>
-        </ApolloProvider>
-      </Provider>
-    </StaticRouter>
-  );
+          </ApolloProvider>
+        </Provider>
+      </StaticRouter>
+    );
 
   Promise.resolve()
     .then(() => {
@@ -91,9 +84,10 @@ const universalLoader = (req, res) => {
     // .then(() => renderToString(<ServerApp />))
     .then(() => renderToStringWithData(<ServerApp />))
     .then(body => {
+      console.log("got body");
       const helmet = Helmet.renderStatic();
       const initialState = apolloClient.extract();
-      const css = sheetsRegistry.toString();
+      const css = sheets.toString();
       const html = prepHTML(htmlData, {
         state: initialState,
         html: helmet.htmlAttributes.toString(),

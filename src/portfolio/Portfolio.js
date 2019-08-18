@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { allCoins, current, empty } from "./compute";
 import Add from "./Add";
-import Button from "material-ui/Button";
-import Grid from "material-ui/Grid";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 import coinColor from "../icons/colors";
 import gql from "graphql-tag";
 
@@ -71,9 +71,7 @@ const Portfolio = props => {
         colors={Object.keys(series).map(coinColor)}
       />
       <Link aria-label="Add Transaction" to="/add">
-        <Button aria-label="Add Transaction" raised>
-          Add TXs
-        </Button>
+        <Button aria-label="Add Transaction">Add TXs</Button>
       </Link>
     </section>
   );

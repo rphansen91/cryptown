@@ -1,32 +1,34 @@
-import React, { Component } from 'react'
-import IconButton from 'material-ui/IconButton'
-import defaultIcon from './defaultIcon'
-import fetch from 'isomorphic-fetch'
-import { loadSvg } from '../store/reducers/svgs'
-import { connect } from 'react-redux'
+import React from "react";
+import IconButton from "@material-ui/core/IconButton";
+import { useTheme } from "@material-ui/styles";
 
-class CryptoIcon extends Component {
-  constructor (props) {
-    super(props)
-  }
-  // componentWillMount () {
-  //   const { loadIcon } = this.props;
-  //   loadIcon();
-  // }
+export default ({
+  icon,
+  attrs: _attrs,
+  button,
+  onClick = v => v,
+  btnstyle,
+  ...props
+}) => {
+  const theme = useTheme();
+  const color = theme.palette.text.secondary;
+  const attrs = Object.assign({ color }, _attrs);
+  const query = Object.keys(attrs)
+    .map(k => `${k}=${attrs[k]}`)
+    .join("&");
+  const Icon = (
+    <img
+      className="icon"
+      src={`/svg/${icon}.svg?${query}`}
+      {...props}
+      onClick={onClick}
+    />
+  );
 
-  // componentWillUpdate () {
-  //   const { loadIcon } = this.props;
-  //   loadIcon();
-  // }
-
-  render () {
-    const { icon, attrs, button, onClick=(v=>v), btnstyle, loadIcon } = this.props
-    const query = Object.keys(attrs).map(k => `${k}=${attrs[k]}`).join("&")
-    const Icon = <img className='icon' src={`/svg/${icon}.svg?${query}`} {...this.props} onClick={onClick} />
-
-    if (!button) return Icon
-    return <IconButton onClick={onClick} style={btnstyle}>{ Icon }</IconButton>
-  }
-}
-
-export default CryptoIcon
+  if (!button) return Icon;
+  return (
+    <IconButton onClick={onClick} style={btnstyle}>
+      {Icon}
+    </IconButton>
+  );
+};

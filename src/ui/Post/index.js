@@ -3,9 +3,9 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { TopBannerDisplayAd, BottomBannerDisplayAd } from "../../ads/slots";
-import Typography from "material-ui/Typography";
-import Button from "material-ui/Button";
-import { CircularProgress } from "material-ui/Progress";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import ArticleSidebar from "../Article/Sidebar";
 import withArticles from "../Article/withArticles";
 import Layout from "../Layout";
@@ -34,17 +34,17 @@ const Post = ({ loading, post = {}, path }) => {
             )}
           </section>
           <section>
-            <Typography type="title">{post.title}</Typography>
-            <Typography type="subtitle" color="secondary">
+            <Typography variant="h4" color="textPrimary">
+              {post.title}
+            </Typography>
+            <Typography variant="subtitle1" color="secondary">
               {post.content}
             </Typography>
           </section>
           <section>
             {post.url && (
               <a href={post.url} target="_blank">
-                <Button raised aria-label="Read More">
-                  Read More
-                </Button>
+                <Button aria-label="Read More">Read More</Button>
               </a>
             )}
           </section>
