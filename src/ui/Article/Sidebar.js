@@ -20,42 +20,44 @@ export default compose(
     </Typography>
 
     {loading && <CircularProgress style={{ margin: "auto" }} />}
-    {(data.news || []).filter(filter).reduce((acc, a, i) => {
-      if (i % 2 === 0) {
-        acc.push(
-          <NewsDisplayAd
-            style={{
-              display: "block",
-              maxWidth: "100%",
-              margin: "auto",
-              width: 350
-            }}
-            key={i + "ad"}
-          />
-        );
-      }
-      acc.push(
-        <Link
-          aria-label="Read More"
-          className="d-block p-2"
-          onClick={() => setPost(a)}
-          to={`/post/${a.publishedAt}`}
-          key={i}
-        >
-          <Article
-            // image={a.urlToImage}
-            title={a.title}
-            actions={
-              <CardActions>
-                <Button color="primary" aria-label="Read More">
-                  Read More
-                </Button>
-              </CardActions>
-            }
-          />
-        </Link>
-      );
-      return acc;
-    }, [])}
+    {data
+      ? (data.news || []).filter(filter).reduce((acc, a, i) => {
+          if (i % 2 === 0) {
+            acc.push(
+              <NewsDisplayAd
+                style={{
+                  display: "block",
+                  maxWidth: "100%",
+                  margin: "auto",
+                  width: 350
+                }}
+                key={i + "ad"}
+              />
+            );
+          }
+          acc.push(
+            <Link
+              aria-label="Read More"
+              className="d-block p-2"
+              onClick={() => setPost(a)}
+              to={`/post/${a.publishedAt}`}
+              key={i}
+            >
+              <Article
+                // image={a.urlToImage}
+                title={a.title}
+                actions={
+                  <CardActions>
+                    <Button color="primary" aria-label="Read More">
+                      Read More
+                    </Button>
+                  </CardActions>
+                }
+              />
+            </Link>
+          );
+          return acc;
+        }, [])
+      : null}
   </div>
 ));

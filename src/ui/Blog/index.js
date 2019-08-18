@@ -9,6 +9,7 @@ import coinColor from "../../icons/colors";
 import { graphql, Query } from "react-apollo";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { withRouter } from "react-router-dom";
 import withArticles from "../Article/withArticles";
 import { setPost, withPost } from "../../store/reducers/post";
@@ -24,43 +25,48 @@ export const Blog = compose(
   withArticles,
   withPost
 )(({ setPost, q, loading, data, error }) => (
-  <div class="row">
-    {(data.news || []).reduce((acc, a, i) => {
-      acc.push(
-        <div className="col-lg-4 col-md-6" key={i}>
-          <Link
-            aria-label="Read More"
-            className="d-block"
-            onClick={() => setPost(a)}
-            to={`/post/${a.publishedAt}`}
-          >
-            <Article
-              imageSize={160}
-              image={a.urlToImage}
-              title={a.title}
-              style={{ width: "100%" }}
-              actions={
-                <CardActions>
-                  <Button color="primary" aria-label="Read More">
-                    Read More
-                  </Button>
-                </CardActions>
-              }
-            />
-          </Link>
-        </div>,
-        <div className="col-lg-4 col-md-6" key={i + "ad"}>
-          <NewsDisplayAd
-            style={{
-              width: 350,
-              display: "inline-block",
-              margin: "1em"
-            }}
-          />
-        </div>
-      );
-      return acc;
-    }, [])}
+  <div>
+    {loading && <CircularProgress style={{ margin: "auto" }} />}
+    <div class="row">
+      {data
+        ? (data.news || []).reduce((acc, a, i) => {
+            acc.push(
+              <div className="col-lg-4 col-md-6" key={i}>
+                <Link
+                  aria-label="Read More"
+                  className="d-block"
+                  onClick={() => setPost(a)}
+                  to={`/post/${a.publishedAt}`}
+                >
+                  <Article
+                    imageSize={160}
+                    image={a.urlToImage}
+                    title={a.title}
+                    style={{ width: "100%" }}
+                    actions={
+                      <CardActions>
+                        <Button color="primary" aria-label="Read More">
+                          Read More
+                        </Button>
+                      </CardActions>
+                    }
+                  />
+                </Link>
+              </div>,
+              <div className="col-lg-4 col-md-6" key={i + "ad"}>
+                <NewsDisplayAd
+                  style={{
+                    width: 350,
+                    display: "inline-block",
+                    margin: "1em"
+                  }}
+                />
+              </div>
+            );
+            return acc;
+          }, [])
+        : null}
+    </div>
   </div>
 ));
 

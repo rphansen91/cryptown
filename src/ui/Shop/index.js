@@ -42,41 +42,43 @@ export const Shop = compose(
   <div>
     <div className="text-center">{loading && <CircularProgress />}</div>
     <div class="row">
-      {(data.products || []).reduce((acc, a, i) => {
-        acc.push(
-          <div className="col-lg-4 col-md-6" key={i}>
-            <Article
-              imageSize={160}
-              image={a.images[0]}
-              title={a.name}
-              actions={
-                <CardActions>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    aria-label="Buy Now"
-                    onClick={handleCheckout(a)}
-                  >
-                    Buy Now
-                  </Button>
-                </CardActions>
-              }
-            />
-          </div>
-        );
-        // acc.push(
-        //   <div className="col-lg-4 col-md-6" key={i + "ad"}>
-        //     <NewsDisplayAd
-        //       style={{
-        //         width: 350,
-        //         display: "inline-block",
-        //         margin: "1em"
-        //       }}
-        //     />
-        //   </div>
-        // );
-        return acc;
-      }, [])}
+      {data
+        ? (data.products || []).reduce((acc, a, i) => {
+            acc.push(
+              <div className="col-lg-4 col-md-6" key={i}>
+                <Article
+                  imageSize={160}
+                  image={a.images[0]}
+                  title={a.name}
+                  actions={
+                    <CardActions>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        aria-label="Buy Now"
+                        onClick={handleCheckout(a)}
+                      >
+                        Buy Now
+                      </Button>
+                    </CardActions>
+                  }
+                />
+              </div>
+            );
+            // acc.push(
+            //   <div className="col-lg-4 col-md-6" key={i + "ad"}>
+            //     <NewsDisplayAd
+            //       style={{
+            //         width: 350,
+            //         display: "inline-block",
+            //         margin: "1em"
+            //       }}
+            //     />
+            //   </div>
+            // );
+            return acc;
+          }, [])
+        : null}
     </div>
   </div>
 ));
