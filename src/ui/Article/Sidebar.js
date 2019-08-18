@@ -13,7 +13,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 export default compose(
   withPost,
   withArticles
-)(({ q, loading, data, error, setPost, filter = v => v }) => (
+)(({ q, loading, data, error, setPost, activePost, filter = v => v }) => (
   <div className="article-sidebar">
     <Typography variant="h4" color="textPrimary" className="my-2">
       Articles {error ? `- ${error}` : ""}
@@ -35,6 +35,10 @@ export default compose(
               />
             );
           }
+          const isActive =
+            activePost &&
+            activePost.publishedAt === a.publishedAt &&
+            activePost.title === a.title;
           acc.push(
             <Link
               aria-label="Read More"
@@ -44,12 +48,13 @@ export default compose(
               key={i}
             >
               <Article
+                isActive={isActive}
                 // image={a.urlToImage}
                 title={a.title}
                 actions={
                   <CardActions>
                     <Button color="primary" aria-label="Read More">
-                      Read More
+                      {isActive ? "Currently Reading" : "Read More"}
                     </Button>
                   </CardActions>
                 }

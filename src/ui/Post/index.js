@@ -51,7 +51,7 @@ const Post = ({ loading, post = {}, path }) => {
           <BottomBannerDisplayAd />
         </div>
       }
-      sidebar={<ArticleSidebar filter={({ title }) => title !== post.title} />}
+      sidebar={<ArticleSidebar activePost={post} />}
     />
   );
 };

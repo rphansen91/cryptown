@@ -17,11 +17,14 @@ function SimpleMediaCard(props) {
     actions,
     imageStyle,
     large = true,
+    isActive = false,
     imageSize = "6em",
     ...style
   } = props;
   const theme = useTheme();
-  const color = theme.palette.text.secondary;
+  const color = isActive
+    ? theme.palette.primary.main
+    : theme.palette.text.secondary;
   return (
     <Card
       className="article"
