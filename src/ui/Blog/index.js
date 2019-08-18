@@ -31,7 +31,7 @@ export const Blog = compose(
       {data
         ? (data.news || []).reduce((acc, a, i) => {
             acc.push(
-              <div className="col-lg-4 col-md-6" key={i}>
+              <div className="col-lg-4 col-md-6 mb-4" key={i}>
                 <Link
                   aria-label="Read More"
                   className="d-block"
@@ -53,14 +53,8 @@ export const Blog = compose(
                   />
                 </Link>
               </div>,
-              <div className="col-lg-4 col-md-6" key={i + "ad"}>
-                <NewsDisplayAd
-                  style={{
-                    width: 350,
-                    display: "inline-block",
-                    margin: "1em"
-                  }}
-                />
+              <div className="col-lg-4 col-md-6 mb-4" key={i + "ad"}>
+                <NewsDisplayAd />
               </div>
             );
             return acc;
