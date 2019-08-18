@@ -49,7 +49,13 @@ export const Shop = compose(
                 <Article
                   imageSize={260}
                   image={a.images[0]}
-                  title={a.name}
+                  title={`${a.name} - $${(a.amount / 100).toLocaleString(
+                    undefined,
+                    {
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2
+                    }
+                  )}`}
                   imageStyle={{
                     borderBottom: "1px solid",
                     backgroundSize: "contain"
