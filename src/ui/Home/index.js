@@ -29,7 +29,7 @@ export default compose(
             </Typography>
             <div className="row">
               {coins.map(c => (
-                <div className="col-md-6 mb-3" key={c.id}>
+                <div className="col-lg-6 mb-3" key={c.id}>
                   <Trend
                     id={c.id}
                     pair={pair}
@@ -38,7 +38,7 @@ export default compose(
                   />
                 </div>
               ))}
-              <div className="col-md-6 mb-3">
+              <div className="col-lg-6 mb-3">
                 <div className="trend h-100">
                   <Add />
                 </div>
