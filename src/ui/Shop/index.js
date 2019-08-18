@@ -47,10 +47,13 @@ export const Shop = compose(
             acc.push(
               <div className="col-lg-4 col-md-6" key={i}>
                 <Article
-                  imageSize={160}
+                  imageSize={260}
                   image={a.images[0]}
                   title={a.name}
-                  imageStyle={{ borderBottom: "1px solid" }}
+                  imageStyle={{
+                    borderBottom: "1px solid",
+                    backgroundSize: "contain"
+                  }}
                   actions={
                     <CardActions>
                       <Button
