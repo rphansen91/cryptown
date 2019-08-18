@@ -135,15 +135,15 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, ...props } = {}) => {
                 {coin.name}
               </Typography>
               <div className="coin-details">
-                <Typography type="body1">
+                <Typography type="body1" color="textSecondary">
                   {usd.display(coin.price_usd)} USD
                 </Typography>
-                <Typography type="body2">
+                <Typography type="body2" color="textSecondary">
                   {btc.display(coin.price_btc)} BTC
                 </Typography>
                 <div className="coin-seperator" />
                 <Percent value={coin.percent_change_24h} pos={pos} neg={neg} />
-                <Typography type="body2">
+                <Typography type="body2" color="textSecondary">
                   {total} {coin.symbol}
                 </Typography>
               </div>
