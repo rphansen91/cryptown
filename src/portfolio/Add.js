@@ -142,6 +142,8 @@ class AddTx extends Component {
               <div className="text-center">
                 <Button
                   type="submit"
+                  variant="contained"
+                  color="primary"
                   style={{ margin: "1em" }}
                   aria-label="Add Transaction"
                 >
