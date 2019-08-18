@@ -57,7 +57,7 @@ export const MainListItems = withRouter(props => (
         </ListItemText>
       </ListItem>
     </Link>
-    <Link to="/tx" aria-label="tx">
+    {/* <Link to="/tx" aria-label="tx">
       <ListItem button>
         <ListItemIcon>
           <SendIcon />
@@ -66,7 +66,7 @@ export const MainListItems = withRouter(props => (
           <Typography color="textPrimary">Trades</Typography>
         </ListItemText>
       </ListItem>
-    </Link>
+    </Link> */}
     <Link to="/add" aria-label="add">
       <ListItem button>
         <ListItemIcon>
