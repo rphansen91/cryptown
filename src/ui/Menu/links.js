@@ -9,6 +9,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import DraftsIcon from "@material-ui/icons/Drafts";
 import AddIcon from "@material-ui/icons/Add";
 import NoteIcon from "@material-ui/icons/Note";
+import StoreIcon from "@material-ui/icons/Store";
 import GQLIcon from "@material-ui/icons/NetworkCheck";
 import HelpIcon from "@material-ui/icons/Help";
 import SendIcon from "@material-ui/icons/Send";
@@ -43,6 +44,16 @@ export const MainListItems = withRouter(props => (
         </ListItemIcon>
         <ListItemText>
           <Typography color="textPrimary">Blog</Typography>
+        </ListItemText>
+      </ListItem>
+    </Link>
+    <Link to="/shop" aria-label="shop">
+      <ListItem button>
+        <ListItemIcon>
+          <StoreIcon />
+        </ListItemIcon>
+        <ListItemText>
+          <Typography color="textPrimary">Shop</Typography>
         </ListItemText>
       </ListItem>
     </Link>
