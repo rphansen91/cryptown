@@ -15,6 +15,7 @@ function SimpleMediaCard(props) {
     image,
     title,
     actions,
+    imageStyle,
     large = true,
     imageSize = "6em",
     ...style
@@ -33,7 +34,11 @@ function SimpleMediaCard(props) {
     >
       {image && (
         <CardMedia
-          style={{ height: imageSize, width: large ? "inherit" : imageSize }}
+          style={{
+            height: imageSize,
+            width: large ? "inherit" : imageSize,
+            ...imageStyle
+          }}
           image={image}
           title={title}
         />

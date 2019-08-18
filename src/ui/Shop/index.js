@@ -50,6 +50,7 @@ export const Shop = compose(
                   imageSize={160}
                   image={a.images[0]}
                   title={a.name}
+                  imageStyle={{ borderBottom: "1px solid" }}
                   actions={
                     <CardActions>
                       <Button
