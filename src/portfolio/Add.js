@@ -154,25 +154,30 @@ class AddTx extends Component {
               </div>
             </form>
           </section>
-          <section>
-            {txs.some(coin => coin.value) && (
-              <Typography variant="h4" color="textPrimary">
-                All Transactions
-              </Typography>
-            )}
-            <List className="text-initial">
-              {txs
-                .filter(({ value }) => value)
-                .map((tx, i) => (
-                  <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />
-                ))}
-            </List>
-          </section>
         </div>
       </div>
     );
   }
 }
+
+export const Transactions = connect(({ txs }) => ({ txs }))(({ txs }) => {
+  return (
+    <section>
+      {txs.some(coin => coin.value) && (
+        <Typography variant="h4" color="textPrimary">
+          All Transactions
+        </Typography>
+      )}
+      <List className="text-initial">
+        {txs
+          .filter(({ value }) => value)
+          .map((tx, i) => (
+            <Tx key={i} tx={tx} onRemove={() => this.remove(i)} />
+          ))}
+      </List>
+    </section>
+  );
+});
 
 const store = txStore();
 const mapStateToProps = ({ txs, adding }) => ({

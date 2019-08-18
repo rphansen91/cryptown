@@ -1,5 +1,5 @@
 import React from "react";
-import Add from "../../portfolio/Add";
+import Add, { Transactions } from "../../portfolio/Add";
 import { TopBannerDisplayAd, BottomBannerDisplayAd } from "../../ads/slots";
 import ArticleSidebar from "../Article/Sidebar";
 import Layout from "../Layout";
@@ -15,6 +15,7 @@ export default () => (
         <section>
           <div className="contained">
             <Add />
+            <Transactions />
           </div>
         </section>
         <BottomBannerDisplayAd />
