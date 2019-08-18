@@ -12,6 +12,7 @@ import Blog from "./ui/Blog";
 import Shop from "./ui/Shop";
 import Coin from "./ui/Coin";
 import Terms from "./ui/Terms";
+import Success from "./ui/Success";
 import Transactions from "./ui/Txs";
 import Settings from "./ui/Settings";
 import { init, pageview } from "./utility/analytics";
@@ -24,6 +25,7 @@ export const routes = {
   "/blog": Blog,
   "/shop": Shop,
   "/terms": Terms,
+  "/success": Success,
   "/settings": Settings,
   "/gql": () => (
     <GraphiQL

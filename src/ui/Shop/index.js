@@ -9,6 +9,7 @@ import coinColor from "../../icons/colors";
 import { graphql, Query } from "react-apollo";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { withRouter } from "react-router-dom";
 import withProducts from "./withProducts";
 import { setPost, withPost } from "../../store/reducers/post";
@@ -20,44 +21,63 @@ import {
 import Article from "../Article";
 import SEO from "../SEO";
 
+function handleCheckout(product) {
+  return async function() {
+    const stripe = window.Stripe(process.env.REACT_APP_STRIPE_KEY);
+    try {
+      const result = await stripe.redirectToCheckout({
+        sessionId: product.session
+      });
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
 export const Shop = compose(
   withProducts,
   withPost
 )(({ setPost, q, loading, data, error }) => (
-  <div class="row">
-    {(data.checkout && data.checkout.products
-      ? data.checkout.products
-      : []
-    ).reduce((acc, a, i) => {
-      acc.push(
-        <div className="col-lg-4 col-md-6" key={i}>
-          <Article
-            imageSize={160}
-            image={a.images[0]}
-            title={a.name}
-            actions={
-              <CardActions>
-                <Button color="primary" aria-label="Read More">
-                  Buy Now
-                </Button>
-              </CardActions>
-            }
-          />
-        </div>
-      );
-      acc.push(
-        <div className="col-lg-4 col-md-6" key={i + "ad"}>
-          <NewsDisplayAd
-            style={{
-              width: 350,
-              display: "inline-block",
-              margin: "1em"
-            }}
-          />
-        </div>
-      );
-      return acc;
-    }, [])}
+  <div>
+    <div className="text-center">{loading && <CircularProgress />}</div>
+    <div class="row">
+      {(data.products || []).reduce((acc, a, i) => {
+        acc.push(
+          <div className="col-lg-4 col-md-6" key={i}>
+            <Article
+              imageSize={160}
+              image={a.images[0]}
+              title={a.name}
+              actions={
+                <CardActions>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    aria-label="Buy Now"
+                    onClick={handleCheckout(a)}
+                  >
+                    Buy Now
+                  </Button>
+                </CardActions>
+              }
+            />
+          </div>
+        );
+        // acc.push(
+        //   <div className="col-lg-4 col-md-6" key={i + "ad"}>
+        //     <NewsDisplayAd
+        //       style={{
+        //         width: 350,
+        //         display: "inline-block",
+        //         margin: "1em"
+        //       }}
+        //     />
+        //   </div>
+        // );
+        return acc;
+      }, [])}
+    </div>
   </div>
 ));
 

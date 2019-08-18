@@ -5,7 +5,7 @@ import "./style.css";
 export default () => (
   <div>
     <section />
-    <section>
+    <section className="container">
       <Typography variant="h4" color="textPrimary">
         Not Found
       </Typography>

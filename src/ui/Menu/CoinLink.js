@@ -22,7 +22,7 @@ export default coinQl(
   ({ open, id, history, data: { loading, error, coin = defaultCoin } }) => {
     return (
       <Link aria-label={coin.symbol} to={"/coin/" + id}>
-        <ListItem>
+        <ListItem button>
           <ListItemIcon>
             <CryptoIcon icon={coin.symbol} style={iconStyle} />
           </ListItemIcon>

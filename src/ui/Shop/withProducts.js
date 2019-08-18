@@ -4,14 +4,13 @@ import { Query } from "react-apollo";
 
 const productsQuery = gql`
   query Products {
-    checkout {
-      products {
-        name
-        amount
-        description
-        images
-        currency
-      }
+    products {
+      name
+      amount
+      description
+      images
+      currency
+      session
     }
   }
 `;

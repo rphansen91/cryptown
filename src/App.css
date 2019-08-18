@@ -7,10 +7,13 @@ a {
 }
 
 .App {
+  display: flex;
+  flex-direction: column;
   position: relative;
   text-align: center;
   padding-left: 60px;
   transition: transform 0.1s ease-in;
+  min-height: 100vh;
 }
 
 .App.open {
@@ -84,6 +87,7 @@ a {
 
 .content {
   position: relative;
+  flex-grow: 1;
 }
 
 section {
