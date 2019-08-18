@@ -137,6 +137,11 @@ a:hover {
     padding-left: 0;
   }
 
+  .App.open {
+    transform: translate3d(250px, 0, 0);
+    margin-left: 0;
+  }
+
   .links {
     width: 0;
   }

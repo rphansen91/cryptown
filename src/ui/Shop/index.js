@@ -10,7 +10,7 @@ import { graphql, Query } from "react-apollo";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import { withRouter } from "react-router-dom";
-import withArticles from "../Article/withArticles";
+import withProducts from "./withProducts";
 import { setPost, withPost } from "../../store/reducers/post";
 import {
   TopBannerDisplayAd,
@@ -21,45 +21,39 @@ import Article from "../Article";
 import SEO from "../SEO";
 
 export const Shop = compose(
-  withArticles,
+  withProducts,
   withPost
 )(({ setPost, q, loading, data, error }) => (
   <div class="row">
-    {(data.news || []).reduce((acc, a, i) => {
-      if ((i + 1) % 2 === 0) {
-        acc.push(
+    {(data.checkout && data.checkout.products
+      ? data.checkout.products
+      : []
+    ).reduce((acc, a, i) => {
+      acc.push(
+        <div className="col-lg-4 col-md-6" key={i}>
+          <Article
+            imageSize={160}
+            image={a.images[0]}
+            title={a.name}
+            actions={
+              <CardActions>
+                <Button color="primary" aria-label="Read More">
+                  Buy Now
+                </Button>
+              </CardActions>
+            }
+          />
+        </div>
+      );
+      acc.push(
+        <div className="col-lg-4 col-md-6" key={i + "ad"}>
           <NewsDisplayAd
             style={{
               width: 350,
               display: "inline-block",
               margin: "1em"
             }}
-            key={i + "ad"}
           />
-        );
-      }
-      acc.push(
-        <div className="col-md-3">
-          <Link
-            aria-label="Read More"
-            className="d-block"
-            onClick={() => setPost(a)}
-            to={`/post/${a.publishedAt}`}
-            key={i}
-          >
-            <Article
-              imageSize={160}
-              image={a.urlToImage}
-              title={a.title}
-              actions={
-                <CardActions>
-                  <Button color="primary" aria-label="Read More">
-                    Read More
-                  </Button>
-                </CardActions>
-              }
-            />
-          </Link>
         </div>
       );
       return acc;
@@ -76,7 +70,7 @@ export default () => (
       Shop
     </Typography>
     <section />
-    <section>
+    <section className="container">
       <Shop />
     </section>
     <BottomBannerDisplayAd />

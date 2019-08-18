@@ -9,6 +9,8 @@ const sidebarQuery = gql`
       title
       publishedAt
       urlToImage
+      content
+      htmlContent
     }
   }
 `;

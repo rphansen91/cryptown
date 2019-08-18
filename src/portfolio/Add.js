@@ -98,7 +98,7 @@ class AddTx extends Component {
     return (
       <div>
         <section>
-          <Typography variant="h4" color="textPrimary">
+          <Typography variant="h6" color="textPrimary">
             New Transaction
           </Typography>
           {error && (

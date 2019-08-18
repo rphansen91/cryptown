@@ -36,6 +36,16 @@ export const MainListItems = withRouter(props => (
         </ListItemText>
       </ListItem>
     </Link>
+    <Link to="/blog" aria-label="blog">
+      <ListItem button>
+        <ListItemIcon>
+          <NoteIcon />
+        </ListItemIcon>
+        <ListItemText>
+          <Typography color="textPrimary">Blog</Typography>
+        </ListItemText>
+      </ListItem>
+    </Link>
     <Link to="/tx" aria-label="tx">
       <ListItem button>
         <ListItemIcon>
@@ -53,16 +63,6 @@ export const MainListItems = withRouter(props => (
         </ListItemIcon>
         <ListItemText>
           <Typography color="textPrimary">Add</Typography>
-        </ListItemText>
-      </ListItem>
-    </Link>
-    <Link to="/blog" aria-label="blog">
-      <ListItem button>
-        <ListItemIcon>
-          <NoteIcon />
-        </ListItemIcon>
-        <ListItemText>
-          <Typography color="textPrimary">Blog</Typography>
         </ListItemText>
       </ListItem>
     </Link>

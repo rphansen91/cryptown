@@ -33,13 +33,14 @@ const Post = ({ loading, post = {}, path }) => {
               <img src={post.urlToImage} className="img-fluid" />
             )}
           </section>
-          <section>
+          <section className="container">
             <Typography variant="h4" color="textPrimary">
               {post.title}
             </Typography>
-            <Typography variant="subtitle1" color="secondary">
+            <Typography variant="subtitle1" color="textSecondary">
               {post.content}
             </Typography>
+            {/* <div dangerouslySetInnerHTML={{ __html: post.htmlContent }} /> */}
           </section>
           <section>
             {post.url && (
