@@ -1,6 +1,5 @@
 import React from "react";
 import Ad from "./Ad";
-import "./index.css";
 
 export const TopBannerDisplayAd = () => (
   <Ad>

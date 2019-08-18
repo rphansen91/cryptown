@@ -17,7 +17,7 @@ const Post = ({ loading, post = {}, path }) => {
   return (
     <Layout
       content={
-        <section>
+        <div>
           <SEO
             schema="Article"
             title={`Hodl Stream | ${post.title || ""}`}
@@ -26,7 +26,6 @@ const Post = ({ loading, post = {}, path }) => {
             images={post.urlToImage}
           />
           <TopBannerDisplayAd />
-          <section />
           {loading && <CircularProgress />}
           <section>
             {post.urlToImage && (
@@ -50,7 +49,7 @@ const Post = ({ loading, post = {}, path }) => {
             )}
           </section>
           <BottomBannerDisplayAd />
-        </section>
+        </div>
       }
       sidebar={<ArticleSidebar filter={({ title }) => title !== post.title} />}
     />
