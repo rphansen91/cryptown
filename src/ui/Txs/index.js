@@ -17,7 +17,7 @@ const Txs = ({ txs, onChange = v => v }) => (
     <section />
     <section>
       <div className="contained">
-        <Typography variant="h4" color="textPrimary">
+        <Typography variant="h1" color="textPrimary">
           Transactions
         </Typography>
         <List className="text-initial">

@@ -8,7 +8,7 @@ const Success = ({ onChange = v => v }) => (
     <section />
     <section>
       <div className="container">
-        <Typography variant="h4" color="textPrimary">
+        <Typography variant="h1" color="textPrimary">
           Payment Success
         </Typography>
       </div>

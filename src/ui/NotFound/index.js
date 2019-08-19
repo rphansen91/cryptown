@@ -6,7 +6,7 @@ export default () => (
   <div>
     <section />
     <section className="container">
-      <Typography variant="h4" color="textPrimary">
+      <Typography variant="h1" color="textPrimary">
         Not Found
       </Typography>
     </section>

@@ -15,7 +15,7 @@ export default compose(
   withArticles
 )(({ q, loading, data, error, setPost, activePost, filter = v => v }) => (
   <div className="article-sidebar">
-    <Typography variant="h4" color="textPrimary" className="my-2">
+    <Typography variant="h1" color="textPrimary" className="my-2">
       Articles {error ? `- ${error}` : ""}
     </Typography>
 

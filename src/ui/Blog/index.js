@@ -71,7 +71,7 @@ export default () => (
     <SEO title={"Blog | Hodl Stream"} path={"/blog"} />
     <TopBannerDisplayAd />
     <section />
-    <Typography variant="h4" color="textPrimary">
+    <Typography variant="h1" color="textPrimary">
       Blog
     </Typography>
     <section />

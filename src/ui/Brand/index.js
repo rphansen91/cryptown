@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 
 export default ({ onClick, style }) => (
-  <Typography variant="h4" onClick={onClick} style={style}>
+  <Typography variant="h1" onClick={onClick} style={style}>
     <img
       alt="Logo"
       src={(process.env.PUBLIC_URL || "") + "/icon.png"}

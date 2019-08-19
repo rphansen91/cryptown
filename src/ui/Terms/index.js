@@ -7,7 +7,7 @@ export default () => (
     <SEO title={"Terms | Hodl Stream"} path="/terms" />
     <section />
 
-    <Typography paragraph variant="h4" color="textPrimary">
+    <Typography paragraph variant="h1" color="textPrimary">
       TERMS OF SERVICE
     </Typography>
     <section>

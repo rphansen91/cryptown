@@ -13,7 +13,7 @@ export default () => (
     <TopBannerDisplayAd />
     <section />
     <section>
-      <Typography variant="h4" color="textPrimary">
+      <Typography variant="h1" color="textPrimary">
         About
       </Typography>
       <Typography variant="subtitle1" color="textSecondary">

@@ -169,7 +169,7 @@ export const Transactions = connect(
   return (
     <section>
       {txs.some(coin => coin.value) && (
-        <Typography variant="h4" color="textPrimary">
+        <Typography variant="h1" color="textPrimary">
           All Transactions
         </Typography>
       )}

@@ -38,7 +38,7 @@ export default withProfile(({ profile, setProfile }) => {
 
         <section />
 
-        <Typography variant="h4" color="textPrimary">
+        <Typography variant="h1" color="textPrimary">
           Settings
         </Typography>
 

@@ -131,7 +131,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, ...props } = {}) => {
                 attrs={{ fill: color }}
                 style={iconStyle}
               />
-              <Typography variant="h4" color="textPrimary">
+              <Typography variant="h1" color="textPrimary">
                 {coin.name}
               </Typography>
               <div className="coin-details">

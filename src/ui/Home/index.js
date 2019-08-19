@@ -24,7 +24,7 @@ export default compose(
           <TopBannerDisplayAd />
           <section />
           <div className="container">
-            <Typography variant="h4" color="textPrimary" className="mb-3">
+            <Typography variant="h1" color="textPrimary" className="mb-3">
               Trends
             </Typography>
             <div className="row">

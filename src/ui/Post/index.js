@@ -40,7 +40,7 @@ const Post = ({ loading, post = {}, path }) => {
             )}
           </section>
           <section className="container">
-            <Typography paragraph variant="h4" color="textPrimary">
+            <Typography paragraph variant="h1" color="textPrimary">
               {post.title}
             </Typography>
 
