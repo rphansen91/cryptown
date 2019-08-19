@@ -19,6 +19,7 @@ export default ({
   const Icon = (
     <img
       className="icon"
+      alt={icon}
       src={process.env.PUBLIC_URL + `/svg/${icon}.svg?${query}`}
       {...props}
       onClick={onClick}

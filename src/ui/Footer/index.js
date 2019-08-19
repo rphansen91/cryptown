@@ -15,13 +15,15 @@ export default withRouter(props => (
           cursor: "pointer",
           whiteSpace: "nowrap",
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
+          justifyContent: "center"
         }}
       />
       <p className="footer-ps">
         Thank you to
         <a href="https://www.coinmarketcap.com" target="_blank">
           <img
+            alt="Coinmarketcap Logo"
             src={(process.env.PUBLIC_URL || "") + "/coinmarketcap_t.png"}
             height="15"
             width="auto"
@@ -30,6 +32,7 @@ export default withRouter(props => (
         for providing price analytics and
         <a href="https://www.highcharts.com" target="_blank">
           <img
+            alt="Highcharts Logo"
             src={(process.env.PUBLIC_URL || "") + "/highcharts_t.png"}
             height="25"
             width="auto"

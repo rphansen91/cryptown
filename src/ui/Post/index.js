@@ -32,7 +32,11 @@ const Post = ({ loading, post = {}, path }) => {
           {loading && <CircularProgress />}
           <section>
             {post.urlToImage && (
-              <img src={post.urlToImage} className="img-fluid" />
+              <img
+                alt={post.title}
+                src={post.urlToImage}
+                className="img-fluid"
+              />
             )}
           </section>
           <section className="container">
