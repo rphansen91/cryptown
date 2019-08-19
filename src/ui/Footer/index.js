@@ -10,7 +10,13 @@ export default withRouter(props => (
     <section>
       <Brand
         onClick={() => props.history.push("/")}
-        style={{ color: "#fff", cursor: "pointer" }}
+        style={{
+          color: "#fff",
+          cursor: "pointer",
+          whiteSpace: "nowrap",
+          display: "flex",
+          alignItems: "center"
+        }}
       />
       <p className="footer-ps">
         Thank you to
