@@ -121,7 +121,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, ...props } = {}) => {
       />
       <Layout
         content={
-          <section>
+          <div>
             <TopBannerDisplayAd />
             <section />
             <section>
@@ -170,7 +170,7 @@ const Coin = ({ id, data, onRemove, txs, pos, neg, ...props } = {}) => {
               <Buy crypto_currency={coin.symbol} />
             </section>
             <BottomBannerDisplayAd />
-          </section>
+          </div>
         }
         sidebar={<ArticleSidebar />}
       />
