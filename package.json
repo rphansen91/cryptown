@@ -24,7 +24,7 @@
     "jest-cli": "^22.0.3",
     "jss": "^9.4.0",
     "jss-preset-default": "^4.0.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "moment": "^2.19.3",
     "morgan": "^1.9.0",
     "raw-loader": "^0.5.1",
